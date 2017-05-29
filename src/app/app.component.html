@@ -1,3 +1,5 @@
-<h1>
-  {{title}}
-</h1>
+<ss2-nav [title]="title"></ss2-nav>
+
+<router-outlet></router-outlet>
+
+<ss2-footer *ngIf="loaded" [company]="sharedVars.company"></ss2-footer>
