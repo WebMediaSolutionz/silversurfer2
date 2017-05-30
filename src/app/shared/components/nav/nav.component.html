@@ -1,13 +1,14 @@
+{{activePage}}
 <md-toolbar color="primary">
-  <button md-button routerLink="/dashboard">
+  <a class="logo" routerLink="/dashboard">
     <ss2-pulse-logo></ss2-pulse-logo>
-  </button>
+  </a>
   <!--<button *ngIf="authService.isAuthenticated" md-button routerLink="/">{{title | myCapitalize}}</button>-->
   <!--<button *ngIf="authService.isAuthenticated" md-button routerLink="/messages">Messages</button>-->
   <button *ngIf="authService.isAuthenticated" md-button routerLink="/dashboard">Dashboard</button>
   <span class="spacer"></span>
   <button *ngIf="!authService.isAuthenticated" md-button routerLink="/login">Login</button>
-  <button *ngIf="!authService.isAuthenticated" md-button routerLink="/register">Register</button>
+  <button *ngIf="!authService.isAuthenticated" md-button routerLink="/signup">Sign Up</button>
   <button *ngIf="authService.isAuthenticated" md-button routerLink="/user">Welcome {{authService.name}}</button>
   <button *ngIf="authService.isAuthenticated" md-button (click)="authService.logout()">Logout</button>
 </md-toolbar>

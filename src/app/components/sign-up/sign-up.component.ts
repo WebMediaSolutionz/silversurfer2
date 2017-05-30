@@ -6,11 +6,11 @@ import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'ss2-register',
-  templateUrl: 'register.component.html',
-  styleUrls: ['register.component.scss']
+  selector: 'ss2-sign-up',
+  templateUrl: 'sign-up.component.html',
+  styleUrls: ['sign-up.component.scss']
 })
-export class RegisterComponent {
+export class SignUpComponent {
   private form: FormGroup;
 
   constructor(private fb: FormBuilder,

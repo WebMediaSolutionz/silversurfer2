@@ -1,19 +1,22 @@
-<md-card class="card">
+<md-card>
+  <md-card style="width: 300px; margin: auto; text-align: center;">
 
-  <md-card-content>
+    <md-card-content>
 
-    <md-input-container>
-      <input [(ngModel)]="model.firstname" mdInput placeholder="First Name">
-    </md-input-container>
+      <md-input-container>
+        <input [(ngModel)]="model.firstname" mdInput placeholder="First Name">
+      </md-input-container>
 
-    <md-input-container>
-      <input [(ngModel)]="model.lastname" mdInput placeholder="Last Name">
-    </md-input-container>
+      <md-input-container>
+        <input [(ngModel)]="model.lastname" mdInput placeholder="Last Name">
+      </md-input-container>
 
-    <md-card-actions>
-      <button (click)="post()" md-raised-button color="primary">Save Changes</button>
-    </md-card-actions>
+      <md-card-actions>
+        <button (click)="post()" md-raised-button color="primary">Save Changes</button>
+      </md-card-actions>
 
-  </md-card-content>
+    </md-card-content>
 
+  </md-card>
 </md-card>
+

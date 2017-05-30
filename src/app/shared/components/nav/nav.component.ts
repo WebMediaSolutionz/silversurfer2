@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 
 // Services
 import { AuthService } from '../../../shared/services/auth.service';
@@ -9,10 +10,25 @@ import { AuthService } from '../../../shared/services/auth.service';
   templateUrl: 'nav.component.html',
   styleUrls: ['nav.component.scss']
 })
-export class NavComponent {
-
+export class NavComponent implements OnInit {
+sn
   @Input() private title: string;
 
-  constructor(private authService: AuthService) {}
+  private activePage: string;
+
+  constructor(private authService: AuthService,
+              private router: ActivatedRoute) {}
+
+  public ngOnInit(): void {
+    let parts: string;
+
+    this.router.url.forEach((segments: UrlSegment[]) => {
+        parts = segments.join("/");
+
+        console.info(segments);
+    });
+
+    console.info(parts);
+  }
 
 }

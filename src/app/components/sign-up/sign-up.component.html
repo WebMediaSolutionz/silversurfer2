@@ -1,0 +1,38 @@
+<md-card>
+  <md-card style="width: 300px; margin: auto; text-align: center;">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit(form.value)">
+
+      <md-input-container>
+        <input [ngClass]="{'error': isValid('firstname')}" mdInput placeholder="First Name" formControlName="firstname">
+      </md-input-container>
+
+      <md-input-container>
+        <input [ngClass]="{'error': isValid('lastname')}" mdInput placeholder="Last Name" formControlName="lastname">
+      </md-input-container>
+
+      <md-input-container>
+        <input [ngClass]="{'error': isValid('email')}" type="email" mdInput placeholder="Email" formControlName="email">
+      </md-input-container>
+
+      <md-input-container>
+        <input [ngClass]="{'error': isValid('password')}" type="password" mdInput placeholder="Password" formControlName="password">
+      </md-input-container>
+
+      <md-input-container>
+        <input [ngClass]="{'error': isValid('confirmPassword')}" type="password" mdInput placeholder="Confirm Password" formControlName="confirmPassword">
+      </md-input-container>
+
+      <br>
+
+      <span *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
+
+      <br>
+
+      <button md-raised-button color="primary">Sign Up</button>
+
+    </form>
+
+  </md-card>
+</md-card>
