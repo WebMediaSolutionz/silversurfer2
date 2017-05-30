@@ -21,10 +21,10 @@ import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
 // Components
 import { HomeComponent } from './components/home/home.component';
 import { AppComponent } from './app.component';
-import { MessagesComponent } from './components/messages/messages.component';
-import { NewMessageComponent } from './components/new-message/new-message.component';
+import { PostsComponent } from './components/posts/posts.component';
+import { NewPostComponent } from './components/new-post/new-post.component';
 import { NavComponent } from './shared/components/nav/nav.component';
-import { RegisterComponent } from './components/register/register.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -35,12 +35,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent,
-    NewMessageComponent,
+    PostsComponent,
+    NewPostComponent,
     NavComponent,
     CapitalizePipe,
     HomeComponent,
-    RegisterComponent,
+    SignUpComponent,
     LoginComponent,
     UserComponent,
     DashboardComponent,

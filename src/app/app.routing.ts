@@ -1,9 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 
 // Components
+import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { MessagesComponent } from './components/messages/messages.component';
-import { RegisterComponent } from './components/register/register.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -20,15 +20,15 @@ const appRoutes: Routes = [
     },
     {
         path: 'messages',
-        component: MessagesComponent
+        component: HomeComponent
     },
     {
         path: 'messages/:name',
-        component: MessagesComponent
+        component: HomeComponent
     },
     {
-        path: 'register',
-        component: RegisterComponent
+        path: 'signup',
+        component: SignUpComponent
     },
     {
         path: 'login',
