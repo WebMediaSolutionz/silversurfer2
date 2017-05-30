@@ -19,10 +19,7 @@ import { SharedVarsService } from './shared/services/shared-vars.service';
 import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
 
 // Components
-import { HomeComponent } from './components/home/home.component';
 import { AppComponent } from './app.component';
-import { PostsComponent } from './components/posts/posts.component';
-import { NewPostComponent } from './components/new-post/new-post.component';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoginComponent } from './components/login/login.component';
@@ -35,11 +32,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 @NgModule({
   declarations: [
     AppComponent,
-    PostsComponent,
-    NewPostComponent,
     NavComponent,
     CapitalizePipe,
-    HomeComponent,
     SignUpComponent,
     LoginComponent,
     UserComponent,
