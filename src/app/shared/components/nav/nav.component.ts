@@ -11,7 +11,7 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrls: ['nav.component.scss']
 })
 export class NavComponent implements OnInit {
-sn
+
   @Input() private title: string;
 
   private activePage: string;
@@ -23,7 +23,7 @@ sn
     let parts: string;
 
     this.router.url.forEach((segments: UrlSegment[]) => {
-        parts = segments.join("/");
+        parts = segments.join('/');
 
         console.info(segments);
     });

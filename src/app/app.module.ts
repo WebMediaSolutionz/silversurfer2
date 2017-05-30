@@ -13,6 +13,7 @@ import { routing } from './app.routing';
 // Services
 import { WebService } from './shared/services/web.service';
 import { AuthService } from './shared/services/auth.service';
+import { AuthManager } from './shared/services/auth.manager';
 import { SharedVarsService } from './shared/services/shared-vars.service';
 
 // Pipes
@@ -54,7 +55,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   providers: [
     WebService,
     AuthService,
-    SharedVarsService
+    SharedVarsService,
+    AuthManager
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,8 @@
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+// Services
+import { AuthManager } from './shared/services/auth.manager';
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -11,11 +15,12 @@ const appRoutes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'dashboard'
+        redirectTo: 'dashboard',
     },
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthManager]
     },
     {
         path: 'signup',
@@ -27,12 +32,14 @@ const appRoutes: Routes = [
     },
     {
         path: 'user',
-        component: UserComponent
+        component: UserComponent,
+        canActivate: [AuthManager]
     },
     {
         path: '**',
-        component: PageNotFoundComponent
+        component: PageNotFoundComponent,
+        canActivate: [AuthManager]
     }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
