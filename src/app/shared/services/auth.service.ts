@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
+import { MdSnackBar } from '@angular/material';
+
+// Classes
+import { Credentials } from '../custom-types/classes/credentials';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +16,7 @@ export class AuthService {
   private TOKEN_KEY: string = 'token';
 
   constructor(private http: Http,
+              private sb: MdSnackBar,
               private router: Router) {}
 
   public get name(): string {
@@ -28,23 +33,32 @@ export class AuthService {
     return new RequestOptions({headers: header});
   }
 
-  public login(loginData: any): void {
-    this.http.post(this.BASE_URL + '/login', loginData).subscribe((res) => {
-      this._authenticate(res);
-    });
+  public login(loginData): void {
+    this.http.post(this.BASE_URL + '/login', loginData).subscribe(
+      (res) => {
+        this._authenticate(res);
+      },
+      (error) => {
+        this.sb.open('500 - server error', 'close', {duration: 2000});
+      });
   }
 
   public register(user): void {
     delete user.confirmPassword;
 
-    this.http.post(this.BASE_URL + '/register', user).subscribe((res) => {
-      this._authenticate(res);
-    });
+    this.http.post(this.BASE_URL + '/register', user).subscribe(
+      (res) => {
+        this._authenticate(res);
+      },
+      (error) => {
+        this.sb.open('500 - server error', 'close', {duration: 2000});
+      });
   }
 
   public logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.NAME_KEY);
+
     this.router.navigate(['/login']);
   }
 
@@ -52,11 +66,13 @@ export class AuthService {
     let authResponse = res.json();
 
     if (!authResponse.token) {
+      this.sb.open(authResponse.message, 'close', {duration: 2000});
       return;
     }
 
     localStorage.setItem(this.TOKEN_KEY, authResponse.token);
     localStorage.setItem(this.NAME_KEY, authResponse.firstname);
+
     this.router.navigate(['/']);
   }
 

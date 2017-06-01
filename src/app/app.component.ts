@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
+// Services
 import { SharedVarsService } from './shared/services/shared-vars.service';
 
 @Component({
   moduleId: module.id,
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+  styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  private title: string = 'message board';
 
   private sharedVars: any;
 
@@ -26,6 +24,7 @@ export class AppComponent implements OnInit {
           (data) => {
             this.sharedVars = data;
             localStorage.setItem('product', this.sharedVars.product);
+            localStorage.setItem('account', this.sharedVars.account);
           },
           (err) => {
             console.info(err);

@@ -1,13 +1,39 @@
-{{activePage}}
 <md-toolbar color="primary">
+
   <a class="logo" routerLink="/dashboard">
     <ss2-pulse-logo></ss2-pulse-logo>
   </a>
 
-  <button *ngIf="authService.isAuthenticated" md-button routerLink="/dashboard">Dashboard</button>
+  <button [ngClass]="{'active': activeLink === 'dashboard'}" *ngIf="authService.isAuthenticated" md-button routerLink="/dashboard">Dashboard</button>
+
   <span class="spacer"></span>
-  <button *ngIf="!authService.isAuthenticated" md-button routerLink="/login">Login</button>
-  <button *ngIf="!authService.isAuthenticated" md-button routerLink="/signup">Sign Up</button>
-  <button *ngIf="authService.isAuthenticated" md-button routerLink="/user">Welcome {{authService.name | myCapitalize}}</button>
-  <button *ngIf="authService.isAuthenticated" md-button (click)="authService.logout()">Logout</button>
+
+  <div [ngSwitch]="authService.isAuthenticated">
+
+    <div *ngSwitchCase="false">
+
+      <button [ngClass]="{'active': activeLink === 'login'}" md-button routerLink="/login">
+        <span><i class="fa fa-sign-in" aria-hidden="true"></i> Login</span>
+      </button>
+
+      <button [ngClass]="{'active': activeLink === 'signup'}" md-button routerLink="/signup">
+        <span><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</span>
+      </button>
+
+    </div>
+
+    <div *ngSwitchCase="true">
+
+      <button [ngClass]="{'active': activeLink === 'user'}" md-button routerLink="/user">
+        <span>Welcome {{authService.name | myCapitalize}}</span>
+      </button>
+
+      <button md-button (click)="authService.logout()">
+        <span><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</span>
+      </button>
+
+    </div>
+
+  </div>
+  
 </md-toolbar>

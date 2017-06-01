@@ -2,3 +2,14 @@
 .new-post {
     margin-top: 8px;
 }
+
+.inner-card {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+
+    .mat-list .mat-list-item .mat-list-item-content,
+    .mat-nav-list .mat-list-item .mat-list-item-content {
+        display: block;
+    }
+}

@@ -1,4 +1,10 @@
+@import '../../../../assets/stylesheets/variables';
+
 .logo {
     display: block;
     margin-top: 5px;
+}
+
+.active {
+    background-color: $active-link;
 }

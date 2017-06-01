@@ -10,4 +10,6 @@ export class PageNotFoundComponent {
 
   private errorMsg: string = 'page not found';
 
+  private errorCode: number = 404;
+
 }

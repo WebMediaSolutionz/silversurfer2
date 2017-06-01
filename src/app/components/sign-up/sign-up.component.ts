@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MdSnackBar } from '@angular/material';
 
 // Services
 import { AuthService } from '../../shared/services/auth.service';
+
+// Classes
+import { User } from '../../shared/custom-types/classes/user';
 
 @Component({
   moduleId: module.id,
@@ -11,41 +15,52 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['sign-up.component.scss']
 })
 export class SignUpComponent {
+
+  private formTitle: string = 'sign up';
+  
   private form: FormGroup;
 
+  private account: string;
+
   constructor(private fb: FormBuilder,
-              private authService: AuthService) {
-    this.form = this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      email: ['', [Validators.required, emailValid()]],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    }, {validator: matchingFields('password', 'confirmPassword')});
+              private authService: AuthService,
+              private sb: MdSnackBar) {
+    this.account = (localStorage.getItem('account') !== 'undefined') ?
+                    localStorage.getItem('account') : '';
+
+    this.form = this.fb.group(
+      {
+        account:    [ this.account, Validators.required ],
+        firstname:  [ '', Validators.required ],
+        lastname:   [ '', Validators.required ],
+        username:   [ '', Validators.required ],
+        password:   [ '', Validators.required ],
+        confirmPassword:  [ '', Validators.required ]
+      },
+      {
+        validator: this._matchingFields('password', 'confirmPassword')    // TODO: replace with validation service method
+      }
+    );
   }
 
-  public onSubmit(user): void {
-    this.authService.register(this.form.value);
-  }
-
-  public isValid(control): boolean {
-    return this.form.controls[control].invalid && this.form.controls[control].touched;
-  }
-}
-
-function matchingFields(field1, field2) {
-  return (form) => {
-    if (form.controls[field1].value !== form.controls[field2].value) {
-      return { mismatchedFields: true};
+  public onSubmit(user: User): void {
+    if (this.form.valid) {
+      this.authService.register(this.form.value);
+    } else {
+      this.sb.open('some entries are invalid', 'close', {duration: 2000});
     }
-  };
-}
+  }
 
-function emailValid() {
-  return (control) => {
-    // tslint:disable-next-line
-    let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  public isValid(field: string): boolean {
+    return this.form.controls[field].invalid && this.form.controls[field].touched;
+  }
 
-    return regex.test(control.value) ? null : {invalidEmail: true};
-  };
+  private _matchingFields(field1: string, field2: string): any {
+    return (form) => {
+      if (form.controls[field1].value !== form.controls[field2].value) {
+        return { mismatchedFields: true};
+      }
+    };
+  }
+
 }

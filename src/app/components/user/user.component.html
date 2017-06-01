@@ -1,22 +1,44 @@
 <md-card>
-  <md-card style="width: 300px; margin: auto; text-align: center;">
+
+  <md-card class="inner-card">
+
+    <md-card-title>
+      <h2>{{formTitle | myCapitalize}}</h2>
+    </md-card-title>
 
     <md-card-content>
 
-      <md-input-container>
-        <input [(ngModel)]="model.firstname" mdInput placeholder="First Name">
-      </md-input-container>
+      <md-list>
 
-      <md-input-container>
-        <input [(ngModel)]="model.lastname" mdInput placeholder="Last Name">
-      </md-input-container>
+        <md-list-item>
+          <md-input-container>
+            <input [(ngModel)]="user.account" mdInput placeholder="Account" disabled>
+          </md-input-container>
+        </md-list-item>
 
-      <md-card-actions>
-        <button (click)="post()" md-raised-button color="primary">Save Changes</button>
-      </md-card-actions>
+        <md-list-item>
+          <md-input-container>
+            <input [(ngModel)]="user.firstname" mdInput placeholder="First Name">
+          </md-input-container>
+        </md-list-item>
+
+        <md-list-item>
+          <md-input-container>
+            <input [(ngModel)]="user.lastname" mdInput placeholder="Last Name">
+          </md-input-container>
+        </md-list-item>
+
+        <md-list-item>
+          <md-card-actions>
+            <button (click)="post()" md-raised-button color="primary">Save Changes</button>
+          </md-card-actions>
+        </md-list-item>
+
+      </md-list>
 
     </md-card-content>
 
   </md-card>
+
 </md-card>
 

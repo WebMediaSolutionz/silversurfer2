@@ -8,9 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  @Input() public company;
+  @Input() private company;
 
-  public year;
+  private year;
 
   public ngOnInit() {
     let d = new Date();

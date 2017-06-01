@@ -5,13 +5,16 @@ import {  CanActivate,
           ActivatedRouteSnapshot,
           RouterStateSnapshot } from '@angular/router';
 
+// Services
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthManager implements CanActivate {
-    constructor(private router: Router, private authService: AuthService) {}
+    constructor(private router: Router,
+                private authService: AuthService) {}
 
-    public canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    public canActivate( next: ActivatedRouteSnapshot,
+                        state: RouterStateSnapshot ) {
         if (this.authService.isAuthenticated) {
           return true;
         } else {

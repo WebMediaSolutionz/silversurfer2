@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MdIconRegistry } from '@angular/material';
 
 @Component({
   moduleId: module.id,
@@ -6,4 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: 'pulse-logo.component.html',
   styleUrls: ['pulse-logo.component.scss']
 })
-export class PulseLogoComponent {}
+export class PulseLogoComponent {
+  constructor(private iconRegistry: MdIconRegistry,
+              private sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'pulse',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/pulse.svg')
+    );
+  }
+}

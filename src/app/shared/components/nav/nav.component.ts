@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, UrlSegment } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 // Services
 import { AuthService } from '../../../shared/services/auth.service';
@@ -12,23 +13,16 @@ import { AuthService } from '../../../shared/services/auth.service';
 })
 export class NavComponent implements OnInit {
 
-  @Input() private title: string;
-
-  private activePage: string;
+  private activeLink: string;
 
   constructor(private authService: AuthService,
-              private router: ActivatedRoute) {}
+              private location: Location,
+              private router: Router) {}
 
   public ngOnInit(): void {
-    let parts: string;
-
-    this.router.url.forEach((segments: UrlSegment[]) => {
-        parts = segments.join('/');
-
-        console.info(segments);
+    this.router.events.subscribe((val) => {
+      this.activeLink = this.location.path().substr(1);
     });
-
-    console.info(parts);
   }
 
 }

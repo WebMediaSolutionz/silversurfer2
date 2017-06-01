@@ -4,6 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // Services
 import { WebService } from '../../shared/services/web.service';
 
+// Classes
+import { User } from '../../shared/custom-types/classes/user';
+
 @Component({
   moduleId: module.id,
   selector: 'ss2-user',
@@ -12,19 +15,22 @@ import { WebService } from '../../shared/services/web.service';
 })
 export class UserComponent implements OnInit {
 
-  private model: any = {firstname: '', lastname: ''};
+  private formTitle: string = 'edit info';
+  
+  private user: User = new User();
 
   constructor(private webService: WebService) {}
 
   public ngOnInit(): void {
-    this.webService.getUser().subscribe((res) => {
-      this.model.firstname = res.firstname;
-      this.model.lastname = res.lastname;
+    this.webService.getUser().subscribe((res: User) => {
+      this.user.account = res.account;
+      this.user.firstname = res.firstname;
+      this.user.lastname = res.lastname;
     });
   }
 
   public post(): void {
-    this.webService.saveUser(this.model).subscribe();
+    this.webService.saveUser(this.user).subscribe();
   }
 
 }

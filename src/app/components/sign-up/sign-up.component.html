@@ -1,38 +1,69 @@
 <md-card>
-  <md-card style="width: 300px; margin: auto; text-align: center;">
-    <form
-      [formGroup]="form"
-      (ngSubmit)="onSubmit(form.value)">
 
-      <md-input-container>
-        <input [ngClass]="{'error': isValid('firstname')}" mdInput placeholder="First Name" formControlName="firstname">
-      </md-input-container>
+  <md-card class="inner-card">
 
-      <md-input-container>
-        <input [ngClass]="{'error': isValid('lastname')}" mdInput placeholder="Last Name" formControlName="lastname">
-      </md-input-container>
+    <md-card-title>
+      <h2>{{formTitle | myCapitalize}}</h2>
+    </md-card-title>
 
-      <md-input-container>
-        <input [ngClass]="{'error': isValid('email')}" type="email" mdInput placeholder="Email" formControlName="email">
-      </md-input-container>
+    <md-card-content>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit(form.value)">
 
-      <md-input-container>
-        <input [ngClass]="{'error': isValid('password')}" type="password" mdInput placeholder="Password" formControlName="password">
-      </md-input-container>
+        <md-list>
+        
+          <md-list-item>
+            <md-input-container>
+              <input type="text" mdInput placeholder="Account" [value]="account" disabled>
+            </md-input-container>
+          </md-list-item>
 
-      <md-input-container>
-        <input [ngClass]="{'error': isValid('confirmPassword')}" type="password" mdInput placeholder="Confirm Password" formControlName="confirmPassword">
-      </md-input-container>
+          <md-list-item>
+            <md-input-container>
+              <input [ngClass]="{'error': isValid('firstname')}" mdInput placeholder="First Name" formControlName="firstname">
+            </md-input-container>
+          </md-list-item>
 
-      <br>
+          <md-list-item>
+            <md-input-container>
+              <input [ngClass]="{'error': isValid('lastname')}" mdInput placeholder="Last Name" formControlName="lastname">
+            </md-input-container>
+          </md-list-item>
 
-      <span *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
+          <md-list-item>
+            <md-input-container>
+              <input [ngClass]="{'error': isValid('username')}" type="text" mdInput placeholder="Username" formControlName="username">
+            </md-input-container>
+          </md-list-item>
 
-      <br>
+          <md-list-item>
+            <md-input-container>
+              <input [ngClass]="{'error': isValid('password')}" type="password" mdInput placeholder="Password" formControlName="password">
+            </md-input-container>
+          </md-list-item>
 
-      <button md-raised-button color="primary">Sign Up</button>
+          <md-list-item>
+            <md-input-container>
+              <input [ngClass]="{'error': isValid('confirmPassword')}" type="password" mdInput placeholder="Confirm Password" formControlName="confirmPassword">
+            </md-input-container>
+          </md-list-item>
 
-    </form>
+          <md-list-item>
+            <span *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
+          </md-list-item>
+
+          <md-list-item>
+            <md-card-actions>
+              <button md-raised-button color="primary">Sign Up</button>
+            </md-card-actions>
+          </md-list-item>
+
+        </md-list>
+
+      </form>
+    </md-card-content>
 
   </md-card>
+
 </md-card>
