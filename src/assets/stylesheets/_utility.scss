@@ -9,3 +9,15 @@
 .small {
     font-size: 60%;
 }
+
+.outline {
+    border: thin solid red;
+
+    &.green {
+        border: thin solid green;
+    }
+}
+
+.gap {
+    margin-bottom: 10px;
+}

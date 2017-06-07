@@ -16,6 +16,7 @@ import { WebService } from './shared/services/web.service';
 import { AuthService } from './shared/services/auth.service';
 import { AuthManager } from './shared/services/auth.manager';
 import { ConfigService } from './shared/services/config.service';
+import { ValidationService } from './shared/services/validation.service';
 
 // Pipes
 import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
@@ -32,6 +33,16 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PageTitleComponent } from './shared/components/page-title/page-title.component';
 import { FieldComponent } from './shared/components/field/field.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { GeneralComponent } from './components/partials/settings/general/general.component';
+import { PracticesAndRolesComponent } from
+'./components/partials/settings/practices-and-roles/practices-and-roles.component';
+import { PrivacyPolicyComponent } from
+'./components/partials/settings/privacy-policy/privacy-policy.component';
+import { PatientSummaryComponent } from
+'./components/partials/settings/patient-summary/patient-summary.component';
+import { InteractionWarningsComponent } from
+'./components/partials/settings/interaction-warnings/interaction-warnings.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +57,13 @@ import { FieldComponent } from './shared/components/field/field.component';
     FooterComponent,
     PageNotFoundComponent,
     PageTitleComponent,
-    FieldComponent
+    FieldComponent,
+    SettingsComponent,
+    GeneralComponent,
+    PracticesAndRolesComponent,
+    PrivacyPolicyComponent,
+    PatientSummaryComponent,
+    InteractionWarningsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +78,8 @@ import { FieldComponent } from './shared/components/field/field.component';
     WebService,
     AuthService,
     ConfigService,
-    AuthManager
+    AuthManager,
+    ValidationService
   ],
   bootstrap: [AppComponent]
 })

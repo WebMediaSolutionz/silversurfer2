@@ -1,37 +1,41 @@
-<ss2-page-title [pageTitle]="formTitle"></ss2-page-title>
+<md-card class="inner-card">
 
-<md-card-content>
+  <ss2-page-title [pageTitle]="formTitle"></ss2-page-title>
 
-  <form
-    [formGroup]="form"
-    (ngSubmit)="onSubmit(form.value)">
+  <md-card-content>
 
-    <md-list>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit(form.value)">
 
-      <ss2-field [group]="form" [attributes]="accountFieldAttr"></ss2-field>
+      <md-list>
 
-      <ss2-field [group]="form" [attributes]="firstNameFieldAttr"></ss2-field>
+        <ss2-field [group]="form" [attributes]="accountFieldAttr"></ss2-field>
 
-      <ss2-field [group]="form" [attributes]="lastNameFieldAttr"></ss2-field>
+        <ss2-field [group]="form" [attributes]="firstNameFieldAttr"></ss2-field>
 
-      <ss2-field [group]="form" [attributes]="userNameFieldAttr"></ss2-field>
+        <ss2-field [group]="form" [attributes]="lastNameFieldAttr"></ss2-field>
 
-      <ss2-field [group]="form" [attributes]="passwordFieldAttr"></ss2-field>
+        <ss2-field [group]="form" [attributes]="userNameFieldAttr"></ss2-field>
 
-      <ss2-field [group]="form" [attributes]="confirmPasswordFieldAttr"></ss2-field>
+        <ss2-field [group]="form" [attributes]="passwordFieldAttr"></ss2-field>
 
-      <md-list-item>
-        <span *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
-      </md-list-item>
+        <ss2-field [group]="form" [attributes]="confirmPasswordFieldAttr"></ss2-field>
 
-      <md-list-item>
-        <md-card-actions>
-          <button md-raised-button color="primary">Sign Up</button>
-        </md-card-actions>
-      </md-list-item>
+        <md-list-item>
+          <span *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
+        </md-list-item>
 
-    </md-list>
+        <md-list-item>
+          <md-card-actions>
+            <button md-raised-button color="primary">Sign Up</button>
+          </md-card-actions>
+        </md-list-item>
 
-  </form>
+      </md-list>
 
-</md-card-content>
+    </form>
+
+  </md-card-content>
+
+</md-card>

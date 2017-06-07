@@ -1,12 +1,13 @@
-.post,
-.new-post {
-    margin-top: 8px;
-}
+@import 'variables';
 
 .inner-card {
-    width: 300px;
+    width: $inner-card-width-sm;
     margin: auto;
     text-align: center;
+
+    &.large {
+        width: $inner-card-width-lg;
+    }
 
     .mat-list .mat-list-item .mat-list-item-content,
     .mat-nav-list .mat-list-item .mat-list-item-content {

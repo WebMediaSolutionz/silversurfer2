@@ -4,36 +4,53 @@
     <ss2-pulse-logo></ss2-pulse-logo>
   </a>
 
-  <button [ngClass]="{'active': activeLink === 'dashboard'}" *ngIf="authService.isAuthenticated" md-button routerLink="/dashboard">Dashboard</button>
+  <button
+    [ngClass]="{'active': activeLink === 'dashboard'}"
+    md-button
+    routerLink="/dashboard"
+    *ngIf="authService.isAuthenticated">
+    <span><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</span>
+  </button>
+
+  <button
+    [ngClass]="{'active': activeLink === 'settings'}"
+    md-button
+    routerLink="/settings"
+    *ngIf="authService.isAuthenticated">
+    <span><i class="fa fa-cog" aria-hidden="true"></i> Settings</span>
+  </button>
 
   <span class="spacer"></span>
 
-  <div [ngSwitch]="authService.isAuthenticated">
+  <button
+    [ngClass]="{'active': activeLink === 'user'}"
+    md-button
+    routerLink="/user"
+    *ngIf="authService.isAuthenticated">
+    <span>Welcome {{authService.name | myCapitalize}}</span>
+  </button>
 
-    <div *ngSwitchCase="false">
+  <button
+    md-button
+    (click)="authService.logout()"
+    *ngIf="authService.isAuthenticated">
+    <span><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</span>
+  </button>
 
-      <button [ngClass]="{'active': activeLink === 'login'}" md-button routerLink="/login">
-        <span><i class="fa fa-sign-in" aria-hidden="true"></i> Login</span>
-      </button>
+  <button
+    [ngClass]="{'active': activeLink === 'login'}"
+    md-button
+    routerLink="/login"
+    *ngIf="!authService.isAuthenticated">
+    <span><i class="fa fa-sign-in" aria-hidden="true"></i> Login</span>
+  </button>
 
-      <button [ngClass]="{'active': activeLink === 'signup'}" md-button routerLink="/signup">
-        <span><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</span>
-      </button>
-
-    </div>
-
-    <div *ngSwitchCase="true">
-
-      <button [ngClass]="{'active': activeLink === 'user'}" md-button routerLink="/user">
-        <span>Welcome {{authService.name | myCapitalize}}</span>
-      </button>
-
-      <button md-button (click)="authService.logout()">
-        <span><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</span>
-      </button>
-
-    </div>
-
-  </div>
+  <button
+    [ngClass]="{'active': activeLink === 'signup'}"
+    md-button
+    routerLink="/signup"
+    *ngIf="!authService.isAuthenticated">
+    <span><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</span>
+  </button>
   
 </md-toolbar>

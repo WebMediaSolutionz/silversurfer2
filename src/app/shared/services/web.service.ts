@@ -22,6 +22,11 @@ export class WebService {
     this.error_duration = parseInt(error_duration);
   }
 
+  public getPractices(): any {
+    return this.http.get(this.BASE_URL + '/practices', this.authService.tokenHeader)
+                    .map((res) => res.json());
+  }
+
   public getUser(): any {
     return this.http.get(this.BASE_URL + '/users/me', this.authService.tokenHeader)
                     .map((res) => res.json());

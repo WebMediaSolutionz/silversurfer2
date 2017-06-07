@@ -11,6 +11,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const appRoutes: Routes = [
     {
@@ -34,6 +35,11 @@ const appRoutes: Routes = [
     {
         path: 'user',
         component: UserComponent,
+        canActivate: [AuthManager]
+    },
+    {
+        path: 'settings',
+        component: SettingsComponent,
         canActivate: [AuthManager]
     },
     {

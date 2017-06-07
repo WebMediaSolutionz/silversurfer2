@@ -1,33 +1,37 @@
-<ss2-page-title [pageTitle]="formTitle"></ss2-page-title>
+<md-card class="inner-card">
 
-<md-card-content>
+  <ss2-page-title [pageTitle]="formTitle"></ss2-page-title>
 
-  <md-list>
-    
-    <md-list-item>
-      <md-input-container>
-        <input mdInput [(ngModel)]="credentials.account" placeholder="Account" type="text" disabled>
-      </md-input-container>
-    </md-list-item>
+  <md-card-content>
 
-    <md-list-item>
-      <md-input-container>
-        <input mdInput [(ngModel)]="credentials.username" placeholder="Username" type="text">
-      </md-input-container>
-    </md-list-item>
+    <md-list>
+      
+      <md-list-item>
+        <md-input-container>
+          <input mdInput [(ngModel)]="credentials.account" placeholder="Account" type="text" disabled>
+        </md-input-container>
+      </md-list-item>
 
-    <md-list-item>
-      <md-input-container>
-        <input mdInput [(ngModel)]="credentials.password" placeholder="Password" type="password">
-      </md-input-container>
-    </md-list-item>
+      <md-list-item>
+        <md-input-container>
+          <input mdInput [(ngModel)]="credentials.username" placeholder="Username" type="text">
+        </md-input-container>
+      </md-list-item>
 
-    <md-list-item>
-      <md-card-actions>
-        <button md-raised-button color="primary" (click)="login()">Login</button>
-      </md-card-actions>
-    </md-list-item>
+      <md-list-item>
+        <md-input-container>
+          <input mdInput [(ngModel)]="credentials.password" placeholder="Password" type="password">
+        </md-input-container>
+      </md-list-item>
 
-  </md-list>
+      <md-list-item>
+        <md-card-actions>
+          <button md-raised-button color="primary" (click)="login()">Login</button>
+        </md-card-actions>
+      </md-list-item>
 
-</md-card-content>
+    </md-list>
+
+  </md-card-content>
+
+</md-card>
