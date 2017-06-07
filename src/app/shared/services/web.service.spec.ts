@@ -9,7 +9,7 @@ describe('WebService', () => {
     });
   });
 
-  it('should ...', inject([WebService], (service: WebService) => {
+  xit('should ...', inject([WebService], (service: WebService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -9,7 +9,7 @@ describe('SharedVarsService', () => {
     });
   });
 
-  it('should ...', inject([SharedVarsService], (service: SharedVarsService) => {
+  xit('should ...', inject([SharedVarsService], (service: SharedVarsService) => {
     expect(service).toBeTruthy();
   }));
 });
