@@ -1,6 +1,6 @@
 # Installing silversurfer 2 Frontend
 
-## Step 1: Install Node, NPM and gulp
+## Step 1: Install Node, NPM
 
 Install Node and NPM on your machine; this typically requires administrative access, 
 e.g. become root or use `sudo` (or use a Windows installer).
@@ -15,13 +15,6 @@ If you use a Linux-like environment, you are encouraged to use your
 package manager to install these tools.
 
 If you use OS X, you may wish to consider installing via [HomeBrew](http://brew.sh/).
-
-The `gulp` build tool also requires root access to install a binary in `/usr/bin`, so should
-be installed using `sudo` now:
-
-`$ sudo npm install -g gulp`
-
-Once installed, you should be able to run the `gulp` command from anywhere.
 
 ## Step 2: Check out the source code
 
@@ -41,20 +34,12 @@ Then enter the directory created. All further commands will be run inside that d
 
 `$ npm install`
 
-## Step 4: Build Semantic UI dependency
+## Step 4: Run the development server
 
-Semantic is actually a separate project whose source tree will eventually be removed
-to its own repository, where we only need to pull in the build result. For now, though,
-you need to build the output yourself.
-
-`$ cd semantic && gulp build && cd ..`
-
-## Step 5: Run the development server
-
-`$ npm run server`
+`$ npm run server` or `$ ng serve`
 
 (This will compile and run the node-based development server, and should automatically 
-open your preferred browser to http://localhost:3000/. When application files are changed, 
+open your preferred browser to http://localhost:4200/. When application files are changed, 
 the server will automatically reload the app in your browser to reflect the changes.
 Configuration changes require a restart.
 
@@ -64,41 +49,13 @@ server:
 
 `$ HOST=192.168.0.10 npm run server`
 
-## Step 6: Run unit tests
+## Step 5: Run unit tests
 
-`$ npm run test`
+`$ npm run test` or `$ ng test`
 
 This runs the code linter TSLint, then if it exists with code 0 runs the Karma testrunner
 application in the browser according to config/karma.conf.js (Chrome at time of writing).
 
 Code that does not pass TSLint will not be unit testing. Code can be linted independently
-by running `npm run tslint` or just `npm run lint` to identify and resolve code quality
+by running `npm run tslint`, `npm run lint` or just `ng lint` to identify and resolve code quality
 issues.
-
-### Headless unit testing
-
-For production servers or in instances where it is undesirable to run a new Chrome instance
-to conduct unit testing, unit tests may be executed headlessly inside PhantomJS using the
-following command:
-
-`$ npm run headlesstest`
-
-The same reporting output is displayed. This may or may not be quicker than running Karma
-through Chrome.
-
-## Step 7: Build files for production
-
-`$ npm run build:prod`
-
-The required files will be placed in the `${project_root}/dist` directory and can be served
-locally using a basic web server, such as Python's SimpleHTTPServer:
-
-`$ python -m SimpleHTTPServer 8000`
-
-For actual production environments a more robust server (e.g. nginx) is recommended.
-
-# Running End 2 End tests on silversurfer
-
-To run end 2 end tests on silversurfer, run the command `$ npm run protractor` in the command line. 
-A browser window should open up and perform all the tests and then, you should see the results
-appear in your terminal window.
