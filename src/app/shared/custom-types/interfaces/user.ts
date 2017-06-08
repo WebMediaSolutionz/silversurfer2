@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 export interface user {
     account?: string;
 

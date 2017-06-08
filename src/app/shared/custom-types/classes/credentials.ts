@@ -1,11 +1,11 @@
 import { credentials } from '../interfaces/credentials';
 
 export class Credentials implements credentials {
-    account?: string;
+    public account?: string;
 
-    username: string;
+    public username: string;
 
-    password: string;
+    public password: string;
 
     constructor() {
         this.account = '';

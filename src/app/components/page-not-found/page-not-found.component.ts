@@ -12,4 +12,6 @@ export class PageNotFoundComponent {
 
   private errorCode: number = 404;
 
+  private title: string = `- ${this.errorCode} -`;
+
 }

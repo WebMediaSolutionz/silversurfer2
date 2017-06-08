@@ -1,5 +1,16 @@
+<!-- top navigation -->
 <ss2-nav></ss2-nav>
 
-<router-outlet></router-outlet>
+<!-- page main content -->
+<md-card>
 
+  <md-card class="inner-card">
+
+    <router-outlet></router-outlet>
+
+  </md-card>
+
+</md-card>
+
+<!-- page footer -->
 <ss2-footer *ngIf="loaded" [company]="sharedVars.company"></ss2-footer>
