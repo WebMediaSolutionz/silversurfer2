@@ -16,16 +16,14 @@ import { User } from '../../shared/custom-types/classes/user';
 export class UserComponent implements OnInit {
 
   private formTitle: string = 'edit info';
-  
+
   private user: User = new User();
 
   constructor(private webService: WebService) {}
 
   public ngOnInit(): void {
     this.webService.getUser().subscribe((res: User) => {
-      this.user.account = res.account;
-      this.user.firstname = res.firstname;
-      this.user.lastname = res.lastname;
+      this.user = res;
     });
   }
 

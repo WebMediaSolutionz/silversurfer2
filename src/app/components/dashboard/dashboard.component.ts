@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
-  private title: string = 'dashboard';  
+  private title: string = 'dashboard';
 
 }

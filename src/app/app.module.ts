@@ -1,3 +1,4 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +15,7 @@ import { routing } from './app.routing';
 import { WebService } from './shared/services/web.service';
 import { AuthService } from './shared/services/auth.service';
 import { AuthManager } from './shared/services/auth.manager';
-import { SharedVarsService } from './shared/services/shared-vars.service';
+import { ConfigService } from './shared/services/config.service';
 
 // Pipes
 import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
@@ -29,6 +30,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PulseLogoComponent } from './shared/components/pulse-logo/pulse-logo.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageTitleComponent } from './shared/components/page-title/page-title.component';
+import { FieldComponent } from './shared/components/field/field.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     DashboardComponent,
     PulseLogoComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PageTitleComponent,
+    FieldComponent
   ],
   imports: [
     BrowserModule,
@@ -55,9 +60,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   providers: [
     WebService,
     AuthService,
-    SharedVarsService,
+    ConfigService,
     AuthManager
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

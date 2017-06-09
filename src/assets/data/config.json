@@ -1,5 +1,6 @@
 {
 	"company": "Pulse System Inc.",
 	"product": "PulseCloud",
-	"account": "QB1486"
+	"account": "QB1486",
+	"error_duration": 2000
 }
