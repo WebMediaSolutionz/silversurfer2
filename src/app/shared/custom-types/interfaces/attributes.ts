@@ -1,5 +1,6 @@
 // tslint:disable-next-line
 export interface attributes {
+
     type?: string;
 
     name?: string;
@@ -9,4 +10,5 @@ export interface attributes {
     value?: string;
 
     disabled?: boolean;
+
 }

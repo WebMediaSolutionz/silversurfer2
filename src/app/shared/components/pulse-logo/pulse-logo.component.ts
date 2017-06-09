@@ -9,6 +9,7 @@ import { MdIconRegistry } from '@angular/material';
   styleUrls: ['pulse-logo.component.scss']
 })
 export class PulseLogoComponent {
+
   constructor(private iconRegistry: MdIconRegistry,
               private sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
@@ -16,4 +17,5 @@ export class PulseLogoComponent {
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/pulse.svg')
     );
   }
+
 }

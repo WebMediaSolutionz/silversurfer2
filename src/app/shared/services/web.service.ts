@@ -11,9 +11,16 @@ export class WebService {
 
   private BASE_URL = 'http://localhost:63145/api';
 
+  private error_duration: number;
+
   constructor(private http: Http,
               private sb: MdSnackBar,
-              private authService: AuthService) {}
+              private authService: AuthService) {
+    let error_duration = ( localStorage.getItem('error_duration') !== 'undefined') ?
+                            localStorage.getItem('error_duration') : '2000';
+
+    this.error_duration = parseInt(error_duration);
+  }
 
   public getUser(): any {
     return this.http.get(this.BASE_URL + '/users/me', this.authService.tokenHeader)
@@ -21,13 +28,14 @@ export class WebService {
   }
 
   public saveUser(userData: any): any {
-    this.handleError(`modifications have been saved`);
+    this._handleError(`modifications have been saved`);
 
     return this.http.post(this.BASE_URL + '/users/me', userData, this.authService.tokenHeader)
                     .map((res) => res.json());
   }
 
-  private handleError(error: string) {
-    this.sb.open(error, 'close', {duration: 2000});
+  private _handleError(error: string) {
+    this.sb.open(error, 'close', {duration: this.error_duration});
   }
+
 }

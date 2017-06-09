@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthManager implements CanActivate {
+
     constructor(private router: Router,
                 private authService: AuthService) {}
 
@@ -22,4 +23,5 @@ export class AuthManager implements CanActivate {
           return false;
         }
     }
+
 }

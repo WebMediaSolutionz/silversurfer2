@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class SharedVarsService {
+export class ConfigService {
 
   constructor(private http: Http) {}
 
-  public getVars(): Observable<string> {
-    return this.http.get( './assets/data/shared_vars.json' )
+  public getConfig(): Observable<string> {
+    return this.http.get('./assets/data/config.json')
                     .map((res) => res.json());
   }
 

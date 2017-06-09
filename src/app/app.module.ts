@@ -15,7 +15,7 @@ import { routing } from './app.routing';
 import { WebService } from './shared/services/web.service';
 import { AuthService } from './shared/services/auth.service';
 import { AuthManager } from './shared/services/auth.manager';
-import { SharedVarsService } from './shared/services/shared-vars.service';
+import { ConfigService } from './shared/services/config.service';
 
 // Pipes
 import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
@@ -60,7 +60,7 @@ import { FieldComponent } from './shared/components/field/field.component';
   providers: [
     WebService,
     AuthService,
-    SharedVarsService,
+    ConfigService,
     AuthManager
   ],
   bootstrap: [AppComponent]

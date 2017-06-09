@@ -23,9 +23,7 @@ export class UserComponent implements OnInit {
 
   public ngOnInit(): void {
     this.webService.getUser().subscribe((res: User) => {
-      this.user.account = res.account;
-      this.user.firstname = res.firstname;
-      this.user.lastname = res.lastname;
+      this.user = res;
     });
   }
 

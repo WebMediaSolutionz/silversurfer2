@@ -1,20 +1,15 @@
 import { user } from '../interfaces/user';
 
 export class User implements user {
+
     public account?: string = 'qb1486';
 
-    public firstname: string;
+    public firstname: string = '';
 
-    public lastname: string;
+    public lastname: string = '';
 
-    public username: string;
+    public username: string = '';
 
-    public password: string;
+    public password: string = '';
 
-    constructor() {
-        this.firstname = '';
-        this.lastname = '';
-        this.username = '';
-        this.password = '';
-    }
 }

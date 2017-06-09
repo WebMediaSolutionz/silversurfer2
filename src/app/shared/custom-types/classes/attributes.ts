@@ -1,6 +1,7 @@
 import { attributes } from '../interfaces/attributes';
 
 export class Attributes implements attributes {
+
     public type?: string = '';
 
     public name?: string = '';
@@ -10,4 +11,5 @@ export class Attributes implements attributes {
     public value?: string = '';
 
     public disabled?: boolean = false;
+
 }
