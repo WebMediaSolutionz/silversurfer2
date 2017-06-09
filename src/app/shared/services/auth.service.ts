@@ -15,9 +15,16 @@ export class AuthService {
 
   private TOKEN_KEY: string = 'token';
 
+  private error_duration: number;
+
   constructor(private http: Http,
               private sb: MdSnackBar,
-              private router: Router) {}
+              private router: Router) {
+    let error_duration = ( localStorage.getItem('error_duration') !== 'undefined') ?
+                            localStorage.getItem('error_duration') : '2000';
+
+    this.error_duration = parseInt(error_duration);
+  }
 
   public get name(): string {
     return localStorage.getItem(this.NAME_KEY);
@@ -39,7 +46,7 @@ export class AuthService {
         this._authenticate(res);
       },
       (error) => {
-        this.sb.open('500 - server error', 'close', {duration: 2000});
+        this.sb.open('500 - server error', 'close', {duration: this.error_duration});
       });
   }
 
@@ -51,7 +58,7 @@ export class AuthService {
         this._authenticate(res);
       },
       (error) => {
-        this.sb.open('500 - server error', 'close', {duration: 2000});
+        this.sb.open('500 - server error', 'close', {duration: this.error_duration});
       });
   }
 
@@ -66,7 +73,7 @@ export class AuthService {
     let authResponse = res.json();
 
     if (!authResponse.token) {
-      this.sb.open(authResponse.message, 'close', {duration: 2000});
+      this.sb.open(authResponse.message, 'close', {duration: this.error_duration});
       return;
     }
 

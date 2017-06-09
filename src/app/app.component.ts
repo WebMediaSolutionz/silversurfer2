@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // Services
-import { SharedVarsService } from './shared/services/shared-vars.service';
+import { ConfigService } from './shared/services/config.service';
 
 @Component({
   moduleId: module.id,
@@ -11,27 +11,28 @@ import { SharedVarsService } from './shared/services/shared-vars.service';
 })
 export class AppComponent implements OnInit {
 
-  private sharedVars: any;
+  private configs: any;
 
   private loaded: boolean = false;
 
-  constructor(private sharedVarsService: SharedVarsService) {}
+  constructor(private configService: ConfigService) {}
 
   public ngOnInit(): void {
-    this.sharedVarsService
-        .getVars()
-        .subscribe(
-          (data) => {
-            this.sharedVars = data;
-            localStorage.setItem('product', this.sharedVars.product);
-            localStorage.setItem('account', this.sharedVars.account);
-          },
-          (err) => {
-            console.info(err);
-          },
-          () => {
-            this.loaded = true;
-          }
-        );
+    this.configService.getConfig()
+                      .subscribe(
+                        (data) => {
+                          this.configs = data;
+
+                          localStorage.setItem('product', this.configs.product);
+                          localStorage.setItem('account', this.configs.account);
+                          localStorage.setItem('error_duration', this.configs.error_duration);
+                        },
+                        (err) => {
+                          console.info(err);
+                        },
+                        () => {
+                          this.loaded = true;
+                        }
+                      );
   }
 }
