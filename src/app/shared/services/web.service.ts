@@ -22,8 +22,8 @@ export class WebService {
     this.error_duration = parseInt(error_duration);
   }
 
-  public getPractices(): any {
-    return this.http.get(this.BASE_URL + '/practices', this.authService.tokenHeader)
+  public getClients(): any {
+    return this.http.get(this.BASE_URL + '/api/client', this.authService.tokenHeader)
                     .map((res) => res.json());
   }
 

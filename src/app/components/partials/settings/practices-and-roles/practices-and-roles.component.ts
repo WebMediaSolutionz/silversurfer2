@@ -12,13 +12,13 @@ export class PracticesAndRolesComponent implements OnInit {
 
   private title: string = 'practices and roles';
 
-  private practices: any[];
+  private clients: any[];
 
   constructor(private webService: WebService) {}
 
   public ngOnInit(): void {
-    this.webService.getPractices().subscribe((res: any) => {
-      this.practices = res;
+    this.webService.getClients().subscribe((res: any) => {
+      this.clients = res;
     });
   }
 

@@ -17,6 +17,8 @@ import { AuthService } from './shared/services/auth.service';
 import { AuthManager } from './shared/services/auth.manager';
 import { ConfigService } from './shared/services/config.service';
 import { ValidationService } from './shared/services/validation.service';
+import { PasswordRulesService } from './shared/services/password-rules.service';
+import { ErrorDisplayService } from './shared/services/error-display.service';
 
 // Pipes
 import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
@@ -43,6 +45,7 @@ import { PatientSummaryComponent } from
 './components/partials/settings/patient-summary/patient-summary.component';
 import { InteractionWarningsComponent } from
 './components/partials/settings/interaction-warnings/interaction-warnings.component';
+import { PasswordRulesComponent } from './components/partials/settings/password-rules/password-rules.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { InteractionWarningsComponent } from
     PracticesAndRolesComponent,
     PrivacyPolicyComponent,
     PatientSummaryComponent,
-    InteractionWarningsComponent
+    InteractionWarningsComponent,
+    PasswordRulesComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,9 @@ import { InteractionWarningsComponent } from
     AuthService,
     ConfigService,
     AuthManager,
-    ValidationService
+    ValidationService,
+    PasswordRulesService,
+    ErrorDisplayService
   ],
   bootstrap: [AppComponent]
 })

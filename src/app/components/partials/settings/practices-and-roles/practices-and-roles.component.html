@@ -24,17 +24,17 @@
 
     </md-grid-list>
       
-      <md-card *ngFor="let practice of practices" class="gap">
+      <md-card *ngFor="let client of clients" class="gap">
 
         <md-grid-list cols="3" rowHeight="2:1">
 
-          <md-grid-tile>{{practice.name}}</md-grid-tile>
+          <md-grid-tile>{{client.clientname}}</md-grid-tile>
 
           <md-grid-tile>
             
             <md-list>
 
-              <md-list-item *ngFor="let role of practice.roles">
+              <md-list-item *ngFor="let role of client.roles">
 
                 {{role.name}}
 
@@ -48,7 +48,7 @@
 
             <md-list>
 
-              <md-list-item *ngFor="let location of practice.locations">
+              <md-list-item *ngFor="let location of client.locations">
 
                 {{location.name}}
 

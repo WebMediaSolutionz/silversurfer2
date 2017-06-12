@@ -2,7 +2,7 @@
 <ss2-nav></ss2-nav>
 
 <!-- page main content -->
-<md-card>
+<md-card [ngClass]="{'no-padding': configService.activeLink === 'settings'}">
 
   <router-outlet></router-outlet>
 
