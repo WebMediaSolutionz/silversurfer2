@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 // Services
 import { AuthService } from '../../../shared/services/auth.service';
+import { ConfigService } from '../../../shared/services/config.service';
 
 @Component({
   moduleId: module.id,
@@ -11,18 +12,11 @@ import { AuthService } from '../../../shared/services/auth.service';
   templateUrl: 'nav.component.html',
   styleUrls: ['nav.component.scss']
 })
-export class NavComponent implements OnInit {
-
-  private activeLink: string;
+export class NavComponent {
 
   constructor(private authService: AuthService,
+              private configService: ConfigService,
               private location: Location,
               private router: Router) {}
-
-  public ngOnInit(): void {
-    this.router.events.subscribe((val) => {
-      this.activeLink = this.location.path().substr(1);
-    });
-  }
 
 }

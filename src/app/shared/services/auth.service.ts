@@ -15,15 +15,15 @@ export class AuthService {
 
   private TOKEN_KEY: string = 'token';
 
-  private error_duration: number;
+  private errorDuration: number;
 
   constructor(private http: Http,
               private sb: MdSnackBar,
               private router: Router) {
-    let error_duration = ( localStorage.getItem('error_duration') !== 'undefined') ?
-                            localStorage.getItem('error_duration') : '2000';
+    let errorDuration = ( localStorage.getItem('errorDuration') !== 'undefined') ?
+                            localStorage.getItem('errorDuration') : '2000';
 
-    this.error_duration = parseInt(error_duration);
+    this.errorDuration = parseInt(errorDuration, 10);
   }
 
   public get name(): string {
@@ -46,7 +46,7 @@ export class AuthService {
         this._authenticate(res);
       },
       (error) => {
-        this.sb.open('500 - server error', 'close', {duration: this.error_duration});
+        this.sb.open('500 - server error', 'close', {duration: this.errorDuration});
       });
   }
 
@@ -58,7 +58,7 @@ export class AuthService {
         this._authenticate(res);
       },
       (error) => {
-        this.sb.open('500 - server error', 'close', {duration: this.error_duration});
+        this.sb.open('500 - server error', 'close', {duration: this.errorDuration});
       });
   }
 
@@ -73,7 +73,7 @@ export class AuthService {
     let authResponse = res.json();
 
     if (!authResponse.token) {
-      this.sb.open(authResponse.message, 'close', {duration: this.error_duration});
+      this.sb.open(authResponse.message, 'close', {duration: this.errorDuration});
       return;
     }
 

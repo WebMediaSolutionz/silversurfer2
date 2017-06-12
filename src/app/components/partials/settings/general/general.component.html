@@ -1,0 +1,47 @@
+<md-card>
+
+  <md-card class="inner-card large">
+
+    <md-card-title>
+      <h1>{{title | myCapitalize}}</h1>
+    </md-card-title>
+
+    <md-card-content>
+
+      <md-list>
+        
+        <md-list-item>
+          <md-input-container>
+            <input mdInput [(ngModel)]="password.current" placeholder="Current Password" type="password">
+          </md-input-container>
+        </md-list-item>
+    
+        <md-list-item>
+          <md-input-container>
+            <input mdInput [(ngModel)]="password.new" (keyup)="mismatchedFields()" placeholder="New Password" type="password">
+          </md-input-container>
+        </md-list-item>
+
+        <md-list-item>
+          <md-input-container>
+            <input mdInput [(ngModel)]="password.confirmNew" (keyup)="mismatchedFields()" placeholder="Confirm New Password" type="password">
+          </md-input-container>
+        </md-list-item>
+
+        <md-list-item>
+          <span *ngIf="!passwordsMatch">Passwords do not match</span>
+        </md-list-item>
+
+        <md-list-item>
+          <md-card-actions>
+            <button md-raised-button color="primary" (click)="save()">Reset Password</button>
+          </md-card-actions>
+        </md-list-item>
+
+      </md-list>
+
+    </md-card-content>
+
+  </md-card>
+
+</md-card>

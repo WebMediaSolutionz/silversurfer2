@@ -1,0 +1,69 @@
+<md-card>
+
+  <md-card class="inner-card large">
+
+    <md-card-title>
+      <h1>{{title | myCapitalize}}</h1>
+    </md-card-title>
+
+    <md-card-content>
+
+    <md-grid-list cols="3" rowHeight="75px">
+
+      <md-grid-tile>
+        <h3>Practices</h3>
+      </md-grid-tile>
+
+      <md-grid-tile>
+        <h3>Roles at this practice</h3>
+      </md-grid-tile>
+
+      <md-grid-tile>
+        <h3>Locations</h3>
+      </md-grid-tile>
+
+    </md-grid-list>
+      
+      <md-card *ngFor="let client of clients" class="gap">
+
+        <md-grid-list cols="3" rowHeight="2:1">
+
+          <md-grid-tile>{{client.clientname}}</md-grid-tile>
+
+          <md-grid-tile>
+            
+            <md-list>
+
+              <md-list-item *ngFor="let role of client.roles">
+
+                {{role.name}}
+
+              </md-list-item>
+
+            </md-list>
+
+          </md-grid-tile>
+
+          <md-grid-tile>
+
+            <md-list>
+
+              <md-list-item *ngFor="let location of client.locations">
+
+                {{location.name}}
+
+              </md-list-item>
+
+            </md-list>
+
+          </md-grid-tile>
+
+        </md-grid-list>
+
+      </md-card>
+
+    </md-card-content>
+
+  </md-card>
+
+</md-card>
