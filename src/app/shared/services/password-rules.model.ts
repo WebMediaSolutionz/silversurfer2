@@ -3,7 +3,7 @@ export class PasswordRule {
 
   public minimumCharacters: number;
 
-  public minimumNonAlpha: number;
+  public minimumNonAlpha: boolean;
 
   public canStartEndNumber: boolean;
 

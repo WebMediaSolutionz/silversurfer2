@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 export class ValidationService {
 
   public isInteger = (control: FormControl): {[key: string]: boolean} => {
-    let nbr = control.value.trim();
+    let nbr = control.value;
     let errorObj = {isInteger: true};
 
     if (nbr.length === 0) {
@@ -18,7 +18,7 @@ export class ValidationService {
   public isPositiveInteger = (control: FormControl): {[key: string]: boolean} => {
     let errorObj = {isPositiveInteger: true};
 
-    return ( this.isInteger(control) === null && <number> control.value.trim() >= 0 ) ?
+    return ( this.isInteger(control) === null && <number> control.value >= 0 ) ?
       null : errorObj;
   }
 

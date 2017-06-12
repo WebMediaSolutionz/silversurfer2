@@ -33,7 +33,7 @@ export class SignUpComponent {
 
   private confirmPasswordFieldAttr: Attributes;
 
-  private error_duration: number;
+  private errorDuration: number;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -83,7 +83,7 @@ export class SignUpComponent {
     if (this.form.valid) {
       this.authService.register(this.form.value);
     } else {
-      this.sb.open('some entries are invalid', 'close', {duration: this.error_duration});
+      this.sb.open('some entries are invalid', 'close', {duration: this.errorDuration});
     }
   }
 
@@ -101,10 +101,10 @@ export class SignUpComponent {
     this.accountFieldAttr.value = ( localStorage.getItem('account') !== 'undefined') ?
                                     localStorage.getItem('account') : '';
 
-    let error_duration = ( localStorage.getItem('error_duration') !== 'undefined') ?
-                            localStorage.getItem('error_duration') : '2000';
+    let errorDuration = ( localStorage.getItem('errorDuration') !== 'undefined') ?
+                            localStorage.getItem('errorDuration') : '2000';
 
-    this.error_duration = parseInt(error_duration);
+    this.errorDuration = parseInt(errorDuration, 10);
 
     this.firstNameFieldAttr = new Attributes();
     this.firstNameFieldAttr.type = 'text';

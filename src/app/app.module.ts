@@ -45,7 +45,8 @@ import { PatientSummaryComponent } from
 './components/partials/settings/patient-summary/patient-summary.component';
 import { InteractionWarningsComponent } from
 './components/partials/settings/interaction-warnings/interaction-warnings.component';
-import { PasswordRulesComponent } from './components/partials/settings/password-rules/password-rules.component';
+import { PasswordRulesComponent } from
+'./components/partials/settings/password-rules/password-rules.component';
 
 @NgModule({
   declarations: [

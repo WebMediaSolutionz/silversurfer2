@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
                           localStorage.setItem('product', this.configs.product);
                           localStorage.setItem('account', this.configs.account);
-                          localStorage.setItem('error_duration', this.configs.error_duration);
+                          localStorage.setItem('errorDuration', this.configs.errorDuration);
                         },
                         (err) => {
                           console.info(err);

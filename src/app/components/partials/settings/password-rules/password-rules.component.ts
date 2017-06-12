@@ -95,9 +95,19 @@ export class PasswordRulesComponent implements OnInit {
   public loadRules(): void {
     this.passwordRulesService.getRules()
       .subscribe((rules) => {
-                   console.info('Received password rules', rules);
-                   this.isLoading = false;
-                   this.passwordRules = rules;
+                    this.isLoading = false;
+                    this.passwordRules = rules;
+
+                    this.setFormValues(
+                      this.passwordRules.minimumNonAlpha,
+                      this.passwordRules.canStartEndNumber,
+                      this.passwordRules.canContainThreeSequentialTypes,
+                      this.passwordRules.minimumCharacters.toString(),
+                      this.passwordRules.changesBeforeReuseOld.toString(),
+                      this.passwordRules.passwordExpireDays.toString(),
+                      this.passwordRules.passwordAttemptsBeforeLockout.toString(),
+                      this.passwordRules.lockoutMessage
+                    );
                  },
                  (error) => {
                    this.isLoading = false;
@@ -110,9 +120,9 @@ export class PasswordRulesComponent implements OnInit {
     this.triedSubmit = false;
   }
 
-  public setFormValues( minimumNonAlpha: string,
-                        canStartEndNumber: string,
-                        canContainThreeSequentialTypes: string,
+  public setFormValues( minimumNonAlpha: boolean,
+                        canStartEndNumber: boolean,
+                        canContainThreeSequentialTypes: boolean,
                         minimumCharacters: string,
                         changesBeforeReuseOld: string,
                         passwordExpireDays: string,
