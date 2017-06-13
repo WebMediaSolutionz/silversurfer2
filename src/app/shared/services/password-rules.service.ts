@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 // Services
@@ -11,8 +10,7 @@ import { PasswordRule } from './password-rules.model';
 @Injectable()
 export class PasswordRulesService {
 
-  constructor(private http: Http,
-              private errorDisplayService: ErrorDisplayService,
+  constructor(private errorDisplayService: ErrorDisplayService,
               private webService: WebService) {
   }
 

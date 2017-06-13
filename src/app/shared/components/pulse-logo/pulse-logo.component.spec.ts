@@ -1,25 +1,37 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MdIconRegistry } from '@angular/material';
+import { HttpModule } from '@angular/http';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 
+// Components
 import { PulseLogoComponent } from './pulse-logo.component';
 
-describe('PulseLogoComponent', () => {
+describe('PulseLogo Component', () => {
   let component: PulseLogoComponent;
   let fixture: ComponentFixture<PulseLogoComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PulseLogoComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        PulseLogoComponent
+      ],
+      providers: [
+        MdIconRegistry
+      ],
+      imports: [
+        HttpModule
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
+    });
+
     fixture = TestBed.createComponent(PulseLogoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
-    expect(component).toBeTruthy();
+  describe('constructor()', () => {
+    it('should be initialized', () => {
+      expect(component).toBeTruthy();
+    });
   });
 });

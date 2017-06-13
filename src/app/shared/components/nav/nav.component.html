@@ -5,7 +5,7 @@
   </a>
 
   <button
-    [ngClass]="{'active': configService.activeLink === 'dashboard'}"
+    [class.active]="configService.activeLink === 'dashboard'"
     md-button
     routerLink="/dashboard"
     *ngIf="authService.isAuthenticated">
@@ -13,7 +13,7 @@
   </button>
 
   <button
-    [ngClass]="{'active': configService.activeLink === 'settings'}"
+    [class.active]="configService.activeLink === 'settings'"
     md-button
     routerLink="/settings"
     *ngIf="authService.isAuthenticated">
@@ -23,7 +23,7 @@
   <span class="spacer"></span>
 
   <button
-    [ngClass]="{'active': configService.activeLink === 'user'}"
+    [class.active]="configService.activeLink === 'user'"
     md-button
     routerLink="/user"
     *ngIf="authService.isAuthenticated">
@@ -38,7 +38,7 @@
   </button>
 
   <button
-    [ngClass]="{'active': configService.activeLink === 'login'}"
+    [class.active]="configService.activeLink === 'login'"
     md-button
     routerLink="/login"
     *ngIf="!authService.isAuthenticated">
@@ -46,7 +46,7 @@
   </button>
 
   <button
-    [ngClass]="{'active': configService.activeLink === 'signup'}"
+    [class.active]="configService.activeLink === 'signup'"
     md-button
     routerLink="/signup"
     *ngIf="!authService.isAuthenticated">

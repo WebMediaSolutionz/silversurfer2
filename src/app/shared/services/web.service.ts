@@ -1,63 +1,77 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subject } from 'rxjs/Rx';
-import { MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 
 // Services
 import { AuthService } from './auth.service';
+import { ErrorDisplayService } from "./error-display.service";
 
 // Models
 import { PasswordRule } from './password-rules.model';
+import { User } from '../custom-types/classes/user';
+import { Client } from "../custom-types/classes/client";
 
 @Injectable()
 export class WebService {
 
-  private BASE_URL = 'http://localhost:63145/api';
+  private API_URL = 'http://localhost:63145/api';
 
-  private errorDuration: number;
+  private configUrl = './assets/data/config.json';
+
+  private dest: string;
 
   constructor(private http: Http,
-              private sb: MdSnackBar,
-              private authService: AuthService) {
-    let errorDuration = ( localStorage.getItem('errorDuration') !== 'undefined') ?
-                            localStorage.getItem('errorDuration') : '2000';
-
-    this.errorDuration = parseInt(errorDuration, 10);
-  }
+              private errorDisplayService: ErrorDisplayService,
+              private authService: AuthService) {}
 
   public getPasswordRules(): Observable<PasswordRule> {
-    return this.http.get(this.BASE_URL + '/password-rules', this.authService.tokenHeader)
+    this.dest = this.API_URL + '/password-rules';
+
+    return this.http.get(this.dest, this.authService.tokenHeader)
                     .map((res) => res.json());
   }
 
   public savePasswordRules(passwordRules: PasswordRule): Observable<PasswordRule> {
-    this._handleError(`modifications have been saved`);
+    this._confirmationMsg();
+
+    this.dest = this.API_URL + '/password-rules';
 
     return this.http
-              .post(this.BASE_URL + '/password-rules', passwordRules, this.authService.tokenHeader)
+              .post(this.dest, passwordRules, this.authService.tokenHeader)
               .map((res) => res.json());
   }
 
-  public getClients(): any {
-    return this.http.get(this.BASE_URL + '/api/client', this.authService.tokenHeader)
+  public getClients(): Observable<Client> {
+    this.dest = this.API_URL + '/api/client';
+
+    return this.http.get(this.dest, this.authService.tokenHeader)
                     .map((res) => res.json());
   }
 
-  public getUser(): any {
-    return this.http.get(this.BASE_URL + '/users/me', this.authService.tokenHeader)
+  public getUser(): Observable<User> {
+    this.dest = this.API_URL + '/users/me';
+
+    return this.http.get(this.dest, this.authService.tokenHeader)
                     .map((res) => res.json());
   }
 
-  public saveUser(userData: any): any {
-    this._handleError(`modifications have been saved`);
+  public saveUser(userData: User): Observable<User> {
+    this._confirmationMsg();
 
-    return this.http.post(this.BASE_URL + '/users/me', userData, this.authService.tokenHeader)
+    this.dest = this.API_URL + '/users/me';
+
+    return this.http.post(this.dest, userData, this.authService.tokenHeader)
                     .map((res) => res.json());
   }
 
-  private _handleError(error: string) {
-    this.sb.open(error, 'close', {duration: this.errorDuration});
+  public getConfig(): Observable<any> {
+    return this.http.get(this.configUrl)
+                    .map((res) => res.json());
+  }
+
+  private _confirmationMsg(msg: string = `modifications have been saved`) {
+    this.errorDisplayService.display(msg);
   }
 
 }

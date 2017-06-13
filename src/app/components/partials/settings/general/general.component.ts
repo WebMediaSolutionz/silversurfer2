@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MdSnackBar } from '@angular/material';
 
 // Services
 import { WebService } from '../../../../shared/services/web.service';
+import { ErrorDisplayService } from "../../../../shared/services/error-display.service";
 
 // Classes
 import { User } from '../../../../shared/custom-types/classes/user';
@@ -28,7 +28,7 @@ export class GeneralComponent implements OnInit {
 
   private passwordsMatch: boolean = true;
 
-  constructor(private sb: MdSnackBar,
+  constructor(private errorDisplayService: ErrorDisplayService,
               private webService: WebService) {}
 
   public ngOnInit(): void {
@@ -39,9 +39,9 @@ export class GeneralComponent implements OnInit {
 
   public save(): void {
     if (this.password.current !== this.user.password) {
-      this.sb.open('Email or Password incorrect', 'close', {duration: 2000});
+      this.errorDisplayService.display('Email or Password incorrect');
     } else if (this.password.new !== this.password.confirmNew) {
-      this.sb.open('Some entries are invalid', 'close', {duration: 2000});
+      this.errorDisplayService.display('Some entries are invalid');
     } else {
       this.user.password = this.password.new;
 
