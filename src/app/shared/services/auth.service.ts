@@ -16,16 +16,9 @@ export class AuthService {
 
   private TOKEN_KEY: string = 'token';
 
-  private errorDuration: number;
-
   constructor(private http: Http,
               private errorDisplayService: ErrorDisplayService,
-              private router: Router) {
-    let errorDuration = ( localStorage.getItem('errorDuration') !== 'undefined') ?
-                            localStorage.getItem('errorDuration') : '2000';
-
-    this.errorDuration = parseInt(errorDuration, 10);
-  }
+              private router: Router) {}
 
   public get name(): string {
     return localStorage.getItem(this.NAME_KEY);
