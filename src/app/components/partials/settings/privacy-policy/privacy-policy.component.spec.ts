@@ -1,25 +1,41 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from '@angular/material';
 
+// Components
 import { PrivacyPolicyComponent } from './privacy-policy.component';
+import { PageTitleComponent } from '../../../../shared/components/page-title/page-title.component';
 
-describe('PrivacyPolicyComponent', () => {
+// Pipes
+import { CapitalizePipe } from '../../../../shared/pipes/capitalize.pipe';
+
+describe('PrivacyPolicy Component', () => {
   let component: PrivacyPolicyComponent;
   let fixture: ComponentFixture<PrivacyPolicyComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PrivacyPolicyComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        PrivacyPolicyComponent,
+        PageTitleComponent,
+        CapitalizePipe
+      ],
+      imports: [
+        MaterialModule
+      ]
+    });
+
     fixture = TestBed.createComponent(PrivacyPolicyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('constructor()', () => {
+    it('should be initialized', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it(`should have a title of "privacy policy"`, () => {
+      expect(component['title']).toBe('privacy policy');
+    });
   });
 });

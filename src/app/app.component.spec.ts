@@ -1,32 +1,72 @@
-import { TestBed, async } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { MaterialModule } from '@angular/material';
+import { Observable } from 'rxjs';
 
+// Components
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  beforeEach(async(() => {
+// Services
+import { ConfigService } from './shared/services/config.service';
+
+// Pipes
+import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
+
+const configs = {
+  product: 'PulseCloud',
+  account: 'QB1486',
+  errorDuration: 2000
+};
+
+class ConfigServiceStub {
+  public getConfig() {
+    return Observable.of(configs);
+  }
+}
+
+describe('App Component', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        CapitalizePipe
       ],
-    }).compileComponents();
-  }));
+      imports: [
+        MaterialModule
+      ],
+      providers: [
+        { provide: ConfigService, useClass: ConfigServiceStub }
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
+    });
 
-  xit('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+  });
 
-  xit(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
+  describe('constructor()', () => {
+    it('should be initialized', () => {
+      fixture.detectChanges();
 
-  xit('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
-  }));
+      expect(component).toBeTruthy();
+    });
+  });
+
+  describe('ngOnInit()', () => {
+    it('should invoke ConfigService.getConfig to get config data and saving it in local storage', () => {
+      let spy = spyOn(component['configService'], 'getConfig').and.callFake(() => {
+        return Observable.of(configs);
+      });
+
+      fixture.detectChanges();
+
+      expect(spy).toHaveBeenCalled();
+      expect(localStorage.getItem('product')).toBe(configs.product);
+      expect(localStorage.getItem('account')).toBe(configs.account);
+      expect(parseInt(localStorage.getItem('errorDuration'), 10)).toBe(configs.errorDuration);
+    });
+  });
 });

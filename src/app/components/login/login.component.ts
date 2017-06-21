@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.credentials.account = (localStorage.getItem('account') !== 'undefined') ?
+    this.credentials.account = (localStorage.getItem('account') !== null) ?
                                 localStorage.getItem('account') : '';
   }
 

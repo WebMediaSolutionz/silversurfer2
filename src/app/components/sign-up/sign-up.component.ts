@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MdSnackBar } from '@angular/material';
 
 // Services
 import { AuthService } from '../../shared/services/auth.service';
+import { ErrorDisplayService } from "../../shared/services/error-display.service";
 
 // Classes
 import { User } from '../../shared/custom-types/classes/user';
@@ -15,7 +15,7 @@ import { Attributes } from '../../shared/custom-types/classes/attributes';
   templateUrl: 'sign-up.component.html',
   styleUrls: ['sign-up.component.scss']
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
 
   private formTitle: string = 'sign up';
 
@@ -37,7 +37,9 @@ export class SignUpComponent {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private sb: MdSnackBar) {
+              private errorDisplayService: ErrorDisplayService) {}
+
+  public ngOnInit(): void {
     this._initializeForm();
 
     this.form = this.fb.group(
@@ -83,11 +85,11 @@ export class SignUpComponent {
     if (this.form.valid) {
       this.authService.register(this.form.value);
     } else {
-      this.sb.open('some entries are invalid', 'close', {duration: this.errorDuration});
+      this.errorDisplayService.display('some entries are invalid');
     }
   }
 
-  public isValid(field: string): boolean {
+  public isInvalid(field: string): boolean {
     return this.form.controls[field].invalid && this.form.controls[field].touched;
   }
 
@@ -98,10 +100,10 @@ export class SignUpComponent {
     this.accountFieldAttr.placeholder = 'account';
     this.accountFieldAttr.disabled = true;
 
-    this.accountFieldAttr.value = ( localStorage.getItem('account') !== 'undefined') ?
+    this.accountFieldAttr.value = ( localStorage.getItem('account') !== null) ?
                                     localStorage.getItem('account') : '';
 
-    let errorDuration = ( localStorage.getItem('errorDuration') !== 'undefined') ?
+    let errorDuration = ( localStorage.getItem('errorDuration') !== null) ?
                             localStorage.getItem('errorDuration') : '2000';
 
     this.errorDuration = parseInt(errorDuration, 10);
@@ -135,8 +137,10 @@ export class SignUpComponent {
   private _matchingFields(field1: string, field2: string): any {
     return (form) => {
       if (form.controls[field1].value !== form.controls[field2].value) {
-        return { mismatchedFields: true};
+        return { mismatchedFields: true };
       }
+
+      return null;
     };
   }
 

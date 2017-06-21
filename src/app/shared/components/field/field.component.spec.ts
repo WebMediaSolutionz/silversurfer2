@@ -1,25 +1,59 @@
+import { Component, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
+// Components
 import { FieldComponent } from './field.component';
 
-describe('FieldComponent', () => {
-  let component: FieldComponent;
-  let fixture: ComponentFixture<FieldComponent>;
+// Pipes
+import { CapitalizePipe } from "../../pipes/capitalize.pipe";
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FieldComponent ]
-    })
-    .compileComponents();
-  }));
+// Classes
+import { Attributes } from '../../custom-types/classes/attributes';
+
+describe('Field Component', () => {
+  let component: FieldComponent;
+  let fixture: ComponentFixture<TestComponentWrapper>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FieldComponent);
-    component = fixture.componentInstance;
+    TestBed.configureTestingModule({
+      declarations: [
+        TestComponentWrapper,
+        FieldComponent,
+        CapitalizePipe
+      ],
+      providers: [
+        FormBuilder
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA,
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
+    });
+
+    fixture = TestBed.createComponent(TestComponentWrapper);
+    component = fixture.debugElement.children[0].componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('constructor()', () => {
+    it('should be initialized', () => {
+      expect(component).toBeDefined();
+    });
   });
 });
+
+@Component({
+  selector: 'test-component-wrapper',
+  template: '<ss2-field [group]="group" [attributes]="attributes"></ss2-field>'
+})
+class TestComponentWrapper {
+
+  private group: FormGroup;
+
+  private attributes: Attributes = new Attributes();
+
+  constructor(private fb: FormBuilder) {
+    this.group = this.fb.group({});
+  }
+}

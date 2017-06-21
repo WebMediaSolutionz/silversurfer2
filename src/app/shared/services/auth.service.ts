@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
-import { MdSnackBar } from '@angular/material';
+
+import { ErrorDisplayService } from "./error-display.service";
 
 // Classes
 import { Credentials } from '../custom-types/classes/credentials';
@@ -9,7 +10,7 @@ import { Credentials } from '../custom-types/classes/credentials';
 @Injectable()
 export class AuthService {
 
-  private BASE_URL: string = 'http://localhost:63145/auth';
+  private API_URL: string = 'http://localhost:63145/auth';
 
   private NAME_KEY: string = 'name';
 
@@ -18,7 +19,7 @@ export class AuthService {
   private errorDuration: number;
 
   constructor(private http: Http,
-              private sb: MdSnackBar,
+              private errorDisplayService: ErrorDisplayService,
               private router: Router) {
     let errorDuration = ( localStorage.getItem('errorDuration') !== 'undefined') ?
                             localStorage.getItem('errorDuration') : '2000';
@@ -34,6 +35,8 @@ export class AuthService {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
+  public set isAuthenticated(value: boolean) {}
+
   public get tokenHeader(): RequestOptions {
     let header = new Headers({authorization: 'Bearer ' + localStorage.getItem(this.TOKEN_KEY)});
 
@@ -41,24 +44,24 @@ export class AuthService {
   }
 
   public login(loginData): void {
-    this.http.post(this.BASE_URL + '/login', loginData).subscribe(
+    this.http.post(this.API_URL + '/login', loginData).subscribe(
       (res) => {
         this._authenticate(res);
       },
       (error) => {
-        this.sb.open('500 - server error', 'close', {duration: this.errorDuration});
+        this.errorDisplayService.display('500 - server error');
       });
   }
 
   public register(user): void {
     delete user.confirmPassword;
 
-    this.http.post(this.BASE_URL + '/register', user).subscribe(
+    this.http.post(this.API_URL + '/register', user).subscribe(
       (res) => {
         this._authenticate(res);
       },
       (error) => {
-        this.sb.open('500 - server error', 'close', {duration: this.errorDuration});
+        this.errorDisplayService.display('500 - server error');
       });
   }
 
@@ -73,7 +76,7 @@ export class AuthService {
     let authResponse = res.json();
 
     if (!authResponse.token) {
-      this.sb.open(authResponse.message, 'close', {duration: this.errorDuration});
+      this.errorDisplayService.display(authResponse.message);
       return;
     }
 

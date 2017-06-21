@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
-
 import 'rxjs/add/operator/map';
+
+// Services
+import { WebService } from "./web.service";
 
 @Injectable()
 export class ConfigService {
 
   private activeLink: string;
 
-  constructor(private http: Http,
+  constructor(private webService: WebService,
               private location: Location,
               private router: Router) {
     this.router.events.subscribe((val) => {
@@ -20,9 +20,8 @@ export class ConfigService {
     });
   }
 
-  public getConfig(): Observable<string> {
-    return this.http.get('./assets/data/config.json')
-                    .map((res) => res.json());
+  public getConfig(): Observable<any> {
+    return this.webService.getConfig();
   }
 
 }

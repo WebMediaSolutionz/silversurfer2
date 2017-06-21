@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { ValidationService } from '../../../../shared/services/validation.service';
 import { ErrorDisplayService } from '../../../../shared/services/error-display.service';
@@ -11,8 +10,8 @@ import { PasswordRulesService } from '../../../../shared/services/password-rules
 @Component({
   moduleId: module.id,
   selector: 'ss2-password-rules',
-  templateUrl: './password-rules.component.html',
-  styleUrls: ['./password-rules.component.scss']
+  templateUrl: 'password-rules.component.html',
+  styleUrls: ['password-rules.component.scss']
 })
 export class PasswordRulesComponent implements OnInit {
 
@@ -33,8 +32,7 @@ export class PasswordRulesComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private passwordRulesService: PasswordRulesService,
               private validationService: ValidationService,
-              private errorDisplayService: ErrorDisplayService,
-              private router: Router) {
+              private errorDisplayService: ErrorDisplayService) {
 
     this.isLoading = true;
     this.formSubmitted = false;
@@ -145,13 +143,15 @@ export class PasswordRulesComponent implements OnInit {
       this.formSubmitted = true;
 
       this.passwordRulesService.saveRules(passwordRules)
-        .subscribe((rules) => {
-                      console.info( 'Password Rules have been saved.' );
-                   },
-                   (error) => {
-                     this.isLoading = false;
-                     this.errorDisplayService.display(error);
-                   });
+        .subscribe(
+          (rules) => {
+            let confirm = 'Password Rules have been saved.';
+            this.errorDisplayService.display(confirm);
+          },
+          (error) => {
+            this.isLoading = false;
+            this.errorDisplayService.display(error);
+          });
     } else {
       this.errorDisplayService.display('the form is invalid');
       this.triedSubmit = true;

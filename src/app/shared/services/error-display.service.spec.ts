@@ -1,39 +1,52 @@
-import { ErrorDisplayService } from './error-display.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MdSnackBar } from '@angular/material';
+import { FormsModule, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+
+// Components
+import { ErrorDisplayService } from '../../shared/services/error-display.service';
+
+// Pipes
+import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
+
+class MdSnackBarStub {
+  public open(error, icon, options) {}
+}
 
 describe('ErrorDisplay Service', () => {
-  let errorDisplayService: ErrorDisplayService;
-
   beforeEach(() => {
-    errorDisplayService = new ErrorDisplayService();
+    TestBed.configureTestingModule({
+      providers: [
+        ErrorDisplayService,
+        { provide: MdSnackBar, useClass: MdSnackBarStub }
+      ]
+    });
   });
 
   describe(`constructor()`, () => {
-    it('should be initialized', () => {
-      expect(errorDisplayService).toBeDefined();
-    });
+    it('should be initialized', inject([ErrorDisplayService, MdSnackBar], (service: ErrorDisplayService) => {
+      expect(service).toBeTruthy();
+    }));
   });
 
   describe(`display()`, () => {
-    it('should display error message', () => {
-      let spy = spyOn( console, 'info' );
-      let errMsg = `some error messager`;
-      let result = errorDisplayService.display(`some error messager`);
+    it('should invoke MdSnackBar.open to display error message', inject([ErrorDisplayService, MdSnackBar], (service: ErrorDisplayService) => {
+      let spy = spyOn(service['sb'], 'open');
+      let errorMsg1 = 'error message';
+      let errorMsg2 = 'some error';
 
-      expect(spy).toHaveBeenCalled();
-      expect(result).toBe(`outputed: ${errMsg}`);
-    });
+      service.display(errorMsg1);
+
+      expect(spy).toHaveBeenCalledWith(errorMsg1, 'close', {duration: 2000});
+
+      service.display();
+
+      expect(spy).toHaveBeenCalledWith(errorMsg2, 'close', {duration: 2000});
+    }));
   });
 
   describe(`getErrorCount()`, () => {
-    it('should display right error message', () => {
-      let someString = 'hello world';
-      let result = errorDisplayService.display(someString);
-
-      expect(result).toBe(`outputed: ${someString}`);
-    });
-
-    it('should return the right number of form errors', () => {
+    it('should return the right number of form errors', inject([ErrorDisplayService, MdSnackBar], (service: ErrorDisplayService) => {
       let form = new FormGroup({
         firstField: new FormControl('', Validators.maxLength(2)),
         secondField: new FormControl('', Validators.maxLength(2)),
@@ -46,7 +59,7 @@ describe('ErrorDisplay Service', () => {
         thirdField: 'blah'
       });
 
-      expect(errorDisplayService.getErrorCount(form, true)).toBe(1);
+      expect(service.getErrorCount(form, true)).toBe(1);
 
       form.setValue({
         firstField: 'b',
@@ -54,7 +67,7 @@ describe('ErrorDisplay Service', () => {
         thirdField: 'b'
       });
 
-      expect(errorDisplayService.getErrorCount(form, true)).toBe(0);
+      expect(service.getErrorCount(form, true)).toBe(0);
 
       form.setValue({
         firstField: 'blah',
@@ -62,8 +75,8 @@ describe('ErrorDisplay Service', () => {
         thirdField: 'blah'
       });
 
-      expect(errorDisplayService.getErrorCount(form, true)).toBe(3);
-      expect(errorDisplayService.getErrorCount(form)).toBe(0);
-    });
+      expect(service.getErrorCount(form, true)).toBe(3);
+      expect(service.getErrorCount(form)).toBe(0);
+    }));
   });
 });
