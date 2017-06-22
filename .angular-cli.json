@@ -20,6 +20,7 @@
       "prefix": "ss2",
       "styles": [
         "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+        "../node_modules/@angular/material/_theming.scss",
         "../node_modules/font-awesome/css/font-awesome.css",
         "assets/stylesheets/styles.scss"
       ],
