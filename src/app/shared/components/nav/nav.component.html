@@ -39,23 +39,32 @@
   </button>
 
 
-  <button md-icon-button [mdMenuTriggerFor]="menu">
+  <button
+    md-icon-button
+    [mdMenuTriggerFor]="menu"
+    *ngIf="authService.isAuthenticated">
     <span><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
   </button>
 
-  <md-menu #menu="mdMenu">
+  <md-menu class="dropdown" #menu="mdMenu">
 
     <button
+      [class.active]="configService.activeLink === 'user'"
       md-menu-item
-      routerLink="/settings"
-      *ngIf="authService.isAuthenticated">
+      routerLink="/user">
+      <span><i class="fa fa-user" aria-hidden="true"></i> Profile</span>
+    </button>
+
+    <button
+      [class.active]="configService.activeLink === 'settings'"
+      md-menu-item
+      routerLink="/settings">
       <span><i class="fa fa-cog" aria-hidden="true"></i> Settings</span>
     </button>
 
     <button
       md-menu-item
-      (click)="authService.logout()"
-      *ngIf="authService.isAuthenticated">
+      (click)="authService.logout()">
       <span><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</span>
     </button>
 
