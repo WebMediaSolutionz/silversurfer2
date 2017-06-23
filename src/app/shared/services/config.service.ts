@@ -12,6 +12,8 @@ export class ConfigService {
 
   private activeLink: string;
 
+  private accessLevel = 'admin';    // TODO: remove hardcoded part
+
   constructor(private webService: WebService,
               private location: Location,
               private router: Router) {

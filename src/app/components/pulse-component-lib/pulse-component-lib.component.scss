@@ -1,0 +1,35 @@
+// Temporary stubs for documentation
+.docs-example {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  max-width: 100%;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  flex-basis: 33%;
+  padding-right: 20px;
+
+  code {
+    border: 1px solid #EEE;
+    background-color: #F6F6F6;
+    color: #666;
+    font-size: 80%;
+    font-family: monospace;
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 0 0 2px;
+    line-height: 1.4;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    border-radius: 3px;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 30px;
+    box-sizing: border-box;
+  }
+}

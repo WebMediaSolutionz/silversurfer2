@@ -63,6 +63,14 @@
     </button>
 
     <button
+      *ngIf="configService.accessLevel === 'admin'"
+      [class.active]="configService.activeLink === 'pulse-component-lib'"
+      md-menu-item
+      routerLink="/pulse-component-lib">
+      <span><i class="fa fa-cog" aria-hidden="true"></i> pulse component library</span>
+    </button>
+
+    <button
       md-menu-item
       (click)="authService.logout()">
       <span><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</span>

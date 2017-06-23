@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { PulseComponentLibComponent } from './components/pulse-component-lib/pulse-component-lib.component';
 
 const appRoutes: Routes = [
     {
@@ -40,6 +41,11 @@ const appRoutes: Routes = [
     {
         path: 'settings',
         component: SettingsComponent,
+        canActivate: [AuthManager]
+    },
+    {
+        path: 'pulse-component-lib',
+        component: PulseComponentLibComponent,
         canActivate: [AuthManager]
     },
     {

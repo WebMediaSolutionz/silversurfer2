@@ -43,7 +43,7 @@ export class WebService {
   }
 
   public getClients(): Observable<Client> {
-    this.dest = this.API_URL + '/api/client';
+    this.dest = this.API_URL + '/client';
 
     return this.http.get(this.dest, this.authService.tokenHeader)
                     .map((res) => res.json());
