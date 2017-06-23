@@ -83,7 +83,7 @@ describe('Web Service', () => {
       });
 
       expect(spy).toHaveBeenCalled();
-      expect(service['dest']).toBe(service['API_URL'] + '/api/client');
+      expect(service['dest']).toBe(service['API_URL'] + '/client');
     }));
   });
 
