@@ -1,4 +1,4 @@
-import { client } from "../interfaces/client";
+import { client } from '../interfaces/client';
 
 export class Client implements client {
 
@@ -35,7 +35,6 @@ export class Client implements client {
     public secureemail: string;
 
     public roles: any[];
-    
+
     public locations: any[];
 }
-

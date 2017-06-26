@@ -10,24 +10,12 @@ import { CapitalizePipe } from '../../../../shared/pipes/capitalize.pipe';
 
 // Services
 import { WebService } from '../../../../shared/services/web.service';
-import { ErrorDisplayService } from "../../../../shared/services/error-display.service";
+import { ErrorDisplayService } from '../../../../shared/services/error-display.service';
+import { ErrorDisplayServiceStub } from '../../../../shared/services/error-display.service.stub';
+import { WebServiceStub } from '../../../../shared/services/web.service.stub';
 
 // Classes
 import { User } from '../../../../shared/custom-types/classes/user';
-
-class WebServiceStub {
-  public getUser() {
-    return Observable.of(new User());
-  }
-
-  public saveUser(user: User) {
-    return Observable.empty();
-  }
-}
-
-class ErrorDisplayServiceStub {
-  display(error) {}
-}
 
 describe('General Component', () => {
   let component: GeneralComponent;
@@ -37,7 +25,7 @@ describe('General Component', () => {
     TestBed.configureTestingModule({
       declarations: [
         GeneralComponent,
-        CapitalizePipe   
+        CapitalizePipe
       ],
       providers: [
         { provide: ErrorDisplayService, useClass: ErrorDisplayServiceStub },
@@ -74,7 +62,7 @@ describe('General Component', () => {
     it('should invoke ErrorDisplayService.display when user enters the wrong password', () => {
       component['password'].current = 'bbb';
       component['user'].password = 'aaa';
-      
+
       let spy = spyOn(component['errorDisplayService'], 'display');
 
       fixture.detectChanges();
@@ -83,7 +71,8 @@ describe('General Component', () => {
       expect(spy).toHaveBeenCalledWith('Email or Password incorrect');
     });
 
-    it(`should invoke ErrorDisplayService.display when the confirm password doesn't match the password`, () => {
+    it( `should invoke ErrorDisplayService.display when the confirm ` +
+        `password doesn't match the password`, () => {
       component['password'].current = 'aaa';
       component['user'].password = 'aaa';
       component['password'].new = 'bbb';
@@ -97,7 +86,8 @@ describe('General Component', () => {
       expect(spy).toHaveBeenCalledWith('Some entries are invalid');
     });
 
-    it(`should invoke WebService.saveUser when credentials are correct and new password matches confirm password`, () => {
+    it( `should invoke WebService.saveUser when credentials are correct ` +
+        `and new password matches confirm password`, () => {
       component['password'].current = 'aaa';
       component['user'].password = 'aaa';
       component['password'].new = 'bbb';

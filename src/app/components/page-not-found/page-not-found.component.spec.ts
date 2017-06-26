@@ -1,4 +1,4 @@
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 // Components
@@ -30,7 +30,7 @@ describe('PageNotFound Component', () => {
       expect(component).toBeTruthy();
     });
 
-    it(`should have an error message of "page not found"`, () => {
+    it(`should have an error message of 'page not found'`, () => {
       expect(component['errorMsg']).toBe('page not found');
     });
 
@@ -38,7 +38,7 @@ describe('PageNotFound Component', () => {
       expect(component['errorCode']).toBe(404);
     });
 
-    it(`should have title of "- 404 -"`, () => {
+    it(`should have title of '- 404 -'`, () => {
       expect(component['title']).toBe('- 404 -');
     });
   });

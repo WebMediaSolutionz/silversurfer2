@@ -1,17 +1,16 @@
 import { inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdSnackBar } from '@angular/material';
-import { FormsModule, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { FormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 // Components
 import { ErrorDisplayService } from '../../shared/services/error-display.service';
 
+// Services
+import { MdSnackBarStub } from '../../shared/services/mdsnackbar.service.stub';
+
 // Pipes
 import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
-
-class MdSnackBarStub {
-  public open(error, icon, options) {}
-}
 
 describe('ErrorDisplay Service', () => {
   beforeEach(() => {
@@ -24,59 +23,68 @@ describe('ErrorDisplay Service', () => {
   });
 
   describe(`constructor()`, () => {
-    it('should be initialized', inject([ErrorDisplayService, MdSnackBar], (service: ErrorDisplayService) => {
-      expect(service).toBeTruthy();
-    }));
+    it('should be initialized', inject(
+      [ErrorDisplayService, MdSnackBar],
+      (service: ErrorDisplayService) => {
+        expect(service).toBeTruthy();
+      }
+    ));
   });
 
   describe(`display()`, () => {
-    it('should invoke MdSnackBar.open to display error message', inject([ErrorDisplayService, MdSnackBar], (service: ErrorDisplayService) => {
-      let spy = spyOn(service['sb'], 'open');
-      let errorMsg1 = 'error message';
-      let errorMsg2 = 'some error';
+    it('should invoke MdSnackBar.open to display error message', inject(
+      [ErrorDisplayService, MdSnackBar],
+      (service: ErrorDisplayService) => {
+        let spy = spyOn(service['sb'], 'open');
+        let errorMsg1 = 'error message';
+        let errorMsg2 = 'some error';
 
-      service.display(errorMsg1);
+        service.display(errorMsg1);
 
-      expect(spy).toHaveBeenCalledWith(errorMsg1, 'close', {duration: 2000});
+        expect(spy).toHaveBeenCalledWith(errorMsg1, 'close', {duration: 2000});
 
-      service.display();
+        service.display();
 
-      expect(spy).toHaveBeenCalledWith(errorMsg2, 'close', {duration: 2000});
-    }));
+        expect(spy).toHaveBeenCalledWith(errorMsg2, 'close', {duration: 2000});
+      }
+    ));
   });
 
   describe(`getErrorCount()`, () => {
-    it('should return the right number of form errors', inject([ErrorDisplayService, MdSnackBar], (service: ErrorDisplayService) => {
-      let form = new FormGroup({
-        firstField: new FormControl('', Validators.maxLength(2)),
-        secondField: new FormControl('', Validators.maxLength(2)),
-        thirdField: new FormControl('', Validators.maxLength(2))
-      });
+    it('should return the right number of form errors', inject(
+      [ErrorDisplayService, MdSnackBar],
+      (service: ErrorDisplayService) => {
+        let form = new FormGroup({
+          firstField: new FormControl('', Validators.maxLength(2)),
+          secondField: new FormControl('', Validators.maxLength(2)),
+          thirdField: new FormControl('', Validators.maxLength(2))
+        });
 
-      form.setValue({
-        firstField: 'b',
-        secondField: 'bl',
-        thirdField: 'blah'
-      });
+        form.setValue({
+          firstField: 'b',
+          secondField: 'bl',
+          thirdField: 'blah'
+        });
 
-      expect(service.getErrorCount(form, true)).toBe(1);
+        expect(service.getErrorCount(form, true)).toBe(1);
 
-      form.setValue({
-        firstField: 'b',
-        secondField: 'b',
-        thirdField: 'b'
-      });
+        form.setValue({
+          firstField: 'b',
+          secondField: 'b',
+          thirdField: 'b'
+        });
 
-      expect(service.getErrorCount(form, true)).toBe(0);
+        expect(service.getErrorCount(form, true)).toBe(0);
 
-      form.setValue({
-        firstField: 'blah',
-        secondField: 'blah',
-        thirdField: 'blah'
-      });
+        form.setValue({
+          firstField: 'blah',
+          secondField: 'blah',
+          thirdField: 'blah'
+        });
 
-      expect(service.getErrorCount(form, true)).toBe(3);
-      expect(service.getErrorCount(form)).toBe(0);
-    }));
+        expect(service.getErrorCount(form, true)).toBe(3);
+        expect(service.getErrorCount(form)).toBe(0);
+      }
+    ));
   });
 });

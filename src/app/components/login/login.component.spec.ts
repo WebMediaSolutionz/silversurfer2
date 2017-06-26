@@ -6,13 +6,10 @@ import { LoginComponent } from './login.component';
 
 // Services
 import { AuthService } from '../../shared/services/auth.service';
+import { AuthServiceStub } from '../../shared/services/auth.service.stub';
 
 // Classes
 import { Credentials } from '../../shared/custom-types/classes/credentials';
-
-class AuthServiceStub {
-  public login (creds: Credentials) {}
-}
 
 describe('Login Component', () => {
   let component: LoginComponent;
@@ -50,7 +47,8 @@ describe('Login Component', () => {
       expect(component['credentials'].account).toBe(account);
     });
 
-    it('should set the value of the account to an empty string if it is not in localstorage', () => {
+    it( 'should set the value of the account to an empty string ' +
+        'if it is not in localstorage', () => {
       localStorage.removeItem('account');
 
       fixture.detectChanges();

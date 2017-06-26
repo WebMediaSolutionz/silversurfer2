@@ -9,12 +9,12 @@ import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
 describe('PageTitle Component', () => {
   let component: PageTitleComponent;
-  let fixture: ComponentFixture<TestComponentWrapper>;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TestComponentWrapper,
+        WrapperComponent,
         PageTitleComponent,
         CapitalizePipe
       ],
@@ -24,7 +24,7 @@ describe('PageTitle Component', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(TestComponentWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.debugElement.children[0].componentInstance;
     fixture.detectChanges();
   });
@@ -37,9 +37,9 @@ describe('PageTitle Component', () => {
 });
 
 @Component({
-  selector: 'test-component-wrapper',
+  selector: 'wrapper',
   template: '<ss2-page-title [pageTitle]="pageTitle"></ss2-page-title>'
 })
-class TestComponentWrapper {
+class WrapperComponent {
   private pageTitle: string = 'blah';
 }

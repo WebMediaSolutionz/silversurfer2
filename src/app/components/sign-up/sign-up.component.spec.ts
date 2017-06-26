@@ -1,29 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 // Components
 import { SignUpComponent } from './sign-up.component';
-import { FieldComponent } from "../../shared/components/field/field.component";
-import { CapitalizePipe } from "../../shared/pipes/capitalize.pipe";
+import { FieldComponent } from '../../shared/components/field/field.component';
+import { CapitalizePipe } from '../../shared/pipes/capitalize.pipe';
 
 // Services
-import { AuthService } from "../../shared/services/auth.service";
-import { ErrorDisplayService } from "../../shared/services/error-display.service";
+import { AuthService } from '../../shared/services/auth.service';
+import { ErrorDisplayService } from '../../shared/services/error-display.service';
+import { AuthServiceStub } from '../../shared/services/auth.service.stub';
+import { ErrorDisplayServiceStub } from '../../shared/services/error-display.service.stub';
 
 // Classes
 import { User } from '../../shared/custom-types/classes/user';
 import { Attributes } from '../../shared/custom-types/classes/attributes';
-
-class AuthServiceStub {
-  register(formValue) {}
-}
-
-class ErrorDisplayServiceStub {
-  display(errorMsg) {}
-
-  errors: number = 0;
-}
 
 describe('SignUp Component', () => {
   let component: SignUpComponent;
@@ -68,7 +60,8 @@ describe('SignUp Component', () => {
   });
 
   describe('onSubmit()', () => {
-    it('should invoke ErrorDisplayService.display to display error message when form is invalid', () => {
+    it( 'should invoke ErrorDisplayService.display to display ' +
+        'error message when form is invalid', () => {
       let spy = spyOn(component['errorDisplayService'], 'display');
 
       fixture.detectChanges();
@@ -98,7 +91,7 @@ describe('SignUp Component', () => {
   });
 
   describe('isInvalid()', () => {
-    it(`should return true if a form control is "invalid" and is "touched"`, () => {
+    it(`should return true if a form control is 'invalid' and is 'touched'`, () => {
       fixture.detectChanges();
 
       let field = 'firstname';
@@ -110,7 +103,7 @@ describe('SignUp Component', () => {
       expect(component.isInvalid(field)).toBeTruthy();
     });
 
-    it(`should return false if a form control is "invalid" and is "untouched"`, () => {
+    it(`should return false if a form control is 'invalid' and is 'untouched'`, () => {
       fixture.detectChanges();
 
       let field = 'firstname';
@@ -120,7 +113,7 @@ describe('SignUp Component', () => {
       expect(component.isInvalid(field)).toBeFalsy();
     });
 
-    it(`should return false if a form control is "valid" and "touched"`, () => {
+    it(`should return false if a form control is 'valid' and 'touched'`, () => {
       fixture.detectChanges();
 
       let field = 'firstname';
@@ -133,7 +126,7 @@ describe('SignUp Component', () => {
       expect(component.isInvalid(field)).toBeFalsy();
     });
 
-    it(`should return false if a form control is "invalid" and "untouched"`, () => {
+    it(`should return false if a form control is 'invalid' and 'untouched'`, () => {
       fixture.detectChanges();
 
       let field = 'firstname';
@@ -161,7 +154,8 @@ describe('SignUp Component', () => {
   });
 
   describe('_matchingFields()', () => {
-    it(`should set form.errors to null if the "password" and "passwordConfirm" field values match`, () => {
+    it(`should set form.errors to null if the 'password' and ` +
+      `'passwordConfirm' field values match`, () => {
       fixture.detectChanges();
 
       let field1 = 'password';
@@ -173,7 +167,8 @@ describe('SignUp Component', () => {
       expect(component['form'].errors).toBeNull();
     });
 
-    it(`should not set form.errors to null if the "password" and "passwordConfirm" field values dont match`, () => {
+    it(`should not set form.errors to null if the 'password' and ` +
+      `'passwordConfirm' field values dont match`, () => {
       fixture.detectChanges();
 
       let field1 = 'password';
