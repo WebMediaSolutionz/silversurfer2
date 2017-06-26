@@ -7,12 +7,12 @@ import { FooterComponent } from './footer.component';
 
 describe('Footer Component', () => {
   let component: FooterComponent;
-  let fixture: ComponentFixture<TestComponentWrapper>;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TestComponentWrapper,
+        WrapperComponent,
         FooterComponent
       ],
       schemas: [
@@ -21,7 +21,7 @@ describe('Footer Component', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(TestComponentWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.debugElement.children[0].componentInstance;
     fixture.detectChanges();
   });
@@ -46,8 +46,8 @@ describe('Footer Component', () => {
   selector: 'test-component-wrapper',
   template: '<ss2-footer [company]="company"></ss2-footer>'
 })
-class TestComponentWrapper {
+class WrapperComponent {
 
-  private company: string = "Pulse System Inc.";
+  private company: string = 'Pulse System Inc.';
 
 }

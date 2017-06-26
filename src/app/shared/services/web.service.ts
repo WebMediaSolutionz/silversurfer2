@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 
 // Services
 import { AuthService } from './auth.service';
-import { ErrorDisplayService } from "./error-display.service";
+import { ErrorDisplayService } from './error-display.service';
 
 // Models
 import { PasswordRule } from './password-rules.model';
 import { User } from '../custom-types/classes/user';
-import { Client } from "../custom-types/classes/client";
+import { Client } from '../custom-types/classes/client';
 
 @Injectable()
 export class WebService {

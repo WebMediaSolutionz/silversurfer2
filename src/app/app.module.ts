@@ -48,7 +48,8 @@ import { InteractionWarningsComponent } from
 './components/partials/settings/interaction-warnings/interaction-warnings.component';
 import { PasswordRulesComponent } from
 './components/partials/settings/password-rules/password-rules.component';
-import { PulseComponentLibComponent } from "./components/pulse-component-lib/pulse-component-lib.component";
+import { PulseComponentLibComponent } from
+'./components/pulse-component-lib/pulse-component-lib.component';
 
 @NgModule({
   declarations: [

@@ -6,19 +6,19 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { FieldComponent } from './field.component';
 
 // Pipes
-import { CapitalizePipe } from "../../pipes/capitalize.pipe";
+import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
 // Classes
 import { Attributes } from '../../custom-types/classes/attributes';
 
 describe('Field Component', () => {
   let component: FieldComponent;
-  let fixture: ComponentFixture<TestComponentWrapper>;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TestComponentWrapper,
+        WrapperComponent,
         FieldComponent,
         CapitalizePipe
       ],
@@ -31,7 +31,7 @@ describe('Field Component', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(TestComponentWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.debugElement.children[0].componentInstance;
     fixture.detectChanges();
   });
@@ -47,7 +47,7 @@ describe('Field Component', () => {
   selector: 'test-component-wrapper',
   template: '<ss2-field [group]="group" [attributes]="attributes"></ss2-field>'
 })
-class TestComponentWrapper {
+class WrapperComponent {
 
   private group: FormGroup;
 

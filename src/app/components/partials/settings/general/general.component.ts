@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Services
 import { WebService } from '../../../../shared/services/web.service';
-import { ErrorDisplayService } from "../../../../shared/services/error-display.service";
+import { ErrorDisplayService } from '../../../../shared/services/error-display.service';
 
 // Classes
 import { User } from '../../../../shared/custom-types/classes/user';

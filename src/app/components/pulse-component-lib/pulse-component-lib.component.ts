@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -6,13 +6,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'pulse-component-lib.component.html',
   styleUrls: ['pulse-component-lib.component.scss']
 })
-export class PulseComponentLibComponent implements OnInit {
+export class PulseComponentLibComponent {
 
   private pageTitle: string = 'pulse component library';
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

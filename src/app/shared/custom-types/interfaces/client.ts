@@ -33,7 +33,7 @@ export interface client {
 
     secureemail: string;
 
-    roles: any[],
+    roles: any[];
 
-    locations: any[]
+    locations: any[];
 }

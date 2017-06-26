@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 // Services
-import { WebService } from "./web.service";
+import { WebService } from './web.service';
 
 @Injectable()
 export class ConfigService {

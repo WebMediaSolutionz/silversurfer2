@@ -1,30 +1,23 @@
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { SpyLocation } from '@angular/common/testing';
-import { Observable } from "rxjs";
-import { MaterialModule } from "@angular/material";
+import { Observable } from 'rxjs';
+import { MaterialModule } from '@angular/material';
 
 // Components
 import { NavComponent } from './nav.component';
 
 // Pipes
-import { CapitalizePipe } from "../../../shared/pipes/capitalize.pipe";
+import { CapitalizePipe } from '../../../shared/pipes/capitalize.pipe';
 
 // Services
 import { AuthService } from '../../../shared/services/auth.service';
 import { ConfigService } from '../../../shared/services/config.service';
-
-class RouterStub {
-  navigate: (route) => {}
-
-  events = Observable.empty();
-};
-
-class AuthServiceStub {}
-
-class ConfigServiceStub {}
+import { RouterStub } from '../../../shared/services/router.service.stub';
+import { AuthServiceStub } from '../../../shared/services/auth.service.stub';
+import { ConfigServiceStub } from '../../../shared/services/config.service.stub';
 
 describe('Nav Component', () => {
   let component: NavComponent;

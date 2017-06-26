@@ -1,7 +1,7 @@
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 // Components
 import { PasswordRulesComponent } from './password-rules.component';
@@ -9,31 +9,16 @@ import { PasswordRulesComponent } from './password-rules.component';
 // Services
 import { ValidationService } from '../../../../shared/services/validation.service';
 import { ErrorDisplayService } from '../../../../shared/services/error-display.service';
+import { ErrorDisplayServiceStub } from '../../../../shared/services/error-display.service.stub';
 import { PasswordRulesService } from '../../../../shared/services/password-rules.service';
+import { PasswordRulesServiceStub } from '../../../../shared/services/password-rules.service.stub';
+import { ValidationServiceStub } from '../../../../shared/services/validation.service.stub';
 
 // Pipes
-import { CapitalizePipe } from "../../../../shared/pipes/capitalize.pipe";
+import { CapitalizePipe } from '../../../../shared/pipes/capitalize.pipe';
 
 // Models
 import { PasswordRule } from '../../../../shared/services/password-rules.model';
-
-class ValidationServiceStub {}
-
-class ErrorDisplayServiceStub {
-  display(errorMsg) {}
-
-  getErrorCount(form, strictValidation) {}
-}
-
-class PasswordRulesServiceStub {
-  getRules() {
-    return Observable.empty();
-  }
-  
-  saveRules() {
-    return Observable.empty();
-  }
-}
 
 describe('PasswordRules Component', () => {
   let component: PasswordRulesComponent;
@@ -131,7 +116,8 @@ describe('PasswordRules Component', () => {
   });
 
   describe('onSubmit()', () => {
-    it('should invoke PasswordRulesService.saveRules to save the password rules when form entries are valid', () => {
+    it( 'should invoke PasswordRulesService.saveRules to save ' +
+        'the password rules when form entries are valid', () => {
       let spy = spyOn(component['passwordRulesService'], 'saveRules').and.callFake(() => {
         return Observable.empty();
       });
@@ -144,7 +130,8 @@ describe('PasswordRules Component', () => {
       expect(spy).toHaveBeenCalledWith(component['passwordRules']);
     });
 
-    it('should invoke ErrorDisplayService.display and ErrorDisplayService.getErrorCount when form entries are invalid', () => {
+    it( 'should invoke ErrorDisplayService.display and ErrorDisplayService.getErrorCount ' +
+        'when form entries are invalid', () => {
       let spy1 = spyOn(component['errorDisplayService'], 'display');
       let spy2 = spyOn(component['errorDisplayService'], 'getErrorCount');
 

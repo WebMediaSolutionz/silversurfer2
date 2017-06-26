@@ -56,7 +56,8 @@ describe('App Component', () => {
   });
 
   describe('ngOnInit()', () => {
-    it('should invoke ConfigService.getConfig to get config data and saving it in local storage', () => {
+    it( 'should invoke ConfigService.getConfig to get config ' +
+        'data and saving it in local storage', () => {
       let spy = spyOn(component['configService'], 'getConfig').and.callFake(() => {
         return Observable.of(configs);
       });

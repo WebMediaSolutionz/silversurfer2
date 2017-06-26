@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdIconRegistry } from '@angular/material';
 import { HttpModule } from '@angular/http';
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 // Components
 import { PulseLogoComponent } from './pulse-logo.component';

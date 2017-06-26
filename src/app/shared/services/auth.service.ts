@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 
-import { ErrorDisplayService } from "./error-display.service";
+import { ErrorDisplayService } from './error-display.service';
 
 // Classes
 import { Credentials } from '../custom-types/classes/credentials';
@@ -28,7 +28,9 @@ export class AuthService {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
-  public set isAuthenticated(value: boolean) {}
+  public set isAuthenticated(value: boolean) {
+    // empty implementation just for the purposes of testing
+  }
 
   public get tokenHeader(): RequestOptions {
     let header = new Headers({authorization: 'Bearer ' + localStorage.getItem(this.TOKEN_KEY)});

@@ -7,15 +7,9 @@ import {  CanActivate,
 
 // Services
 import { AuthManager } from './auth.manager';
-import { AuthService } from "./auth.service";
-
-class RouterStub {
-  navigate (route: any) {}
-}
-
-class AuthServiceStub {
-  isAuthenticated: boolean;
-}
+import { AuthService } from './auth.service';
+import { RouterStub } from './router.service.stub';
+import { AuthServiceStub } from './auth.service.stub';
 
 describe('Auth Manager', () => {
   beforeEach(() => {
@@ -37,23 +31,29 @@ describe('Auth Manager', () => {
   describe('canActivate()', () => {
     let next: ActivatedRouteSnapshot;
     let state: RouterStateSnapshot;
-    
-    it(`should return "true" if the user is authenticated`, inject([AuthManager, AuthService], (service: AuthManager) => {
-      service['authService'].isAuthenticated = true;
 
-      let result = service.canActivate(next, state);
+    it(`should return 'true' if the user is authenticated`, inject(
+      [AuthManager, AuthService],
+      (service: AuthManager) => {
+        service['authService'].isAuthenticated = true;
 
-      expect(result).toBeTruthy();
-    }));
+        let result = service.canActivate(next, state);
 
-    it('should return "false" if the user is not authenticated and redirected to login', inject([AuthManager, AuthService], (service: AuthManager) => {
-      service['authService'].isAuthenticated = false;
+        expect(result).toBeTruthy();
+      }
+    ));
 
-      let spy = spyOn(service['router'], 'navigate');
-      let result = service.canActivate(next, state);
+    it(`should return 'false' if the user is not authenticated and redirected to login`, inject(
+      [AuthManager, AuthService],
+      (service: AuthManager) => {
+        service['authService'].isAuthenticated = false;
 
-      expect(spy).toHaveBeenCalledWith(['/login']);
-      expect(result).toBeFalsy();
-    }));
+        let spy = spyOn(service['router'], 'navigate');
+        let result = service.canActivate(next, state);
+
+        expect(spy).toHaveBeenCalledWith(['/login']);
+        expect(result).toBeFalsy();
+      }
+    ));
   });
 });
