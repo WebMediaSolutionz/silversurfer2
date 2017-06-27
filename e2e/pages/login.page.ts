@@ -1,22 +1,31 @@
 import { browser, element, by } from 'protractor';
-import { Page } from './page';
 
-export class LoginPage extends Page {
-    public url: string = '/#/login';
+export class LoginPage {
+  public navigateTo() {
+    return browser.get('/login');
+  }
 
-    public username: any = element(by.id('username'));
+  public delay(timer: number) {
+      browser.sleep(timer);
 
-    public password: any = element(by.id('password'));
+      return this;
+  }
 
-    public submit: any = element(by.id('submit'));
+  public getCurrentPage() {
+      return browser.getCurrentUrl();
+  }
 
-    public fillLoginForm(username: string, password: string): LoginPage {
-        this.username.sendKeys(username).then( () => {
-            this.password.sendKeys(password).then( () => {
-                this.submit.click();
-            });
-        });
+  public fillLoginForm(username: string, password: string): LoginPage {
+    let usernameCtrl: any = element(by.id('username'));
+    let passwordCtrl: any = element(by.id('password'));
+    let submitCtrl: any = element(by.id('submit'));
 
-        return this;
-    }
+    usernameCtrl.sendKeys(username).then( () => {
+      passwordCtrl.sendKeys(password).then( () => {
+        submitCtrl.click();
+      });
+    });
+
+    return this;
+  }
 }
