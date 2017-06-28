@@ -1,6 +1,6 @@
 import { LoginPage } from './pages/login.page';
 
-describe('Login App', () => {
+describe('Login Page', () => {
   let page: LoginPage;
 
   beforeEach(() => {
