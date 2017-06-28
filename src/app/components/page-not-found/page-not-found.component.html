@@ -1,7 +1,13 @@
-<ss2-page-title [pageTitle]="title"></ss2-page-title>
+<md-card class="inner-card large">
 
-<md-card-content>
+  <ss2-page-title [pageTitle]="title"></ss2-page-title>
 
-  <p>{{errorMsg | myCapitalize}}</p>
+  <md-card-content>
 
-</md-card-content>
+    <h3>{{errorMsg | myCapitalize}}</h3>
+
+    <p>Click <a [routerLink]="landingPage.path">here</a> to go back to the {{landingPage.page}} page</p>
+
+  </md-card-content>
+
+</md-card>
