@@ -18,7 +18,8 @@ export class SignUpPage {
       return browser.getCurrentUrl();
   }
 
-  public fillSignUpForm(username: string, password: string): SignUpPage {
+  public fillSignUpForm(account: string, firstname: string, lastname: string, username: string, password: string, confirmPassword: string): SignUpPage {
+    let accountCtrl: any = element(by.id('account'));
     let firstnameCtrl: any = element(by.id('firstname'));
     let lastnameCtrl: any = element(by.id('lastname'));
     let usernameCtrl: any = element(by.id('username'));
@@ -27,12 +28,14 @@ export class SignUpPage {
 
     let submitCtrl: any = element(by.id('submit'));
 
-    firstnameCtrl.sendKeys(username).then( () => { 
-        lastnameCtrl.sendKeys(password).then( () => {
-            usernameCtrl.sendKeys(username).then( () => {
-                passwordCtrl.sendKeys(password).then( () => {
-                    confirmPasswordCtrl.sendKeys(username).then( () => {
-                        submitCtrl.click();
+    accountCtrl.sendKeys(firstname).then( () => {
+        firstnameCtrl.sendKeys(firstname).then( () => {
+            lastnameCtrl.sendKeys(lastname).then( () => {
+                usernameCtrl.sendKeys(username).then( () => {
+                    passwordCtrl.sendKeys(password).then( () => {
+                        confirmPasswordCtrl.sendKeys(confirmPassword).then( () => {
+                            submitCtrl.click();
+                        });
                     });
                 });
             });

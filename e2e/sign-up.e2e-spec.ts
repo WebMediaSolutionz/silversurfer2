@@ -1,4 +1,4 @@
-import { SignUpPage } from './pages/sign-up.page';
+import { SignUpPage } from './pages/sign-up.po';
 
 // Classes
 import { User } from "../src/app/shared/custom-types/classes/user";
