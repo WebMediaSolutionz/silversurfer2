@@ -1,41 +1,41 @@
-import { LoginPage } from './pages/login.po';
+import { LoginPage } from "./pages/login.po";
 
 describe('Login Page', () => {
-  let page: LoginPage;
+  let username: string;
+  let password: string;
+  let errorMsg: string;
+  let loginPage: LoginPage;
 
   beforeEach(() => {
-    page = new LoginPage();
-
-    page.navigateTo();
+    loginPage = new LoginPage();
   });
 
   it(`should display error message if the credentials are wrong`, () => {
-    let username: string = 'aaa';
-    let password: string = 'bnhb';
-    let delay: number = 2000;
-    let errorMsg;
+    username = 'aaa';
+    password = 'bnhb';
+    errorMsg = 'Email or Password incorrect';
 
-    page.delay(delay)
-        .fillLoginForm(username, password)
-        .delay(delay);
+    loginPage
+      .fillLoginForm(username, password)
+      .getCurrentPage().then((url) => {
+        expect(url).toContain('login');
 
-    page.getCurrentPage().then((url) => {
-      expect(url).toContain('login');
-    });
+        loginPage.getErrorMsg().then((err) => {
+          expect(err).toContain(errorMsg);
+        });
+      });
   });
 
   it(`should redirect user to dashboard page if credentials are right`, () => {
-    let username: string = 'doctor';
-    let password: string = 'orthodoc';
-    let delay: number = 2000;
-    let errorMsg;
+    username = 'doctor';
+    password = 'orthodoc';
 
-    page.delay(delay)
-        .fillLoginForm(username, password)
-        .delay(delay);
+    loginPage
+      .fillLoginForm(username, password)
+      .getCurrentPage().then((url) => {
+        expect(url).toContain('dashboard');
 
-    page.getCurrentPage().then((url) => {
-      expect(url).toContain('dashboard');
-    });
+        loginPage.logout();
+      });
   });
 });

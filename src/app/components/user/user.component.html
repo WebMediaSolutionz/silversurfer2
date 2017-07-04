@@ -14,19 +14,19 @@
 
       <md-list-item>
         <md-input-container>
-          <input [(ngModel)]="user.firstname" mdInput placeholder="First Name">
+          <input [(ngModel)]="user.firstname" mdInput id="user_firstname" placeholder="First Name">
         </md-input-container>
       </md-list-item>
 
       <md-list-item>
         <md-input-container>
-          <input [(ngModel)]="user.lastname" mdInput placeholder="Last Name">
+          <input [(ngModel)]="user.lastname" mdInput id="user_lastname" placeholder="Last Name">
         </md-input-container>
       </md-list-item>
 
       <md-list-item>
         <md-card-actions>
-          <button md-raised-button color="primary" (click)="post()">Save Changes</button>
+          <button md-raised-button id="save" color="primary" (click)="post()">Save Changes</button>
         </md-card-actions>
       </md-list-item>
 

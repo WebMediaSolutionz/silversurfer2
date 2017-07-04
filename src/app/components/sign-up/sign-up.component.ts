@@ -91,7 +91,7 @@ export class SignUpComponent implements OnInit {
     if (this.form.valid) {
       this.authService.register(this.form.value);
     } else {
-      this.errorDisplayService.display('some entries are invalid');
+      this.errorDisplayService.display('Some entries are invalid');
     }
   }
 
