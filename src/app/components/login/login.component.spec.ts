@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 // Components
 import { LoginComponent } from './login.component';
@@ -7,6 +8,7 @@ import { LoginComponent } from './login.component';
 // Services
 import { AuthService } from '../../shared/services/auth.service';
 import { AuthServiceStub } from '../../shared/services/auth.service.stub';
+import { RouterStub } from '../../shared/services/router.service.stub';
 
 // Classes
 import { Credentials } from '../../shared/custom-types/classes/credentials';
@@ -19,7 +21,8 @@ describe('Login Component', () => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       providers: [
-        { provide: AuthService, useClass: AuthServiceStub }
+        { provide: AuthService, useClass: AuthServiceStub },
+        { provide: Router, useClass: RouterStub }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     });

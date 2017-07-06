@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // Services
 import { AuthService } from '../../shared/services/auth.service';
@@ -37,9 +38,14 @@ export class SignUpComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
+              private router: Router,
               private errorDisplayService: ErrorDisplayService) {}
 
   public ngOnInit(): void {
+    if (this.authService.isAuthenticated) {
+      this.router.navigate(['/dashboard']);
+    }
+
     this._initializeForm();
 
     this.form = this.fb.group(
