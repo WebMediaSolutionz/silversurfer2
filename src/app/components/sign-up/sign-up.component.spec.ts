@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // Components
 import { SignUpComponent } from './sign-up.component';
@@ -12,6 +13,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { ErrorDisplayService } from '../../shared/services/error-display.service';
 import { AuthServiceStub } from '../../shared/services/auth.service.stub';
 import { ErrorDisplayServiceStub } from '../../shared/services/error-display.service.stub';
+import { RouterStub } from '../../shared/services/router.service.stub';
 
 // Classes
 import { User } from '../../shared/custom-types/classes/user';
@@ -31,6 +33,7 @@ describe('SignUp Component', () => {
       providers: [
         FormBuilder,
         { provide: AuthService, useClass: AuthServiceStub },
+        { provide: Router, useClass: RouterStub },
         { provide: ErrorDisplayService, useClass: ErrorDisplayServiceStub }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]

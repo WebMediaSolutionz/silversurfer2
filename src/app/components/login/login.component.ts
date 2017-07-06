@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Services
 import { AuthService } from '../../shared/services/auth.service';
@@ -18,11 +19,16 @@ export class LoginComponent implements OnInit {
 
   private credentials = new Credentials();
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private router: Router) {}
 
   public ngOnInit(): void {
     this.credentials.account = (localStorage.getItem('account') !== null) ?
                                 localStorage.getItem('account') : '';
+
+    if (this.authService.isAuthenticated) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   public login(): void {
