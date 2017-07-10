@@ -1,7 +1,7 @@
 import { browser, element, by } from 'protractor';
 
 // Pages
-import { LoginPage } from "./pages/login.po";
+import { LoginPage } from './pages/login.po';
 
 describe('Settings Page (General)', () => {
   let username: string = 'doctor';
@@ -44,8 +44,8 @@ describe('Settings Page (General)', () => {
             confirmNewPasswordCtrl.sendKeys('orthodoc').then( () => {
                 resetCtrl.click();
 
-                element(by.css('.mat-simple-snackbar')).getText().then((errorMsg) => {
-                    expect(errorMsg).toContain('modifications have been saved');
+                element(by.css('.mat-simple-snackbar')).getText().then((err) => {
+                    expect(err).toContain('modifications have been saved');
                 });
             });
         });
@@ -58,8 +58,8 @@ describe('Settings Page (General)', () => {
             confirmNewPasswordCtrl.sendKeys('orthodoc1').then( () => {
                 resetCtrl.click();
 
-                element(by.css('.mat-simple-snackbar')).getText().then((errorMsg) => {
-                    expect(errorMsg).toContain('Some entries are invalid');
+                element(by.css('.mat-simple-snackbar')).getText().then((err) => {
+                    expect(err).toContain('Some entries are invalid');
                 });
             });
         });
@@ -72,8 +72,8 @@ describe('Settings Page (General)', () => {
             confirmNewPasswordCtrl.sendKeys('orthodoc').then( () => {
                 resetCtrl.click();
 
-                element(by.css('.mat-simple-snackbar')).getText().then((errorMsg) => {
-                    expect(errorMsg).toContain('Email or Password incorrect');
+                element(by.css('.mat-simple-snackbar')).getText().then((err) => {
+                    expect(err).toContain('Email or Password incorrect');
                 });
             });
         });
@@ -83,8 +83,8 @@ describe('Settings Page (General)', () => {
   it(`should display error message when fields are left empty`, () => {
     resetCtrl.click();
 
-    element(by.css('.mat-simple-snackbar')).getText().then((errorMsg) => {
-        expect(errorMsg).toContain('Email or Password incorrect');
+    element(by.css('.mat-simple-snackbar')).getText().then((err) => {
+        expect(err).toContain('Email or Password incorrect');
     });
   });
 });
