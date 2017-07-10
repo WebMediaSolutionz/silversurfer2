@@ -35,14 +35,14 @@ describe('Edit Info Page', () => {
   });
 
   it(`should display confirmation message after changing password`, () => {
-		userFirstNameCtrl.clear().sendKeys('max').then( () => {
-			userLastNameCtrl.clear().sendKeys('max').then( () => {
-				saveCtrl.click();
+    userFirstNameCtrl.clear().sendKeys('max').then( () => {
+      userLastNameCtrl.clear().sendKeys('max').then( () => {
+        saveCtrl.click();
 
-				element(by.css('.mat-simple-snackbar')).getText().then((errorMsg) => {
-					expect(errorMsg).toContain('modifications have been saved');
-				});
-			});
-		});
+        element(by.css('.mat-simple-snackbar')).getText().then((err) => {
+          expect(err).toContain('modifications have been saved');
+        });
+      });
+    });
   });
 });

@@ -24,9 +24,9 @@ export class EditPasswordRulesPage {
     }
 
     public delay(timer: number = 2000) {
-			browser.sleep(timer);
+        browser.sleep(timer);
 
-			return this;
+        return this;
     }
 
     public clickSecondMenuItemAnchor(): EditPasswordRulesPage {

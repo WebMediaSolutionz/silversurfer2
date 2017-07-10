@@ -1,39 +1,46 @@
-import { browser, element, by } from 'protractor';
+import { browser,
+  element, by } from 'protractor';
 
 export class SignUpPage {
-	constructor() {
-		this.getCurrentPage().then((currentPage) => {
-			if (currentPage.indexOf('signup') === -1 && currentPage.indexOf('login') === -1) {
-				this.logout();
-            }
-			
-            this.navigateTo();
-		});
-	}
+  constructor() {
+    this.getCurrentPage().then((currentPage) => {
+      if (currentPage.indexOf('signup') === -1 && currentPage.indexOf('login') === -1) {
+        this.logout();
+      }
+
+      this.navigateTo();
+    });
+  }
 
   public navigateTo() {
     return browser.get('/signup');
   }
 
   public delay(timer: number) {
-		browser.sleep(timer);
+    browser.sleep(timer);
 
-		return this;
+    return this;
   }
 
   public getCurrentPage() {
     return browser.getCurrentUrl();
   }
 
-	public getPromptMsg() {
-		return element(by.css('.mismatch')).getText();
-	}
+  public getPromptMsg() {
+    return element(by.css('.mismatch')).getText();
+  }
 
-	public getErrorMsg() {
+  public getErrorMsg() {
     return element(by.css('.mat-simple-snackbar')).getText();
   }
 
-  public fillSignUpForm(account: string, firstname: string, lastname: string, username: string, password: string, confirmPassword: string): SignUpPage {
+  public fillSignUpForm(
+    account: string,
+    firstname: string,
+    lastname: string,
+    username: string,
+    password: string,
+    confirmPassword: string): SignUpPage {
     let delay = 2000;
     let accountCtrl: any = element(by.id('account'));
     let firstnameCtrl: any = element(by.id('firstname'));
@@ -59,13 +66,13 @@ export class SignUpPage {
         });
     });
 
-		this.delay(delay);
+    this.delay(delay);
 
     return this;
   }
 
   public signUpUser(user: any): SignUpPage {
-		let delay = 2000;
+    let delay = 2000;
     let accountCtrl: any = element(by.id('account'));
     let firstnameCtrl: any = element(by.id('firstname'));
     let lastnameCtrl: any = element(by.id('lastname'));
@@ -73,7 +80,7 @@ export class SignUpPage {
     let passwordCtrl: any = element(by.id('password'));
     let confirmPasswordCtrl: any = element(by.id('confirmPassword'));
     let submitCtrl: any = element(by.id('submit'));
-		this.delay(delay);
+    this.delay(delay);
 
     accountCtrl.clear().sendKeys(user.account).then( () => {
         firstnameCtrl.clear().sendKeys(user.firstname).then( () => {
@@ -89,7 +96,7 @@ export class SignUpPage {
         });
     });
 
-		this.delay(delay);
+    this.delay(delay);
 
     return this;
   }

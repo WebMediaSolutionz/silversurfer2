@@ -1,7 +1,7 @@
 import { browser, by, element } from 'protractor';
 
 // Pages
-import { LoginPage } from "./pages/login.po";
+import { LoginPage } from './pages/login.po';
 
 // Test Suite for 'Password Rules Edit' page
 describe(`Password Rules Edit page:`, () => {
