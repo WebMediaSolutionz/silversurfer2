@@ -53,7 +53,7 @@ describe('SignUp Component', () => {
 
   describe('ngOnInit()', () => {
     it('should invoke _initializeForm to set default form values and initialize form group', () => {
-      let spy = spyOn(component, '_initializeForm').and.callThrough();
+      let spy = spyOn(component, 'onSubmit').and.callThrough();
 
       fixture.detectChanges();
 
