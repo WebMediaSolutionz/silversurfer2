@@ -14,4 +14,9 @@ export class PageNotFoundComponent {
 
   private title: string = `- ${this.errorCode} -`;
 
+  private landingPage: any = {
+    path: '/dashboard',
+    page: 'dashboard'
+  };
+
 }

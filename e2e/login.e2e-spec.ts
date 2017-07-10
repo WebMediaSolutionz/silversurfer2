@@ -1,22 +1,41 @@
-// loading Page
-import { LoginPage } from './pages/login.page';
+import { LoginPage } from "./pages/login.po";
 
-// Test Suite for 'Dashboard' page
-xdescribe(`LoginPage page:`, () => {
+describe('Login Page', () => {
+  let username: string;
+  let password: string;
+  let errorMsg: string;
   let loginPage: LoginPage;
 
-  beforeEach( () => {
+  beforeEach(() => {
     loginPage = new LoginPage();
-
-    loginPage.load();
   });
 
-  it(`should allow the user access if right credentials are entered`, () => {
-    let username = '';
-    let password = '';
+  it(`should display error message if the credentials are wrong`, () => {
+    username = 'aaa';
+    password = 'bnhb';
+    errorMsg = 'Email or Password incorrect';
 
-    loginPage.fillLoginForm(username, password);
+    loginPage
+      .fillLoginForm(username, password)
+      .getCurrentPage().then((url) => {
+        expect(url).toContain('login');
 
-    expect(true).toBeTruthy();
+        loginPage.getErrorMsg().then((err) => {
+          expect(err).toContain(errorMsg);
+        });
+      });
+  });
+
+  it(`should redirect user to dashboard page if credentials are right`, () => {
+    username = 'doctor';
+    password = 'orthodoc';
+
+    loginPage
+      .fillLoginForm(username, password)
+      .getCurrentPage().then((url) => {
+        expect(url).toContain('dashboard');
+
+        loginPage.logout();
+      });
   });
 });

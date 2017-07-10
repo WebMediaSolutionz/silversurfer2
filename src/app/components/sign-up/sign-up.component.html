@@ -23,12 +23,12 @@
         <ss2-field [group]="form" [attributes]="confirmPasswordFieldAttr"></ss2-field>
 
         <md-list-item>
-          <span *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
+          <span class="mismatch" *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
         </md-list-item>
 
         <md-list-item>
           <md-card-actions>
-            <button md-raised-button color="primary">Sign Up</button>
+            <button md-raised-button id="submit" color="primary">Sign Up</button>
           </md-card-actions>
         </md-list-item>
 

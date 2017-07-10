@@ -41,6 +41,7 @@
 
   <button
     md-icon-button
+    id="dropdown"
     [mdMenuTriggerFor]="menu"
     *ngIf="authService.isAuthenticated">
     <span><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
@@ -72,6 +73,7 @@
 
     <button
       md-menu-item
+      id="logout"
       (click)="authService.logout()">
       <span><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</span>
     </button>
