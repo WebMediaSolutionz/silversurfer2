@@ -8,7 +8,7 @@
       
       <md-list-item>
         <md-input-container>
-          <input mdInput [(ngModel)]="credentials.account" placeholder="Account" type="text" disabled>
+          <input mdInput [(ngModel)]="credentials.account" id="account" placeholder="Account" type="text" disabled>
         </md-input-container>
       </md-list-item>
 
@@ -26,7 +26,7 @@
 
       <md-list-item>
         <md-card-actions>
-          <button md-raised-button color="primary" (click)="login()">Login</button>
+          <button md-raised-button id="submit" color="primary" (click)="login()">Login</button>
         </md-card-actions>
       </md-list-item>
 

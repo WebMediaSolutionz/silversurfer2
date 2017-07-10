@@ -2,7 +2,11 @@ import { browser, element, by } from 'protractor';
 
 export class LoginPage {
   constructor() {
-    this.navigateTo();
+    this.getCurrentPage().then((currentPage) => {
+      if (currentPage.indexOf('login') === -1) {
+        this.logout();
+      }
+    });
   }
 
   public navigateTo() {
@@ -31,8 +35,8 @@ export class LoginPage {
 
     browser.sleep(delay);
 
-    usernameCtrl.sendKeys(username).then( () => {
-      passwordCtrl.sendKeys(password).then( () => {
+    usernameCtrl.clear().sendKeys(username).then( () => {
+      passwordCtrl.clear().sendKeys(password).then( () => {
         submitCtrl.click();
       });
     });
