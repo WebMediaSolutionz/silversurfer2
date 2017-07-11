@@ -1,53 +1,36 @@
 import { browser, by, element } from 'protractor';
 
-export class EditPasswordRulesPage {
-    public url: string = '/#/settings/security/password-rules';
-    public secondMenuItemAnchor: any = element(by.id('second-menu-item-anchor'));
-    public adminAnchor: any = element(by.id('administration'));
-    public button: any = element(by.id('edit-password-rules-btn'));
-    public textbox1: any = element(by.id('textbox1'));
-    public textbox2: any = element(by.id('textbox2'));
-    public textbox3: any = element(by.id('textbox3'));
-    public textbox4: any = element(by.id('textbox4'));
-    public textarea: any = element(by.id('textbox5'));
-    public errorMessage1: any = element(by.id('error-msg-1'));
-    public errorMessage2: any = element(by.id('error-msg-2'));
-    public errorMessage3: any = element(by.id('error-msg-3'));
-    public errorMessage4: any = element(by.id('error-msg-4'));
-    public errorMessage5: any = element(by.id('error-msg-5'));
-    public successMessage: any = element(by.css('form div.message.success'));
-    public submitButton: any = element(by.css('form button[type=submit]'));
-    public errorPrompt: any = element(by.css('.grid div.four.column p.error'));
+// Pages
+import { Page } from './page.po';
+
+export class EditPasswordRulesPage extends Page {
+
+    private textbox1Ctrl: any = element(by.id('textbox1'));
+
+    private textbox2Ctrl: any = element(by.id('textbox2'));
+
+    private textbox3Ctrl: any = element(by.id('textbox3'));
+
+    private textbox4Ctrl: any = element(by.id('textbox4'));
+
+    private textareaCtrl: any = element(by.id('textbox5'));
+
+    private saveCtrl: any = element(by.id('save'));
+
+    private snackbarCtrl: any = element(by.css('.mat-simple-snackbar'));
+
+    constructor() {
+        super();
+    }
 
     public load() {
-        return browser.get('/settings');
-    }
+        this.url = 'settings';
 
-    public delay(timer: number = 2000) {
-        browser.sleep(timer);
+        super.load();
 
-        return this;
-    }
+        element(by.id('md-tab-label-0-5')).click();
 
-    public clickSecondMenuItemAnchor(): EditPasswordRulesPage {
-        browser.actions().click(this.secondMenuItemAnchor).perform();
         this.delay();
-
-        return this;
-    }
-
-    public clickAdminAnchor(): EditPasswordRulesPage {
-        browser.actions().click(this.adminAnchor).perform();
-        this.delay();
-
-        return this;
-    }
-
-    public clickButton(): EditPasswordRulesPage {
-        browser.actions().click(this.button).perform();
-        this.delay();
-
-        return this;
     }
 
     public fillPasswordRulesForm(   textbox1: string,
@@ -55,12 +38,12 @@ export class EditPasswordRulesPage {
                                     textbox3: string,
                                     textbox4: string,
                                     textarea: string): EditPasswordRulesPage {
-        this.textbox1.sendKeys(textbox1).then( () => {
-            this.textbox2.sendKeys(textbox2).then( () => {
-                this.textbox3.sendKeys(textbox3).then( () => {
-                    this.textbox4.sendKeys(textbox4).then( () => {
-                        this.textarea.sendKeys(textarea).then( () => {
-                            this.submitButton.click();
+        this.textbox1Ctrl.clear().sendKeys(textbox1).then( () => {
+            this.textbox2Ctrl.clear().sendKeys(textbox2).then( () => {
+                this.textbox3Ctrl.clear().sendKeys(textbox3).then( () => {
+                    this.textbox4Ctrl.clear().sendKeys(textbox4).then( () => {
+                        this.textareaCtrl.clear().sendKeys(textarea).then( () => {
+                            this.saveCtrl.click();
                         });
                     });
                 });
@@ -68,5 +51,9 @@ export class EditPasswordRulesPage {
         });
 
         return this;
+    }
+
+    public getTitle() {
+        return element(by.css('h1')).getText();
     }
 }

@@ -1,10 +1,10 @@
 import { LoginPage } from './pages/login.po';
 
 describe('Login Page', () => {
+  let loginPage: LoginPage;
   let username: string;
   let password: string;
   let errorMsg: string;
-  let loginPage: LoginPage;
 
   beforeEach(() => {
     loginPage = new LoginPage();
