@@ -16,7 +16,7 @@ describe('SignUp Page', () => {
     };
   });
 
-  it(`should signup user, log him in and redirect him to the dashboard page`, () => {
+  it(`should sign up dummy user, log him in and redirect him to the dashboard page`, () => {
     signUpPage.signUpUser(user);
 
     signUpPage.getCurrentPage().then((url) => {
@@ -44,12 +44,12 @@ describe('SignUp Page', () => {
     signUpPage.getCurrentPage().then((url) => {
       expect(url).toContain('signup');
 
-      signUpPage.getPromptMsg().then((msg) => {
-        expect(msg).toContain(promptMsg);
-      });
+      signUpPage.getPromptMsg().then((prompt) => {
+        expect(prompt.toLowerCase()).toContain(promptMsg.toLowerCase());
 
-      signUpPage.getErrorMsg().then((msg) => {
-        expect(msg.toLowerCase()).toContain(errorMsg.toLowerCase());
+        signUpPage.getErrorMsg().then((err) => {
+          expect(err.toLowerCase()).toContain(errorMsg.toLowerCase());
+        });
       });
     });
   });

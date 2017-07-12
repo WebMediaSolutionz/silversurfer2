@@ -1,37 +1,38 @@
-import { browser,
-  element, by } from 'protractor';
+import { browser, element, by } from 'protractor';
 
-export class SignUpPage {
+// Page
+import { Page } from './page.po';
+
+export class SignUpPage extends Page {
+
+  private signUpAccountCtrl: any = element(by.id('account'));
+
+  private signUpFirstnameCtrl: any = element(by.id('firstname'));
+
+  private signUpLastnameCtrl: any = element(by.id('lastname'));
+
+  private signUpUsernameCtrl: any = element(by.id('username'));
+
+  private signUpPasswordCtrl: any = element(by.id('password'));
+
+  private signUpConfirmPasswordCtrl: any = element(by.id('confirmPassword'));
+
+  private signUpSubmitCtrl: any = element(by.id('submit'));
+
   constructor() {
+    super();
+  }
+
+  public load() {
+    this.url = 'signup';
+
     this.getCurrentPage().then((currentPage) => {
-      if (currentPage.indexOf('signup') === -1 && currentPage.indexOf('login') === -1) {
+      if (currentPage.indexOf(this.url) === -1 && currentPage.indexOf('login') === -1) {
         this.logout();
       }
 
       this.navigateTo();
     });
-  }
-
-  public navigateTo() {
-    return browser.get('/signup');
-  }
-
-  public delay(timer: number) {
-    browser.sleep(timer);
-
-    return this;
-  }
-
-  public getCurrentPage() {
-    return browser.getCurrentUrl();
-  }
-
-  public getPromptMsg() {
-    return element(by.css('.mismatch')).getText();
-  }
-
-  public getErrorMsg() {
-    return element(by.css('.mat-simple-snackbar')).getText();
   }
 
   public fillSignUpForm(
@@ -41,71 +42,50 @@ export class SignUpPage {
     username: string,
     password: string,
     confirmPassword: string): SignUpPage {
-    let delay = 2000;
-    let accountCtrl: any = element(by.id('account'));
-    let firstnameCtrl: any = element(by.id('firstname'));
-    let lastnameCtrl: any = element(by.id('lastname'));
-    let usernameCtrl: any = element(by.id('username'));
-    let passwordCtrl: any = element(by.id('password'));
-    let confirmPasswordCtrl: any = element(by.id('confirmPassword'));
-    let submitCtrl: any = element(by.id('submit'));
+    this.delay();
 
-    this.delay(delay);
-
-    accountCtrl.clear().sendKeys(account).then( () => {
-        firstnameCtrl.clear().sendKeys(firstname).then( () => {
-            lastnameCtrl.clear().sendKeys(lastname).then( () => {
-                usernameCtrl.clear().sendKeys(username).then( () => {
-                    passwordCtrl.clear().sendKeys(password).then( () => {
-                        confirmPasswordCtrl.clear().sendKeys(confirmPassword).then( () => {
-                            submitCtrl.click();
-                        });
-                    });
-                });
+    this.signUpAccountCtrl.clear().sendKeys(account).then( () => {
+      this.signUpFirstnameCtrl.clear().sendKeys(firstname).then( () => {
+        this.signUpLastnameCtrl.clear().sendKeys(lastname).then( () => {
+          this.signUpUsernameCtrl.clear().sendKeys(username).then( () => {
+            this.signUpPasswordCtrl.clear().sendKeys(password).then( () => {
+              this.signUpConfirmPasswordCtrl.clear().sendKeys(confirmPassword).then( () => {
+                this.signUpSubmitCtrl.click();
+              });
             });
+          });
         });
+      });
     });
 
-    this.delay(delay);
+    this.delay();
 
     return this;
+  }
+
+  public getPromptMsg() {
+    return element(by.css('.mismatch')).getText();
   }
 
   public signUpUser(user: any): SignUpPage {
-    let delay = 2000;
-    let accountCtrl: any = element(by.id('account'));
-    let firstnameCtrl: any = element(by.id('firstname'));
-    let lastnameCtrl: any = element(by.id('lastname'));
-    let usernameCtrl: any = element(by.id('username'));
-    let passwordCtrl: any = element(by.id('password'));
-    let confirmPasswordCtrl: any = element(by.id('confirmPassword'));
-    let submitCtrl: any = element(by.id('submit'));
-    this.delay(delay);
+    this.delay();
 
-    accountCtrl.clear().sendKeys(user.account).then( () => {
-        firstnameCtrl.clear().sendKeys(user.firstname).then( () => {
-            lastnameCtrl.clear().sendKeys(user.lastname).then( () => {
-                usernameCtrl.clear().sendKeys(user.username).then( () => {
-                    passwordCtrl.clear().sendKeys(user.password).then( () => {
-                        confirmPasswordCtrl.clear().sendKeys(user.password).then( () => {
-                            submitCtrl.click();
-                        });
-                    });
-                });
+    this.signUpAccountCtrl.clear().sendKeys(user.account).then( () => {
+      this.signUpFirstnameCtrl.clear().sendKeys(user.firstname).then( () => {
+        this.signUpLastnameCtrl.clear().sendKeys(user.lastname).then( () => {
+          this.signUpUsernameCtrl.clear().sendKeys(user.username).then( () => {
+            this.signUpPasswordCtrl.clear().sendKeys(user.password).then( () => {
+              this.signUpConfirmPasswordCtrl.clear().sendKeys(user.password).then( () => {
+                this.signUpSubmitCtrl.click();
+              });
             });
+          });
         });
+      });
     });
 
-    this.delay(delay);
+    this.delay();
 
     return this;
-  }
-
-  public logout() {
-    let dropdownCtrl: any = element(by.id('dropdown'));
-    let logoutCtrl: any = element(by.id('logout'));
-
-    dropdownCtrl.click();
-    logoutCtrl.click();
   }
 }
