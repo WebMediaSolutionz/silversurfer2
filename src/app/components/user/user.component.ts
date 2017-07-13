@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Services
 import { WebService } from '../../shared/services/web.service';
+import { ErrorDisplayService } from '../../shared/services/error-display.service';
 
 // Classes
 import { User } from '../../shared/custom-types/classes/user';
@@ -19,7 +20,8 @@ export class UserComponent implements OnInit {
 
   private user: User = new User();
 
-  constructor(private webService: WebService) {}
+  constructor(private webService: WebService,
+              private errorDisplayService: ErrorDisplayService) {}
 
   public ngOnInit(): void {
     this.webService.getUser().subscribe((res: User) => {
@@ -28,7 +30,11 @@ export class UserComponent implements OnInit {
   }
 
   public post(): void {
-    this.webService.saveUser(this.user).subscribe();
+    if (this.user.firstname.trim().length > 0 && this.user.lastname.trim().length > 0) {
+      this.webService.saveUser(this.user).subscribe();
+    } else {
+      this.errorDisplayService.display('Some entries are invalid');
+    }
   }
 
 }

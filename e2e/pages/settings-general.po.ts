@@ -29,9 +29,9 @@ export class SettingsGeneralPage extends Page {
     return this;
   }
 
-  public changePassword(currentPassword: string,
-                        newPassword: string,
-                        confirmNewPassword: string): SettingsGeneralPage {
+  public changePassword(currentPassword: string = 'orthodoc',
+                        newPassword: string = 'orthodoc',
+                        confirmNewPassword: string = 'orthodoc'): SettingsGeneralPage {
     this.currentPasswordCtrl.clear().sendKeys(currentPassword).then( () => {
       this.newPasswordCtrl.clear().sendKeys(newPassword).then(() => {
         this.confirmNewPasswordCtrl.clear().sendKeys(confirmNewPassword).then( () => {
