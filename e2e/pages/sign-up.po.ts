@@ -64,7 +64,7 @@ export class SignUpPage extends Page {
   }
 
   public getPromptMsg() {
-    return element(by.css('.mismatch')).getText();
+    return element(by.id('mismatch')).getText();
   }
 
   public signUpUser(user: any): SignUpPage {

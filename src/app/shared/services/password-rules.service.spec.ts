@@ -21,7 +21,7 @@ describe('PasswordRules Service', () => {
   });
 
   describe(`constructor()`, () => {
-    xit('should be initialized', inject(
+    it('should be initialized', inject(
       [PasswordRulesService, ErrorDisplayService, WebService],
       (service: PasswordRulesService) => {
         expect(service).toBeDefined();

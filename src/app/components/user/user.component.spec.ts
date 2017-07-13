@@ -7,19 +7,12 @@ import { UserComponent } from './user.component';
 
 // Services
 import { WebService } from '../../shared/services/web.service';
+import { WebServiceStub } from '../../shared/services/web.service.stub';
+import { ErrorDisplayService } from '../../shared/services/error-display.service';
+import { ErrorDisplayServiceStub } from '../../shared/services/error-display.service.stub';
 
 // Models
 import { User } from '../../shared/custom-types/classes/user';
-
-class WebServiceStub {
-  public getUser() {
-    return Observable.of(new User());
-  }
-
-  public saveUser(user: User) {
-    return Observable.of(new User());
-  }
-}
 
 describe('User Component', () => {
   let component: UserComponent;
@@ -29,7 +22,8 @@ describe('User Component', () => {
     TestBed.configureTestingModule({
       declarations: [ UserComponent ],
       providers: [
-        { provide: WebService, useClass: WebServiceStub}
+        { provide: WebService, useClass: WebServiceStub},
+        { provide: ErrorDisplayService, useClass: ErrorDisplayServiceStub }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     });
@@ -67,14 +61,49 @@ describe('User Component', () => {
   });
 
   describe('post()', () => {
-    it('should invoke WebService.saveUser()', () => {
-      let spy = spyOn(component['webService'], 'saveUser').and.callFake(() => {
+    let activeUser: User = new User();
+
+    activeUser.account = 'test';
+    activeUser.firstname = '';
+    activeUser.lastname = '';
+    activeUser.username = 'test';
+    activeUser.password = 'test';
+
+    it('should not invoke WebService.saveUser() when firstname or lastname is left empty', () => {
+      let spy1 = spyOn(component['webService'], 'getUser').and.callFake(() => {
+        component['user'] = activeUser;
+        return Observable.of(activeUser);
+      });
+
+      let spy2 = spyOn(component['webService'], 'saveUser').and.callFake(() => {
         return Observable.empty();
       });
 
+      fixture.detectChanges();
       component.post();
 
-      expect(spy).toHaveBeenCalled();
+      expect(spy1).toHaveBeenCalled();
+      expect(spy2).not.toHaveBeenCalled();
+    });
+
+    it(`should invoke WebService.saveUser() when firstname and lastname aren't empty`, () => {
+      activeUser.firstname = 'maxime';
+      activeUser.lastname = 'pierre';
+
+      let spy1 = spyOn(component['webService'], 'getUser').and.callFake(() => {
+        component['user'] = activeUser;
+        return Observable.of(activeUser);
+      });
+
+      let spy2 = spyOn(component['webService'], 'saveUser').and.callFake(() => {
+        return Observable.empty();
+      });
+
+      fixture.detectChanges();
+      component.post();
+
+      expect(spy1).toHaveBeenCalled();
+      expect(spy2).toHaveBeenCalled();
     });
   });
 });

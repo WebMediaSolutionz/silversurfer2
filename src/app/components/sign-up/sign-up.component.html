@@ -23,7 +23,7 @@
         <ss2-field [group]="form" [attributes]="confirmPasswordFieldAttr"></ss2-field>
 
         <md-list-item>
-          <span class="mismatch" *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
+          <span id="mismatch" *ngIf="form.errors?.mismatchedFields">Passwords do not match</span>
         </md-list-item>
 
         <md-list-item>

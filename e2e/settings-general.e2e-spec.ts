@@ -8,13 +8,10 @@ describe('Settings Page (General)', () => {
   });
 
   it(`should display confirmation message after changing password`, () => {
-    let currentPassword: string = 'orthodoc';
-    let newPassword: string = 'orthodoc';
-    let confirmNewPassword: string = 'orthodoc';
     let result: string = 'modifications have been saved';
 
     settingsGeneralPage
-      .changePassword(currentPassword, newPassword, confirmNewPassword)
+      .changePassword()
       .getErrorMsg().then((err) => {
         expect(err.toLowerCase()).toContain(result.toLowerCase());
       });

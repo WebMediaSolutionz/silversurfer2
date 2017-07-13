@@ -4,13 +4,6 @@ import { browser, element, by } from 'protractor';
 import { Page } from './page.po';
 
 export class EditInfoPage extends Page {
-
-  private userFirstNameCtrl: any = element(by.id('user_firstname'));
-
-  private userLastNameCtrl: any = element(by.id('user_lastname'));
-
-  private saveCtrl: any = element(by.id('save'));
-
   constructor() {
     super();
   }
@@ -21,10 +14,40 @@ export class EditInfoPage extends Page {
     super.load();
   }
 
-  public changeUserInfo(firstname: string = 'blah', lastname: string = 'blah'): EditInfoPage {
-    this.userFirstNameCtrl.clear().sendKeys(firstname).then( () => {
-      this.userLastNameCtrl.clear().sendKeys(lastname).then( () => {
-        this.saveCtrl.click();
+  public changeUserInfo(firstname: string = 'maxime', lastname: string = 'pierre'): EditInfoPage {
+    let userFirstNameCtrl: any = element(by.id('user_firstname'));
+
+    let userLastNameCtrl: any = element(by.id('user_lastname'));
+
+    let saveCtrl: any = element(by.id('save'));
+
+    userFirstNameCtrl.clear().sendKeys(firstname).then(() => {
+      this.delay(1000);
+
+      userLastNameCtrl.clear().sendKeys(lastname).then(() => {
+        this.delay(1000);
+
+        saveCtrl.click();
+      });
+    });
+
+    return this;
+  }
+
+  public clearFormandSubmit() {
+    let userFirstNameCtrl: any = element(by.id('user_firstname'));
+
+    let userLastNameCtrl: any = element(by.id('user_lastname'));
+
+    let saveCtrl: any = element(by.id('save'));
+
+    userFirstNameCtrl.clear().sendKeys(' ').then(() => {
+      this.delay(1000);
+
+      userLastNameCtrl.clear().sendKeys(' ').then(() => {
+        this.delay(1000);
+
+        saveCtrl.click();
       });
     });
 
