@@ -14,7 +14,8 @@ describe(`Password Rules Edit page:`, () => {
     let textbox2: string = `10`;
     let textbox3: string = `900`;
     let textbox4: string = `10`;
-    let textarea: string = `You have been locked out of your account. Please contact Pulse support.`;
+    let textarea: string =  `You have been locked out of ` +
+                            `your account. Please contact Pulse support.`;
     let result: string = `Password Rules have been saved`;
 
     editPasswordRulesPage
