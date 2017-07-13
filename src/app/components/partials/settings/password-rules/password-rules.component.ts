@@ -15,7 +15,7 @@ import { PasswordRulesService } from '../../../../shared/services/password-rules
 })
 export class PasswordRulesComponent implements OnInit {
 
-  private title: string = 'Edit Password Rules';
+  private title: string = 'Password Rules';
 
   private myForm: FormGroup;
 
@@ -28,6 +28,8 @@ export class PasswordRulesComponent implements OnInit {
   private passwordRules: PasswordRule;
 
   private nbrOfErrors: number = 0;
+
+  private editMode: boolean = false;
 
   constructor(private fb: FormBuilder,
               private passwordRulesService: PasswordRulesService,
@@ -147,6 +149,8 @@ export class PasswordRulesComponent implements OnInit {
           (rules) => {
             let confirm = 'Password Rules have been saved.';
             this.errorDisplayService.display(confirm);
+            this.passwordRules = rules;
+            this.editMode = false;
           },
           (error) => {
             this.isLoading = false;
@@ -158,6 +162,12 @@ export class PasswordRulesComponent implements OnInit {
       this.nbrOfErrors = this.errorDisplayService
                             .getErrorCount( this.myForm, strictValidation );
     }
+  }
+
+  public toggleEditMode(): void {
+    this.editMode = !this.editMode;
+
+    this.title = (this.editMode) ? 'Edit Password Rules' : 'Password Rules';
   }
 
 }

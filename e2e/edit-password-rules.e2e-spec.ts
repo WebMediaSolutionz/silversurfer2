@@ -21,6 +21,8 @@ describe(`Password Rules Edit page:`, () => {
     editPasswordRulesPage
       .fillPasswordRulesForm(textbox1, textbox2, textbox3, textbox4, textarea)
       .getErrorMsg().then((txt) => {
+        editPasswordRulesPage.delay();
+
         expect(txt.toLowerCase()).toContain(result.toLowerCase());
       });
   });
