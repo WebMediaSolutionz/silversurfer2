@@ -138,7 +138,7 @@ describe('PasswordRules Component', () => {
       fixture.detectChanges();
       component.onSubmit(component['passwordRules']);
 
-      expect(spy1).toHaveBeenCalledWith('the form is invalid');
+      expect(spy1).toHaveBeenCalledWith('Some entries are invalid');
       expect(spy2).toHaveBeenCalledWith(component['myForm'], false);
     });
   });

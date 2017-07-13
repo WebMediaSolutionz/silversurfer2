@@ -33,12 +33,10 @@ describe('Config Service', () => {
   });
 
   describe('getConfig()', () => {
-    it('should invoke Http.get to retrieve the app config', inject(
+    it('should invoke WebService.getConfig() to retrieve the app config', inject(
       [ConfigService, WebService, Location],
       (service: ConfigService) => {
-        let spy = spyOn(service['webService'], 'getConfig').and.callFake(() => {
-          return Observable.empty();
-        });
+        let spy = spyOn(service['webService'], 'getConfig');
 
         service.getConfig();
 

@@ -26,7 +26,7 @@ export class ValidationService {
     let errorObj = {specialCharValidator: true};
 
     if (control.value) {
-      return (!control.value.match(/[-!$%^&*()_+|~=`{}\[\]:";#@'<>?,.\/]/)) ?
+      return (!control.value.match(/[-!$%^&*()_+|~=`{}\[\]:"#@'<>\/]/)) ?
         null : errorObj;
 	  }
   }
