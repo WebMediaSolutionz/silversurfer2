@@ -57,7 +57,7 @@ describe('Validation Service', () => {
       // must write more useed cases to fully test limits of so called 'special characters',
       // needs to be defined more toroughly
       let formControlSpecialChar: FormControl = new FormControl('@@@');
-      let formControlNoSpecialChar: FormControl = new FormControl('abc');
+      let formControlNoSpecialChar: FormControl = new FormControl('You have been locked out of your account. Please contact Pulse support.');
 
       let result1 = ( validationService.specialCharValidator(formControlSpecialChar) === null );
       let result2 = ( validationService.specialCharValidator(formControlNoSpecialChar) === null );

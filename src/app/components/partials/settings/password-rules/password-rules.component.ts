@@ -15,7 +15,7 @@ import { PasswordRulesService } from '../../../../shared/services/password-rules
 })
 export class PasswordRulesComponent implements OnInit {
 
-  private title: string = 'Password Rules';
+  private title: string = 'Edit Password Rules';
 
   private myForm: FormGroup;
 
@@ -153,7 +153,7 @@ export class PasswordRulesComponent implements OnInit {
             this.errorDisplayService.display(error);
           });
     } else {
-      this.errorDisplayService.display('the form is invalid');
+      this.errorDisplayService.display('Some entries are invalid');
       this.triedSubmit = true;
       this.nbrOfErrors = this.errorDisplayService
                             .getErrorCount( this.myForm, strictValidation );
