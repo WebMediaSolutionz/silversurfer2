@@ -1,0 +1,19 @@
+<md-card class="inner-card large">
+
+  <!-- <ss2-page-title [pageTitle]="title"></ss2-page-title> -->
+
+  <md-card-content>
+
+    <md-list>
+
+      <md-list-item *ngFor="let video of videos">
+
+        <a [routerLink]="videoPath + video.id">{{video.name}}</a>
+
+      </md-list-item>
+
+    </md-list>
+
+  </md-card-content>
+
+</md-card>

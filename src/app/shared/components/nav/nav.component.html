@@ -12,6 +12,14 @@
     <span><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</span>
   </button>
 
+  <button
+    [class.active]="configService.activeLink === 'videos'"
+    md-button
+    routerLink="/videos"
+    *ngIf="authService.isAuthenticated">
+    <span> Videos</span>
+  </button>
+
   <span class="spacer"></span>
 
   <button

@@ -14,6 +14,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SettingsComponent } from './components/settings/settings.component';
 import { PulseComponentLibComponent } from
 './components/pulse-component-lib/pulse-component-lib.component';
+import { VideosComponent } from './components/videos/videos.component';
+import { VideoComponent } from './components/video/video.component';
 
 const appRoutes: Routes = [
     {
@@ -47,6 +49,16 @@ const appRoutes: Routes = [
     {
         path: 'pulse-component-lib',
         component: PulseComponentLibComponent,
+        canActivate: [AuthManager]
+    },
+    {
+        path: 'videos',
+        component: VideosComponent,
+        canActivate: [AuthManager]
+    },
+    {
+        path: 'video/:videoId',
+        component: VideoComponent,
         canActivate: [AuthManager]
     },
     {

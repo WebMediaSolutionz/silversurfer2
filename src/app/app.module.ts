@@ -49,6 +49,8 @@ import { PasswordRulesComponent } from
 './components/partials/settings/password-rules/password-rules.component';
 import { PulseComponentLibComponent } from
 './components/pulse-component-lib/pulse-component-lib.component';
+import { VideosComponent } from './components/videos/videos.component';
+import { VideoComponent } from './components/video/video.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,9 @@ import { PulseComponentLibComponent } from
     PatientSummaryComponent,
     InteractionWarningsComponent,
     PasswordRulesComponent,
-    PulseComponentLibComponent
+    PulseComponentLibComponent,
+    VideosComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
