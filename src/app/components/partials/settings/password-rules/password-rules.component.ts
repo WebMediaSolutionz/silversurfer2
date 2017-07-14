@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
+// Services
 import { ValidationService } from '../../../../shared/services/validation.service';
 import { ErrorDisplayService } from '../../../../shared/services/error-display.service';
-
-import { PasswordRule } from '../../../../shared/services/password-rules.model';
 import { PasswordRulesService } from '../../../../shared/services/password-rules.service';
+import { WebService } from '../../../../shared/services/web.service';
+
+// Models
+import { PasswordRule } from '../../../../shared/services/password-rules.model';
+import { User } from '../../../../shared/custom-types/classes/user';
 
 @Component({
   moduleId: module.id,
@@ -31,10 +35,15 @@ export class PasswordRulesComponent implements OnInit {
 
   private editMode: boolean = false;
 
+  private admin: boolean = false;
+
+  private user: User;
+
   constructor(private fb: FormBuilder,
               private passwordRulesService: PasswordRulesService,
               private validationService: ValidationService,
-              private errorDisplayService: ErrorDisplayService) {
+              private errorDisplayService: ErrorDisplayService,
+              private webService: WebService) {
 
     this.isLoading = true;
     this.formSubmitted = false;
@@ -90,6 +99,12 @@ export class PasswordRulesComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loadRules();
+
+    this.webService.getUser().subscribe((res: User) => {
+      this.user = res;
+
+      this.admin = (this.user.role !== undefined && this.user.role === 'admin');
+    });
   }
 
   public loadRules(): void {
