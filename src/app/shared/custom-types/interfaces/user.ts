@@ -11,4 +11,6 @@ export interface user {
 
     password?: string;
 
+    role?: string;
+
 }

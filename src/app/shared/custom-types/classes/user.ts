@@ -12,4 +12,6 @@ export class User implements user {
 
     public password: string = '';
 
+    public role?: string;
+
 }
