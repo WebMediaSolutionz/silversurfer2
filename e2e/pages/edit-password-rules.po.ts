@@ -31,6 +31,8 @@ export class EditPasswordRulesPage extends Page {
         element(by.id('md-tab-label-0-5')).click();
 
         this.delay();
+
+        element(by.id('toggle')).click();
     }
 
     public fillPasswordRulesForm(   textbox1: string,
