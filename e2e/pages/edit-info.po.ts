@@ -12,6 +12,12 @@ export class EditInfoPage extends Page {
     this.url = 'user';
 
     super.load();
+
+    this.delay(500);
+
+    element(by.id('toggle')).click();
+
+    this.delay(500);
   }
 
   public changeUserInfo(firstname: string = 'maxime', lastname: string = 'pierre'): EditInfoPage {

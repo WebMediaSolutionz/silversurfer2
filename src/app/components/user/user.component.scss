@@ -1,0 +1,12 @@
+.profile_info {
+    margin-top: 20px;
+
+    tr td {
+        padding-bottom: 10px;
+
+        &:first-child {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+}
