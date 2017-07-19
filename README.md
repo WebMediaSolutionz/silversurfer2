@@ -24,7 +24,7 @@ the `sudo` command.
 
 In a command shell, make a clone of the git repository:
 
-`$ git clone https://git.pehr.in/mpierre/silversurfer2.git`
+`$ git clone git@git.pehr.in:pulse/silversurfer2.git`
 
 Then enter the directory created. All further commands will be run inside that directory.
 
