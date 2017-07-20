@@ -39,12 +39,15 @@
   },
   "lint": [
     {
+      "files": "src/**/*.ts",
       "project": "src/tsconfig.app.json"
     },
     {
+      "files": "src/**/*.spec.ts",
       "project": "src/tsconfig.spec.json"
     },
     {
+      "files": "e2e/**/*.spec.ts",
       "project": "e2e/tsconfig.e2e.json"
     }
   ],
