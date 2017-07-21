@@ -20,8 +20,6 @@ export class UserComponent implements OnInit {
 
   private editMode: boolean = false;
 
-  private admin: boolean = false;
-
   private user: User;
 
   private isLoading: boolean = false;
@@ -36,7 +34,6 @@ export class UserComponent implements OnInit {
       this.user = res;
 
       this.isLoading = false;
-      this.admin = (this.user.role !== undefined && this.user.role === 'admin');
     });
   }
 

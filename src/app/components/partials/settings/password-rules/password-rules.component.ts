@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ValidationService } from '../../../../shared/services/validation.service';
 import { ErrorDisplayService } from '../../../../shared/services/error-display.service';
 import { PasswordRulesService } from '../../../../shared/services/password-rules.service';
-import { WebService } from '../../../../shared/services/web.service';
+import { ConfigService } from '../../../../shared/services/config.service';
 
 // Models
 import { PasswordRule } from '../../../../shared/services/password-rules.model';
@@ -35,15 +35,11 @@ export class PasswordRulesComponent implements OnInit {
 
   private editMode: boolean = false;
 
-  private admin: boolean = false;
-
-  private user: User;
-
   constructor(private fb: FormBuilder,
               private passwordRulesService: PasswordRulesService,
               private validationService: ValidationService,
               private errorDisplayService: ErrorDisplayService,
-              private webService: WebService) {
+              private configService: ConfigService) {
 
     this.isLoading = true;
     this.formSubmitted = false;
@@ -99,12 +95,6 @@ export class PasswordRulesComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loadRules();
-
-    this.webService.getUser().subscribe((res: User) => {
-      this.user = res;
-
-      this.admin = (this.user.role !== undefined && this.user.role === 'admin');
-    });
   }
 
   public loadRules(): void {
