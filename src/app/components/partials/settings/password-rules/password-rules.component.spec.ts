@@ -13,8 +13,8 @@ import { ErrorDisplayServiceStub } from '../../../../shared/services/error-displ
 import { PasswordRulesService } from '../../../../shared/services/password-rules.service';
 import { PasswordRulesServiceStub } from '../../../../shared/services/password-rules.service.stub';
 import { ValidationServiceStub } from '../../../../shared/services/validation.service.stub';
-import { WebService } from '../../../../shared/services/web.service';
-import { WebServiceStub } from '../../../../shared/services/web.service.stub';
+import { ConfigService } from '../../../../shared/services/config.service';
+import { ConfigServiceStub } from '../../../../shared/services/config.service.stub';
 
 // Pipes
 import { CapitalizePipe } from '../../../../shared/pipes/capitalize.pipe';
@@ -36,7 +36,7 @@ describe('PasswordRules Component', () => {
         { provide: ValidationService, useClass: ValidationServiceStub },
         { provide: ErrorDisplayService, useClass: ErrorDisplayServiceStub },
         { provide: PasswordRulesService, useClass: PasswordRulesServiceStub },
-        { provide: WebService, useClass: WebServiceStub },
+        { provide: ConfigService, useClass: ConfigServiceStub },
         FormBuilder
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
