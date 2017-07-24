@@ -110,3 +110,7 @@ application in the browser according to config/karma.conf.js (Chrome at time of 
 Code that does not pass TSLint will not be unit testing. Code can be linted independently
 by running `$ npm run tslint`, `$ npm run lint` or just `$ ng lint` to identify and resolve code quality
 issues.
+
+## Step 8: Deploy to GitHub Pages
+
+first, you must create a build of the project using the `ng build` command but you must include the `--base-href` flag or it will not work, the application will not run correctly. so include the `--base-href` flag and then the url of the corresponding github repo and make sure to include the `/` character at the end of the url or it will not work so something like this `$ ng build --base-href <github repo url>`. then, all you have to do is run the command `$ ngh` and the application will be deployed to GitHub Pages.
