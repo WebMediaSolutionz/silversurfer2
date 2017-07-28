@@ -64,7 +64,6 @@
     </button>
 
     <button
-      *ngIf="configService.accessLevel === 'admin'"
       [class.active]="configService.activeLink === 'pulse-component-lib'"
       md-menu-item
       routerLink="/pulse-component-lib">
