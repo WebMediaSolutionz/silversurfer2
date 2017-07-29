@@ -1,8 +1,8 @@
-<md-card class="inner-card">
+<pc-card class="inner-card">
 
   <ss2-page-title [pageTitle]="formTitle"></ss2-page-title>
 
-  <md-card-content>
+  <pc-card-content>
 
     <ng-template [ngIf]="isLoading">
       Please wait ...
@@ -41,9 +41,9 @@
             </md-list-item>
 
             <md-list-item>
-              <md-card-actions>
+              <pc-card-actions>
                 <button pc-button id="save" color="primary" (click)="post()">Save Changes</button>
-              </md-card-actions>
+              </pc-card-actions>
             </md-list-item>
 
           </md-list>
@@ -86,6 +86,6 @@
 
     </ng-template>
 
-  </md-card-content>
+  </pc-card-content>
 
-</md-card>
+</pc-card>

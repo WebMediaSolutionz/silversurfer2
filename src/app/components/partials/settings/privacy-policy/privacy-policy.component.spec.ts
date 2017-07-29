@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialModule } from '@angular/material';
 
@@ -21,7 +22,8 @@ describe('PrivacyPolicy Component', () => {
       ],
       imports: [
         MaterialModule
-      ]
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     });
 
     fixture = TestBed.createComponent(PrivacyPolicyComponent);
