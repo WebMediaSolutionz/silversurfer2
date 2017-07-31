@@ -12,19 +12,19 @@
         
         <md-list-item>
           <pc-input-container intent="primary">
-            <input pc-input [(ngModel)]="password.current" id="password" placeholder="Current Password" type="password" />
+            <input pc-input [(ngModel)]="password.current" id="password" placeholder="Current Password" type="password" required />
           </pc-input-container>
         </md-list-item>
     
         <md-list-item>
           <pc-input-container intent="primary">
-            <input pc-input [(ngModel)]="password.new" id="newPassword" (keyup)="mismatchedFields()" placeholder="New Password" type="password" />
+            <input pc-input [(ngModel)]="password.new" id="newPassword" (keyup)="mismatchedFields()" placeholder="New Password" type="password" required />
           </pc-input-container>
         </md-list-item>
 
         <md-list-item>
           <pc-input-container intent="primary">
-            <input pc-input [(ngModel)]="password.confirmNew" id="confirmNewPassword" (keyup)="mismatchedFields()" placeholder="Confirm New Password" type="password" />
+            <input pc-input [(ngModel)]="password.confirmNew" id="confirmNewPassword" (keyup)="mismatchedFields()" placeholder="Confirm New Password" type="password" required />
           </pc-input-container>
         </md-list-item>
 
