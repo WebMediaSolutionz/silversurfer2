@@ -4,39 +4,39 @@
     <ss2-pulse-logo></ss2-pulse-logo>
   </a>
 
-  <button
+  <a
+    pc-flat-button
     [class.active]="configService.activeLink === 'dashboard'"
-    md-button
     routerLink="/dashboard"
     *ngIf="authService.isAuthenticated">
     <span><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</span>
-  </button>
+  </a>
 
   <span class="spacer"></span>
 
-  <button
+  <a
+    pc-flat-button
     [class.active]="configService.activeLink === 'user'"
-    md-button
     routerLink="/user"
     *ngIf="authService.isAuthenticated">
     <span>Welcome {{authService.name | myCapitalize}}</span>
-  </button>
+  </a>
 
-  <button
+  <a
+    pc-flat-button
     [class.active]="configService.activeLink === 'login'"
-    md-button
     routerLink="/login"
     *ngIf="!authService.isAuthenticated">
     <span><i class="fa fa-sign-in" aria-hidden="true"></i> Login</span>
-  </button>
+  </a>
 
-  <button
+  <a
+    pc-flat-button
     [class.active]="configService.activeLink === 'signup'"
-    md-button
     routerLink="/signup"
     *ngIf="!authService.isAuthenticated">
     <span><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</span>
-  </button>
+  </a>
 
 
   <button

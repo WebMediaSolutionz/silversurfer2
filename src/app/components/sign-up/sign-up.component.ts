@@ -105,6 +105,7 @@ export class SignUpComponent implements OnInit {
     this.accountFieldAttr.name = 'account';
     this.accountFieldAttr.placeholder = 'account';
     this.accountFieldAttr.disabled = true;
+    this.accountFieldAttr.required = true;
 
     this.accountFieldAttr.value = ( localStorage.getItem('account') !== null) ?
                                     localStorage.getItem('account') : '';
@@ -118,26 +119,31 @@ export class SignUpComponent implements OnInit {
     this.firstNameFieldAttr.type = 'text';
     this.firstNameFieldAttr.name = 'firstname';
     this.firstNameFieldAttr.placeholder = 'first name';
+    this.firstNameFieldAttr.required = true;
 
     this.lastNameFieldAttr = new Attributes();
     this.lastNameFieldAttr.type = 'text';
     this.lastNameFieldAttr.name = 'lastname';
     this.lastNameFieldAttr.placeholder = 'last name';
+    this.lastNameFieldAttr.required = true;
 
     this.userNameFieldAttr = new Attributes();
     this.userNameFieldAttr.type = 'text';
     this.userNameFieldAttr.name = 'username';
     this.userNameFieldAttr.placeholder = 'username';
+    this.userNameFieldAttr.required = true;
 
     this.passwordFieldAttr = new Attributes();
     this.passwordFieldAttr.type = 'password';
     this.passwordFieldAttr.name = 'password';
     this.passwordFieldAttr.placeholder = 'password';
+    this.passwordFieldAttr.required = true;
 
     this.confirmPasswordFieldAttr = new Attributes();
     this.confirmPasswordFieldAttr.type = 'password';
     this.confirmPasswordFieldAttr.name = 'confirmPassword';
     this.confirmPasswordFieldAttr.placeholder = 'confirm password';
+    this.confirmPasswordFieldAttr.required = true;
   }
 
   private _matchingFields(field1: string, field2: string): any {

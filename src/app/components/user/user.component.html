@@ -1,8 +1,8 @@
-<md-card class="inner-card">
+<pc-card class="inner-card">
 
   <ss2-page-title [pageTitle]="formTitle"></ss2-page-title>
 
-  <md-card-content>
+  <pc-card-content>
 
     <ng-template [ngIf]="isLoading">
       Please wait ...
@@ -23,27 +23,27 @@
           <md-list>
 
             <md-list-item>
-              <md-input-container>
-                <input [(ngModel)]="user.account" mdInput placeholder="Account" disabled>
-              </md-input-container>
+              <pc-input-container intent="primary">
+                <input [(ngModel)]="user.account" pc-input placeholder="Account" disabled>
+              </pc-input-container>
             </md-list-item>
 
             <md-list-item>
-              <md-input-container>
-                <input [(ngModel)]="user.firstname" mdInput id="user_firstname" placeholder="First Name">
-              </md-input-container>
+              <pc-input-container intent="primary">
+                <input [(ngModel)]="user.firstname" pc-input id="user_firstname" placeholder="First Name">
+              </pc-input-container>
             </md-list-item>
 
             <md-list-item>
-              <md-input-container>
-                <input [(ngModel)]="user.lastname" mdInput id="user_lastname" placeholder="Last Name">
-              </md-input-container>
+              <pc-input-container intent="primary">
+                <input [(ngModel)]="user.lastname" pc-input id="user_lastname" placeholder="Last Name">
+              </pc-input-container>
             </md-list-item>
 
             <md-list-item>
-              <md-card-actions>
+              <pc-card-actions>
                 <button pc-button id="save" color="primary" (click)="post()">Save Changes</button>
-              </md-card-actions>
+              </pc-card-actions>
             </md-list-item>
 
           </md-list>
@@ -86,6 +86,6 @@
 
     </ng-template>
 
-  </md-card-content>
+  </pc-card-content>
 
-</md-card>
+</pc-card>

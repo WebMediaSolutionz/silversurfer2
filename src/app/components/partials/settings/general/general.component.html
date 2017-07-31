@@ -1,31 +1,31 @@
-<md-card>
+<pc-card>
 
-  <md-card class="inner-card large">
+  <pc-card class="inner-card large">
 
-    <md-card-title>
+    <pc-card-title>
       <h1>{{title | myCapitalize}}</h1>
-    </md-card-title>
+    </pc-card-title>
 
-    <md-card-content>
+    <pc-card-content>
 
       <md-list>
         
         <md-list-item>
-          <md-input-container>
-            <input mdInput [(ngModel)]="password.current" id="password" placeholder="Current Password" type="password">
-          </md-input-container>
+          <pc-input-container intent="primary">
+            <input pc-input [(ngModel)]="password.current" id="password" placeholder="Current Password" type="password" />
+          </pc-input-container>
         </md-list-item>
     
         <md-list-item>
-          <md-input-container>
-            <input mdInput [(ngModel)]="password.new" id="newPassword" (keyup)="mismatchedFields()" placeholder="New Password" type="password">
-          </md-input-container>
+          <pc-input-container intent="primary">
+            <input pc-input [(ngModel)]="password.new" id="newPassword" (keyup)="mismatchedFields()" placeholder="New Password" type="password" />
+          </pc-input-container>
         </md-list-item>
 
         <md-list-item>
-          <md-input-container>
-            <input mdInput [(ngModel)]="password.confirmNew" id="confirmNewPassword" (keyup)="mismatchedFields()" placeholder="Confirm New Password" type="password">
-          </md-input-container>
+          <pc-input-container intent="primary">
+            <input pc-input [(ngModel)]="password.confirmNew" id="confirmNewPassword" (keyup)="mismatchedFields()" placeholder="Confirm New Password" type="password" />
+          </pc-input-container>
         </md-list-item>
 
         <md-list-item>
@@ -33,15 +33,15 @@
         </md-list-item>
 
         <md-list-item>
-          <md-card-actions>
+          <pc-card-actions>
             <button pc-button id="reset" color="primary" (click)="save()">Reset Password</button>
-          </md-card-actions>
+          </pc-card-actions>
         </md-list-item>
 
       </md-list>
 
-    </md-card-content>
+    </pc-card-content>
 
-  </md-card>
+  </pc-card>
 
-</md-card>
+</pc-card>

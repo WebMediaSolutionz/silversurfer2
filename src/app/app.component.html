@@ -2,11 +2,11 @@
 <ss2-nav></ss2-nav>
 
 <!-- page main content -->
-<md-card [class.no-padding]="configService.activeLink === 'settings'">
+<pc-card [class.no-padding]="configService.activeLink === 'settings'">
 
   <router-outlet></router-outlet>
 
-</md-card>
+</pc-card>
 
 <!-- page footer -->
 <ss2-footer *ngIf="loaded" [company]="configs.company"></ss2-footer>
