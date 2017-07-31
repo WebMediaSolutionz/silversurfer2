@@ -4,33 +4,40 @@
 
   <pc-card-content>
 
-    <md-list>
-      
-      <md-list-item>
-        <pc-input-container intent="primary">
-          <input pc-input [(ngModel)]="credentials.account" id="account" placeholder="Account" type="text" disabled />
-        </pc-input-container>
-      </md-list-item>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="login(loginForm.value)">
+      <md-list>
 
-      <md-list-item>
-        <pc-input-container intent="primary">
-          <input pc-input [(ngModel)]="credentials.username" id="username" placeholder="Username" type="text" />
-        </pc-input-container>
-      </md-list-item>
+        <md-list-item>
+          <pc-input-container intent="primary">
+            <input pc-input id="account" placeholder="Account" type="text" formControlName="account" (focus)="resetForm()" />
+            <pc-error *ngIf="formSubmitted && loginForm.controls.account.invalid">This value is invalid</pc-error>
+          </pc-input-container>
+        </md-list-item>
 
-      <md-list-item>
-        <pc-input-container intent="primary">
-          <input pc-input [(ngModel)]="credentials.password" id="password" placeholder="Password" type="password" />
-        </pc-input-container>
-      </md-list-item>
+        <md-list-item>
+          <pc-input-container intent="primary">
+            <input pc-input id="username" placeholder="Username" type="text" formControlName="username" (focus)="resetForm()" />
+            <pc-error *ngIf="formSubmitted && loginForm.controls.username.invalid">This value is invalid</pc-error>
+          </pc-input-container>
+        </md-list-item>
 
-      <md-list-item>
-        <pc-card-actions>
-          <button pc-button id="submit" color="primary" (click)="login()">Login</button>
-        </pc-card-actions>
-      </md-list-item>
+        <md-list-item>
+          <pc-input-container intent="primary">
+            <input pc-input id="password" placeholder="Password" type="password" formControlName="password" (focus)="resetForm()" />
+            <pc-error *ngIf="formSubmitted && loginForm.controls.password.invalid">This value is invalid</pc-error>
+          </pc-input-container>
+        </md-list-item>
 
-    </md-list>
+        <md-list-item>
+          <pc-card-actions>
+            <button pc-button id="submit" color="primary">Login</button>
+          </pc-card-actions>
+        </md-list-item>
+
+      </md-list>
+    </form>
 
   </pc-card-content>
 
