@@ -11,21 +11,21 @@
 
         <md-list-item>
           <pc-input-container intent="primary">
-            <input pc-input id="account" placeholder="Account" type="text" formControlName="account" (focus)="resetForm()" />
+            <input pc-input id="account" placeholder="Account" type="text" formControlName="account" (focus)="resetForm()" required />
             <pc-error *ngIf="formSubmitted && loginForm.controls.account.invalid">This value is invalid</pc-error>
           </pc-input-container>
         </md-list-item>
 
         <md-list-item>
           <pc-input-container intent="primary">
-            <input pc-input id="username" placeholder="Username" type="text" formControlName="username" (focus)="resetForm()" />
+            <input pc-input id="username" placeholder="Username" type="text" formControlName="username" (focus)="resetForm()" required />
             <pc-error *ngIf="formSubmitted && loginForm.controls.username.invalid">This value is invalid</pc-error>
           </pc-input-container>
         </md-list-item>
 
         <md-list-item>
           <pc-input-container intent="primary">
-            <input pc-input id="password" placeholder="Password" type="password" formControlName="password" (focus)="resetForm()" />
+            <input pc-input id="password" placeholder="Password" type="password" formControlName="password" (focus)="resetForm()" required />
             <pc-error *ngIf="formSubmitted && loginForm.controls.password.invalid">This value is invalid</pc-error>
           </pc-input-container>
         </md-list-item>
