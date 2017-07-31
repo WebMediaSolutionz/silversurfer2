@@ -11,4 +11,6 @@ export interface attributes {
 
     disabled?: boolean;
 
+    required?: boolean;
+
 }

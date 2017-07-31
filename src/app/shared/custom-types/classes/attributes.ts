@@ -12,4 +12,6 @@ export class Attributes implements attributes {
 
     public disabled?: boolean = false;
 
+    public required?: boolean = false;
+
 }
