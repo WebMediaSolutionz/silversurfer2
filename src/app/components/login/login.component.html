@@ -7,21 +7,21 @@
     <md-list>
       
       <md-list-item>
-        <md-input-container>
-          <input mdInput [(ngModel)]="credentials.account" id="account" placeholder="Account" type="text" disabled>
-        </md-input-container>
+        <pc-input-container intent="primary">
+          <input pc-input [(ngModel)]="credentials.account" id="account" placeholder="Account" type="text" required disabled />
+        </pc-input-container>
       </md-list-item>
 
       <md-list-item>
-        <md-input-container>
-          <input mdInput [(ngModel)]="credentials.username" id="username" placeholder="Username" type="text">
-        </md-input-container>
+        <pc-input-container intent="primary">
+          <input pc-input [(ngModel)]="credentials.username" id="username" placeholder="Username" type="text" />
+        </pc-input-container>
       </md-list-item>
 
       <md-list-item>
-        <md-input-container>
-          <input mdInput [(ngModel)]="credentials.password" id="password" placeholder="Password" type="password">
-        </md-input-container>
+        <pc-input-container intent="primary">
+          <input pc-input [(ngModel)]="credentials.password" id="password" placeholder="Password" type="password" />
+        </pc-input-container>
       </md-list-item>
 
       <md-list-item>

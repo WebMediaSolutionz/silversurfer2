@@ -11,21 +11,21 @@
       <md-list>
         
         <md-list-item>
-          <md-input-container>
-            <input mdInput [(ngModel)]="password.current" id="password" placeholder="Current Password" type="password">
-          </md-input-container>
+          <pc-input-container intent="primary">
+            <input pc-input [(ngModel)]="password.current" id="password" placeholder="Current Password" type="password" />
+          </pc-input-container>
         </md-list-item>
     
         <md-list-item>
-          <md-input-container>
-            <input mdInput [(ngModel)]="password.new" id="newPassword" (keyup)="mismatchedFields()" placeholder="New Password" type="password">
-          </md-input-container>
+          <pc-input-container intent="primary">
+            <input pc-input [(ngModel)]="password.new" id="newPassword" (keyup)="mismatchedFields()" placeholder="New Password" type="password" />
+          </pc-input-container>
         </md-list-item>
 
         <md-list-item>
-          <md-input-container>
-            <input mdInput [(ngModel)]="password.confirmNew" id="confirmNewPassword" (keyup)="mismatchedFields()" placeholder="Confirm New Password" type="password">
-          </md-input-container>
+          <pc-input-container intent="primary">
+            <input pc-input [(ngModel)]="password.confirmNew" id="confirmNewPassword" (keyup)="mismatchedFields()" placeholder="Confirm New Password" type="password" />
+          </pc-input-container>
         </md-list-item>
 
         <md-list-item>

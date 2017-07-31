@@ -1,10 +1,11 @@
 <md-list-item>
 
-  <md-input-container
-    [formGroup]="group">
+  <pc-input-container
+    [formGroup]="group"
+    intent="primary">
 
     <input
-      mdInput
+      pc-input
       [type]="attributes.type"
       [name]="attributes.name"
       [id]="attributes.name"
@@ -12,6 +13,6 @@
       [value]="attributes.value"
       [formControlName]="attributes.name">
 
-  </md-input-container>
+  </pc-input-container>
 
 </md-list-item>
