@@ -4,7 +4,7 @@
     width: $inner-card-width-sm;
     margin: auto;
     text-align: center;
-    background-color: $gray-lg;
+    background-color: $gray-lg !important;
 
     &.large {
         width: $inner-card-width-lg;
