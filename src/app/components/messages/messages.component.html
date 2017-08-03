@@ -1,0 +1,23 @@
+<pc-card class="inner-card large">
+
+  <ss2-page-title [pageTitle]="title"></ss2-page-title>
+
+  <pc-card-content>
+
+    <ss2-new-message></ss2-new-message>
+
+    <div *ngFor="let message of messages">
+
+      <pc-card class="message">
+
+        <pc-card-title>{{message.owner | myCapitalize}}</pc-card-title>
+
+        <pc-card-content>{{message.text}}</pc-card-content>
+
+      </pc-card>
+
+    </div>
+
+  </pc-card-content>
+
+</pc-card>

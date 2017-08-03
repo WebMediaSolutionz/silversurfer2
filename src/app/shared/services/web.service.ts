@@ -11,6 +11,7 @@ import { ErrorDisplayService } from './error-display.service';
 import { PasswordRule } from './password-rules.model';
 import { User } from '../custom-types/classes/user';
 import { Client } from '../custom-types/classes/client';
+import { Message } from '../custom-types/interfaces/message';
 
 @Injectable()
 export class WebService {
@@ -42,8 +43,24 @@ export class WebService {
               .map((res) => res.json());
   }
 
+  public getMessages(): Observable<Message[]> {
+    this.dest = this.API_URL + '/messages';
+
+    return this.http.get(this.dest, this.authService.tokenHeader)
+                    .map((res) => res.json());
+  }
+
+  public postMessage(msg: Message): Observable<Message> {
+    console.info(msg);
+
+    this.dest = this.API_URL + '/message';
+
+    return this.http.post(this.dest, msg, this.authService.tokenHeader)
+                    .map((res) => res.json());
+  }
+
   public getClients(): Observable<Client> {
-    this.dest = this.API_URL + '/client';
+    this.dest = this.API_URL + '/clients';
 
     return this.http.get(this.dest, this.authService.tokenHeader)
                     .map((res) => res.json());

@@ -12,6 +12,14 @@
     <span><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</span>
   </a>
 
+  <a
+    pc-flat-button
+    [class.active]="configService.activeLink === 'messages'"
+    routerLink="/messages"
+    *ngIf="authService.isAuthenticated">
+    <span><i class="fa fa-commenting" aria-hidden="true"></i> Messages</span>
+  </a>
+
   <span class="spacer"></span>
 
   <a

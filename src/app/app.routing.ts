@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SettingsComponent } from './components/settings/settings.component';
 import { PulseComponentLibComponent } from
 './components/pulse-component-lib/pulse-component-lib.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 const appRoutes: Routes = [
     {
@@ -47,6 +48,11 @@ const appRoutes: Routes = [
     {
         path: 'pulse-component-lib',
         component: PulseComponentLibComponent,
+        canActivate: [AuthManager]
+    },
+    {
+        path: 'messages',
+        component: MessagesComponent,
         canActivate: [AuthManager]
     },
     {

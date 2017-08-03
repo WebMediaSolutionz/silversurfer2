@@ -50,6 +50,8 @@ import { PasswordRulesComponent } from
 './components/partials/settings/password-rules/password-rules.component';
 import { PulseComponentLibComponent } from
 './components/pulse-component-lib/pulse-component-lib.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { NewMessageComponent } from './components/new-message/new-message.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { PulseComponentLibComponent } from
     PatientSummaryComponent,
     InteractionWarningsComponent,
     PasswordRulesComponent,
-    PulseComponentLibComponent
+    PulseComponentLibComponent,
+    MessagesComponent,
+    NewMessageComponent
   ],
   imports: [
     BrowserModule,

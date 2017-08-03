@@ -1,0 +1,25 @@
+<pc-card>
+
+  <pc-card-content>
+    
+    <pc-input-container intent="primary">
+
+      <input pc-input [(ngModel)]="msg.owner" placeholder="Name" />
+
+    </pc-input-container>
+
+    <md-input-container>
+
+      <textarea mdInput [(ngModel)]="msg.text" placeholder="Message"></textarea>
+
+    </md-input-container>
+
+    <pc-card-actions>
+
+      <button pc-button intent="primary" (click)="post()">POST</button>
+
+    </pc-card-actions>
+
+  </pc-card-content>
+
+</pc-card>
