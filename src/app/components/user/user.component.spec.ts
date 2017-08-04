@@ -11,7 +11,7 @@ import { WebServiceStub } from '../../shared/services/web.service.stub';
 import { ErrorDisplayService } from '../../shared/services/error-display.service';
 import { ErrorDisplayServiceStub } from '../../shared/services/error-display.service.stub';
 
-// Models
+// Classes
 import { User } from '../../shared/custom-types/classes/user';
 
 describe('User Component', () => {

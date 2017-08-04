@@ -18,7 +18,7 @@ import { Credentials } from '../../shared/custom-types/classes/credentials';
 })
 export class LoginComponent implements OnInit {
 
-  private formTitle: string = 'login';
+  private title: string = 'login';
 
   private credentials = new Credentials();
 
@@ -33,12 +33,14 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit(): void {
     this.credentials.account = (localStorage.getItem('account') !== null) ?
-                                localStorage.getItem('account') : '';
+                                localStorage.getItem('account') : 'QB1486';
 
+    // if user is logged in, he's redirected to the "dashboard"
     if (this.authService.isAuthenticated) {
       this.router.navigate(['/dashboard']);
     }
 
+    // reactive form creation with basic validation
     this.loginForm = this.fb.group({
       account: [this.credentials.account, Validators.required],
       username: ['', Validators.required],
@@ -56,8 +58,10 @@ export class LoginComponent implements OnInit {
     this.formSubmitted = true;
 
     if (this.loginForm.valid) {
+      // form values are valid, process authentication.
       this.authService.login(this.loginForm.value);
     } else {
+      // inform user that form could not be processed.
       this.errorDisplayService.display(
         'Your authentication failed. Please verify ' +
         'that your account, user id and password are correct.'

@@ -32,6 +32,7 @@ export class GeneralComponent implements OnInit {
               private webService: WebService) {}
 
   public ngOnInit(): void {
+    // retreieve current user information
     this.webService.getUser().subscribe((res: User) => {
       this.user = res;
     });
@@ -45,6 +46,7 @@ export class GeneralComponent implements OnInit {
     } else {
       this.user.password = this.password.new;
 
+      // saving current user information
       this.webService
           .saveUser(this.user)
           .subscribe(() => {

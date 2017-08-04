@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 // Services
 import { WebService } from './web.service';
 
-// Models
+// Classes
 import { User } from '../custom-types/classes/user';
 
 @Injectable()
@@ -18,6 +18,8 @@ export class ConfigService {
   constructor(private webService: WebService,
               private location: Location,
               private router: Router) {
+    // keeping track of the active route so that right tab
+    // can be hightlighted in the navigation bar
     this.router.events.subscribe((val) => {
       this.activeLink = this.location.path().substr(1);
     });

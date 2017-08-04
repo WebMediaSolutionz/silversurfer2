@@ -16,7 +16,7 @@ import { User } from '../../shared/custom-types/classes/user';
 })
 export class UserComponent implements OnInit {
 
-  private formTitle: string = 'Profile Info';
+  private title: string = 'Profile Info';
 
   private editMode: boolean = false;
 
@@ -30,6 +30,7 @@ export class UserComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    // retreive current user information
     this.webService.getUser().subscribe((res: User) => {
       this.user = res;
 
@@ -39,11 +40,13 @@ export class UserComponent implements OnInit {
 
   public post(): void {
     if (this.user.firstname.trim().length > 0 && this.user.lastname.trim().length > 0) {
+      // save current user information
       this.webService.saveUser(this.user).subscribe(() => {
         this.editMode = false;
-        this.formTitle = 'Profile Info';
+        this.title = 'Profile Info';
       });
     } else {
+      // form values have been left empty, informs user that form is invalid
       this.errorDisplayService.display('Some entries are invalid');
     }
   }
@@ -51,7 +54,7 @@ export class UserComponent implements OnInit {
   public toggleEditMode(): void {
     this.editMode = !this.editMode;
 
-    this.formTitle = (this.editMode) ? 'Edit Profile Info' : 'Profile Info';
+    this.title = (this.editMode) ? 'Edit Profile Info' : 'Profile Info';
   }
 
 }

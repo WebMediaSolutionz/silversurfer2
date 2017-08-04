@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { ErrorDisplayService } from './error-display.service';
 
-// Models
-import { PasswordRule } from './password-rules.model';
+// Classes
+import { PasswordRules } from '../custom-types/classes/password-rules';
 import { User } from '../custom-types/classes/user';
 import { Client } from '../custom-types/classes/client';
 
@@ -25,14 +25,21 @@ export class WebService {
               private errorDisplayService: ErrorDisplayService,
               private authService: AuthService) {}
 
-  public getPasswordRules(): Observable<PasswordRule> {
+  /**
+   * contacts the backend API to retrieve the password rules
+   */
+  public getPasswordRules(): Observable<PasswordRules> {
     this.dest = this.API_URL + '/password-rules';
 
     return this.http.get(this.dest, this.authService.tokenHeader)
                     .map((res) => res.json());
   }
 
-  public savePasswordRules(passwordRules: PasswordRule): Observable<PasswordRule> {
+  /**
+   * @param passwordRules
+   * contacts the backend API to save the password rules
+   */
+  public savePasswordRules(passwordRules: PasswordRules): Observable<PasswordRules> {
     this._confirmationMsg();
 
     this.dest = this.API_URL + '/password-rules';
@@ -42,6 +49,9 @@ export class WebService {
               .map((res) => res.json());
   }
 
+  /**
+   * contacts the backend API to get the clients
+   */
   public getClients(): Observable<Client> {
     this.dest = this.API_URL + '/client';
 
@@ -49,6 +59,9 @@ export class WebService {
                     .map((res) => res.json());
   }
 
+  /**
+   * contacts the backend API to get the current user information
+   */
   public getUser(): Observable<User> {
     this.dest = this.API_URL + '/users/me';
 
@@ -56,6 +69,11 @@ export class WebService {
                     .map((res) => res.json());
   }
 
+  /**
+   *
+   * @param userData
+   * contacts the backend API to save the current user information
+   */
   public saveUser(userData: User): Observable<User> {
     this._confirmationMsg();
 
@@ -65,11 +83,18 @@ export class WebService {
                     .map((res) => res.json());
   }
 
+  /**
+   * gets the configuration settings for the app from a json file
+   */
   public getConfig(): Observable<any> {
     return this.http.get(this.configUrl)
                     .map((res) => res.json());
   }
 
+  /**
+   * @param msg
+   * prints a confirmation message
+   */
   private _confirmationMsg(msg: string = `modifications have been saved`) {
     this.errorDisplayService.display(msg);
   }

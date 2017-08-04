@@ -55,13 +55,13 @@ describe('Login Component', () => {
       expect(component['credentials'].account).toBe(account);
     });
 
-    it( 'should set the value of the account to an empty string ' +
-        'if it is not in localstorage', () => {
+    it( 'should set the value of the account to "QB1486" when' +
+        'it is not cached in localstorage', () => {
       localStorage.removeItem('account');
 
       fixture.detectChanges();
 
-      expect(component['credentials'].account).toBe('');
+      expect(component['credentials'].account).toBe('QB1486');
     });
   });
 

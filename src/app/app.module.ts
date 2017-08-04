@@ -1,3 +1,7 @@
+/**
+ *  this is the app module
+ */
+
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

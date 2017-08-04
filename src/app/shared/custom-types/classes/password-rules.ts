@@ -1,5 +1,5 @@
 
-export class PasswordRule {
+export class PasswordRules {
 
   public minimumCharacters: number;
 
