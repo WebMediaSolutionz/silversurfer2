@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { ErrorDisplayService } from './error-display.service';
 import { WebService } from './web.service';
 
-import { PasswordRule } from './password-rules.model';
+import { PasswordRules } from '../custom-types/classes/password-rules';
 
 @Injectable()
 export class PasswordRulesService {
@@ -14,11 +14,11 @@ export class PasswordRulesService {
               private webService: WebService) {
   }
 
-  public getRules(): Observable<PasswordRule> {
+  public getRules(): Observable<PasswordRules> {
     return this.webService.getPasswordRules();
   }
 
-  public saveRules(passwordRule: PasswordRule): Observable<any> {
+  public saveRules(passwordRule: PasswordRules): Observable<any> {
     return this.webService.savePasswordRules(passwordRule);
   }
 

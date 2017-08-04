@@ -7,8 +7,8 @@ import { ErrorDisplayService } from '../../../../shared/services/error-display.s
 import { PasswordRulesService } from '../../../../shared/services/password-rules.service';
 import { ConfigService } from '../../../../shared/services/config.service';
 
-// Models
-import { PasswordRule } from '../../../../shared/services/password-rules.model';
+// Classes
+import { PasswordRules } from '../../../../shared/custom-types/classes/password-rules';
 import { User } from '../../../../shared/custom-types/classes/user';
 
 @Component({
@@ -29,7 +29,7 @@ export class PasswordRulesComponent implements OnInit {
 
   private triedSubmit: boolean = false;
 
-  private passwordRules: PasswordRule;
+  private passwordRules: PasswordRules;
 
   private nbrOfErrors: number = 0;
 
@@ -47,6 +47,7 @@ export class PasswordRulesComponent implements OnInit {
     this.passwordRules = null;
     this.nbrOfErrors = 0;
 
+    // creation of reactive form with basic and custom validation
     this.myForm = fb.group({
       minimumNonAlpha: [''],
       canStartEndNumber: [''],
@@ -98,11 +99,13 @@ export class PasswordRulesComponent implements OnInit {
   }
 
   public loadRules(): void {
+    // retreiving password rules
     this.passwordRulesService.getRules()
       .subscribe((rules) => {
                     this.isLoading = false;
                     this.passwordRules = rules;
 
+                    // initializing form values with the retrieved password rules
                     this.setFormValues(
                       this.passwordRules.minimumNonAlpha,
                       this.passwordRules.canStartEndNumber,
@@ -115,6 +118,7 @@ export class PasswordRulesComponent implements OnInit {
                     );
                  },
                  (error) => {
+                  //  password rules could not be retrieved, displaying error prompt
                    this.isLoading = false;
                    this.errorDisplayService.display(error);
                  });
@@ -145,10 +149,11 @@ export class PasswordRulesComponent implements OnInit {
     return this;
   }
 
-  public onSubmit(passwordRules: PasswordRule, strictValidation: Boolean = false): void {
+  public onSubmit(passwordRules: PasswordRules, strictValidation: Boolean = false): void {
     if ( this.myForm.valid ) {
       this.formSubmitted = true;
 
+      // form is valid, saving password rules
       this.passwordRulesService.saveRules(passwordRules)
         .subscribe(
           (rules) => {
@@ -158,10 +163,12 @@ export class PasswordRulesComponent implements OnInit {
             this.editMode = false;
           },
           (error) => {
+            // error, password rules could not be saved
             this.isLoading = false;
             this.errorDisplayService.display(error);
           });
     } else {
+      // form was invalid
       this.errorDisplayService.display('Some entries are invalid');
       this.triedSubmit = true;
       this.nbrOfErrors = this.errorDisplayService

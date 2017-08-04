@@ -19,8 +19,8 @@ import { ConfigServiceStub } from '../../../../shared/services/config.service.st
 // Pipes
 import { CapitalizePipe } from '../../../../shared/pipes/capitalize.pipe';
 
-// Models
-import { PasswordRule } from '../../../../shared/services/password-rules.model';
+// Classes
+import { PasswordRules } from '../../../../shared/custom-types/classes/password-rules';
 
 describe('PasswordRules Component', () => {
   let component: PasswordRulesComponent;
@@ -67,7 +67,7 @@ describe('PasswordRules Component', () => {
   describe('loadRules()', () => {
     it('should invoke PasswordRulesService.getRules and initialize form values', () => {
       let spy = spyOn(component['passwordRulesService'], 'getRules').and.callFake(() => {
-        component['passwordRules'] = new PasswordRule({
+        component['passwordRules'] = new PasswordRules({
           minimumCharacters: 1,
           minimumNonAlpha: true,
           canStartEndNumber: true,

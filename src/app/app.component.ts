@@ -11,7 +11,7 @@ import { ConfigService } from './shared/services/config.service';
 })
 export class AppComponent implements OnInit {
 
-  private configs: any;
+  private configs: any;     // app configuration values
 
   private loaded: boolean = false;
 
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
                         (data) => {
                           this.configs = data;
 
+                          // caching configuration values in localStorage
                           localStorage.setItem('product', this.configs.product);
                           localStorage.setItem('account', this.configs.account);
                           localStorage.setItem('errorDuration', this.configs.errorDuration);

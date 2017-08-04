@@ -4,7 +4,11 @@
 <!-- page main content -->
 <pc-card [class.no-padding]="configService.activeLink === 'settings'">
 
-  <router-outlet></router-outlet>
+  <pc-card-content>
+
+    <router-outlet></router-outlet>
+
+  </pc-card-content>
 
 </pc-card>
 

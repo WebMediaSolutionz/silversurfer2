@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class PulseComponentLibComponent {
 
-  private pageTitle: string = 'pulse component library';
+  private title: string = 'pulse component library';
 
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 
+// Services
 import { ErrorDisplayService } from './error-display.service';
 
 // Classes
@@ -38,8 +39,8 @@ export class AuthService {
     return new RequestOptions({headers: header});
   }
 
-  public login(loginData): void {
-    this.http.post(this.API_URL + '/login', loginData).subscribe(
+  public login(creds: Credentials): void {
+    this.http.post(this.API_URL + '/login', creds).subscribe(
       (res) => {
         this._authenticate(res);
       },
@@ -48,7 +49,7 @@ export class AuthService {
       });
   }
 
-  public register(user): void {
+  public register(user: any): void {
     delete user.confirmPassword;
 
     this.http.post(this.API_URL + '/register', user).subscribe(

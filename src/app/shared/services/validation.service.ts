@@ -22,6 +22,9 @@ export class ValidationService {
       null : errorObj;
   }
 
+  /**
+   * the definition of "special character" is pretty broad here. this is possibly subject to change.
+   */
   public specialCharValidator = (control: FormControl): {[key: string]: boolean} => {
     let errorObj = {specialCharValidator: true};
 

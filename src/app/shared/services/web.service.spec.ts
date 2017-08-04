@@ -9,8 +9,8 @@ import { ErrorDisplayServiceStub } from './error-display.service.stub';
 import { AuthService } from './auth.service';
 import { AuthServiceStub } from './auth.service.stub';
 
-// Models
-import { PasswordRule } from './password-rules.model';
+// Classes
+import { PasswordRules } from '../custom-types/classes/password-rules';
 import { User } from '../custom-types/classes/user';
 
 describe('Web Service', () => {
@@ -58,7 +58,7 @@ describe('Web Service', () => {
           return Observable.empty();
         });
 
-        let passwordRules: PasswordRule = new PasswordRule({
+        let passwordRules: PasswordRules = new PasswordRules({
           minimumCharacters: 1,
           canContainThreeSequentialTypes: true,
           canStartEndNumber: true,

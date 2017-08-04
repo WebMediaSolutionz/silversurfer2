@@ -18,7 +18,7 @@ import { Attributes } from '../../shared/custom-types/classes/attributes';
 })
 export class SignUpComponent implements OnInit {
 
-  private formTitle: string = 'sign up';
+  private title: string = 'sign up';
 
   private form: FormGroup;
 
@@ -42,12 +42,16 @@ export class SignUpComponent implements OnInit {
               private errorDisplayService: ErrorDisplayService) {}
 
   public ngOnInit(): void {
+    // if user is logged in, he's redirected to the "dashboard"
+    // TODO: make "landingPage" a configuration setting of the app
     if (this.authService.isAuthenticated) {
       this.router.navigate(['/dashboard']);
     }
 
+    // initialize form values
     this._initializeForm();
 
+    // reactive form creation with basic validation
     this.form = this.fb.group(
       {
         account:    [
@@ -89,16 +93,27 @@ export class SignUpComponent implements OnInit {
 
   public onSubmit(user: User): void {
     if (this.form.valid) {
+      // form valid, send register new user
       this.authService.register(this.form.value);
     } else {
+      // notify user that form data is invalid
       this.errorDisplayService.display('Some entries are invalid');
     }
   }
 
+  /**
+   *
+   * @param field
+   * this method checks if certain field is invalid, but for this field to be deemed invalid,
+   * it has to have been "touched"
+   */
   public isInvalid(field: string): boolean {
     return this.form.controls[field].invalid && this.form.controls[field].touched;
   }
 
+  /**
+   *  this method initializes form values
+   */
   private _initializeForm(): void {
     this.accountFieldAttr = new Attributes();
     this.accountFieldAttr.type = 'text';
@@ -108,7 +123,7 @@ export class SignUpComponent implements OnInit {
     this.accountFieldAttr.required = true;
 
     this.accountFieldAttr.value = ( localStorage.getItem('account') !== null) ?
-                                    localStorage.getItem('account') : '';
+                                    localStorage.getItem('account') : 'QB1486';
 
     let errorDuration = ( localStorage.getItem('errorDuration') !== null) ?
                             localStorage.getItem('errorDuration') : '2000';
@@ -146,6 +161,13 @@ export class SignUpComponent implements OnInit {
     this.confirmPasswordFieldAttr.required = true;
   }
 
+  /**
+   *
+   * @param field1
+   * @param field2
+   * this method checks if two fields contain the same value,
+   * returns an error if the field don't match
+   */
   private _matchingFields(field1: string, field2: string): any {
     return (form) => {
       if (form.controls[field1].value !== form.controls[field2].value) {
